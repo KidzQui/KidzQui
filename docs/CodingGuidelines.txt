@@ -1,0 +1,5 @@
+The following guidelines have been used for the project:
+1. Filemaker: The filemaker guideline that is to be used for the project is added in directory.
+2. HTML/CSS: The HTML/CSS guide is added to the docs directory to be use for the project.
+3. Laravel 5.2(PHP): For the Laravel 5, PSR-2 guidelines are to be followed.
+   http://www.php-fig.org/psr/psr-2/
