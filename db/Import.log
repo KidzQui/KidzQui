@@ -1,0 +1,95 @@
+﻿Timestamp	Filename	Error	Message
+2017-03-15 16:46:54.008 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 16:46:54.060 +0530	BTN_Login	0	script steps imported : 11
+2017-03-15 16:46:54.089 +0530	KidzQui.fmp12	0	Import completed
+2017-03-15 17:19:08.623 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 17:19:08.675 +0530	BTN_Login	0	script steps imported : 1
+2017-03-15 17:19:08.698 +0530	KidzQui.fmp12	0	Import completed
+2017-03-15 17:46:39.692 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 17:46:39.763 +0530	BTN_Login	3702	Unknown Error: <unknown>.
+2017-03-15 17:46:39.804 +0530	BTN_Login	0	script steps imported : 1
+2017-03-15 17:46:39.826 +0530	KidzQui.fmp12	0	Import completed
+2017-03-15 17:46:40.097 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 17:46:40.119 +0530	BTN_Login	3702	Unknown Error: <unknown>.
+2017-03-15 17:46:40.133 +0530	BTN_Login	0	script steps imported : 1
+2017-03-15 17:46:40.145 +0530	KidzQui.fmp12	0	Import completed
+2017-03-15 17:46:40.431 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 17:46:40.450 +0530	BTN_Login	3702	Unknown Error: <unknown>.
+2017-03-15 17:46:40.464 +0530	BTN_Login	0	script steps imported : 1
+2017-03-15 17:46:40.476 +0530	KidzQui.fmp12	0	Import completed
+2017-03-15 17:46:40.775 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 17:46:40.806 +0530	BTN_Login	3702	Unknown Error: <unknown>.
+2017-03-15 17:46:40.820 +0530	BTN_Login	0	script steps imported : 1
+2017-03-15 17:46:40.832 +0530	KidzQui.fmp12	0	Import completed
+2017-03-15 17:55:29.398 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 17:55:29.426 +0530	BTN_Login	0	script steps imported : 1
+2017-03-15 17:55:29.446 +0530	KidzQui.fmp12	0	Import completed
+2017-03-15 17:55:30.080 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 17:55:30.111 +0530	BTN_Login	0	script steps imported : 1
+2017-03-15 17:55:30.125 +0530	KidzQui.fmp12	0	Import completed
+2017-03-15 18:05:34.296 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 18:05:34.360 +0530	BTN_Login	0	script steps imported : 1
+2017-03-15 18:05:34.372 +0530	KidzQui.fmp12	0	Import completed
+2017-03-15 18:13:16.937 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 18:13:16.974 +0530	BTN_Login	0	script steps imported : 1
+2017-03-15 18:13:16.986 +0530	KidzQui.fmp12	0	Import completed
+2017-03-15 18:13:17.223 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 18:13:17.247 +0530	BTN_Login	0	script steps imported : 1
+2017-03-15 18:13:17.260 +0530	KidzQui.fmp12	0	Import completed
+2017-03-15 20:04:53.666 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 20:04:53.707 +0530	BTN_Login	0	script steps imported : 1
+2017-03-15 20:04:53.736 +0530	KidzQui.fmp12	0	Import completed
+2017-03-15 20:07:09.308 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-15 20:07:09.346 +0530	BTN_Login	0	script steps imported : 1
+2017-03-15 20:07:09.417 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 10:11:04.196 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 10:11:04.244 +0530	BTN_AddUser::16::If	106	Table referred to in the calculation “IsEmpty ( STD_Student::gt_Name )” is missing.
+2017-03-16 10:11:04.275 +0530	BTN_AddUser::19::Else If	106	Table referred to in the calculation “IsEmpty ( STD_Student::gt_Email )” is missing.
+2017-03-16 10:11:04.288 +0530	BTN_AddUser::22::Else If	106	Table referred to in the calculation “IsEmpty ( STD_Student::gt_PhoneNumber )” is missing.
+2017-03-16 10:11:04.300 +0530	BTN_AddUser::31::Set Field	106	Table referred to in the calculation “STD_Student::gt_Name” is missing.
+2017-03-16 10:11:04.312 +0530	BTN_AddUser::31::Set Field	102	Field “Name” missing.
+2017-03-16 10:11:04.324 +0530	BTN_AddUser::32::Set Field	106	Table referred to in the calculation “STD_Student::gt_Email” is missing.
+2017-03-16 10:11:04.356 +0530	BTN_AddUser::32::Set Field	102	Field “EmailAddress” missing.
+2017-03-16 10:11:04.379 +0530	BTN_AddUser::33::Set Field	106	Table referred to in the calculation “STD_Student::gt_PhoneNumber” is missing.
+2017-03-16 10:11:04.399 +0530	BTN_AddUser::33::Set Field	102	Field “PhoneNumber” missing.
+2017-03-16 10:11:04.421 +0530	BTN_AddUser	0	script steps imported : 37
+2017-03-16 10:11:04.440 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 10:11:16.285 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 10:11:16.341 +0530	BTN_AddUser	0	script steps imported : 13
+2017-03-16 10:11:16.365 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 10:57:32.460 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 10:57:32.491 +0530	BTN_AddUser	0	script steps imported : 1
+2017-03-16 10:57:32.511 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 10:57:32.726 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 10:57:32.763 +0530	BTN_AddUser	0	script steps imported : 1
+2017-03-16 10:57:32.784 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 10:57:33.003 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 10:57:33.041 +0530	BTN_AddUser	0	script steps imported : 1
+2017-03-16 10:57:33.061 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 10:57:33.280 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 10:57:33.301 +0530	BTN_AddUser	0	script steps imported : 1
+2017-03-16 10:57:33.322 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 11:00:56.838 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 11:00:56.868 +0530	BTN_AddUser	0	script steps imported : 1
+2017-03-16 11:00:56.886 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 11:12:55.784 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 11:12:55.851 +0530	BTN_AddUser	0	script steps imported : 1
+2017-03-16 11:12:55.917 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 11:12:56.214 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 11:12:56.281 +0530	BTN_AddUser	0	script steps imported : 1
+2017-03-16 11:12:56.355 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 11:12:57.049 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 11:12:57.126 +0530	BTN_AddUser	0	script steps imported : 1
+2017-03-16 11:12:57.188 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 11:12:59.165 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 11:12:59.220 +0530	BTN_AddUser	0	script steps imported : 1
+2017-03-16 11:12:59.308 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 11:34:28.277 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 11:34:28.315 +0530	BTN_Login	0	script steps imported : 1
+2017-03-16 11:34:28.337 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 11:34:28.617 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 11:34:28.638 +0530	BTN_Login	0	script steps imported : 1
+2017-03-16 11:34:28.659 +0530	KidzQui.fmp12	0	Import completed
+2017-03-16 11:34:28.866 +0530	KidzQui.fmp12	0	Import of script steps from clipboard started
+2017-03-16 11:34:28.895 +0530	BTN_Login	0	script steps imported : 1
+2017-03-16 11:34:28.916 +0530	KidzQui.fmp12	0	Import completed
