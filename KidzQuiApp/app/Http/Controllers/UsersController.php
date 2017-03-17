@@ -22,9 +22,21 @@ class UsersController extends Controller
      * @param void
      * @return list of users
      */
+    public $fmdb;
+    function __construct()
+    {
+        $connection = new FMUser();
+        $this->fmdb = $connection;
+    }
     public function index()
     {
-        $records = FMUser::showAll();
+        $records = $this->fmdb->showAll();
         return view('users.index', compact('records'));
+    }
+
+    public function image()
+    {
+        $record = $this->fmdb->showImage();
+        return view('users.index', $record);
     }
 }

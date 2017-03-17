@@ -12,14 +12,18 @@ use FileMaker;
 
 class FilemakerWrapper
 {
-
-    public static function getConnection()
+    protected $db;
+    function __construct()
     {
-        return new FileMaker(
+        $this->db = new FileMaker(
         env("DB_DATABASE"),
         env("DB_HOST"),
         env("DB_USERNAME"),
         env("DB_PASSWORD")
         );
+    }
+    public function getConnection()
+    {
+        return $this->db;
     }
 }
