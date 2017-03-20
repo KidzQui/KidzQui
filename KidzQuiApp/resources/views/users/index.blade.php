@@ -12,7 +12,7 @@
         @else
             @foreach($records as $record)
                 <div>
-                    {{ $record->getField('firstName_kqt') }}
+                    {{ $record->firstName_kqt }}
                 </div>
             @endforeach
 

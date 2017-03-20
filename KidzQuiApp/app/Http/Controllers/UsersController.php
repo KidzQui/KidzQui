@@ -11,9 +11,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\FMUser;
+use App\Task;
 use App\Http\Requests;
-use App\Classes;
 
 class UsersController extends Controller
 {
@@ -22,26 +21,10 @@ class UsersController extends Controller
      * @param void
      * @return list of users
      */
-    public $fmdb;
-    function __construct()
-    {
-        $connection = new FMUser();
-        $this->fmdb = $connection;
-    }
+
     public function index()
     {
-        $records = $this->fmdb->showAll();
+        $records = Task::all();
         return view('users.index', compact('records'));
-    }
-
-    public function image()
-    {
-        $record = $this->fmdb->showImage();
-        return view('users.index', $record);
-    }
-
-    public function login()
-    {
-        return view('evaluators.login');
     }
 }
