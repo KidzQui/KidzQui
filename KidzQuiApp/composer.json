@@ -6,7 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.2.*"
+        "laravel/framework": "5.2.*",
+        "andrewmile/fm-laravel": "0.4.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -17,7 +18,8 @@
     },
     "autoload": {
         "classmap": [
-            "database"
+            "database",
+            "vendor/filemaker/FileMaker.php"
         ],
         "psr-4": {
             "App\\": "app/"

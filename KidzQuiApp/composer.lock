@@ -4,8 +4,126 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b1485987e7c5949da82435d403e52e8",
+    "content-hash": "5464f6da5c459bcbb470b65a13cefd2d",
     "packages": [
+        {
+            "name": "andrewmile/fm-api",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andrewmile/FMAPI.git",
+                "reference": "8fa19f97cf2752eff4af427e92b7d34ed617cf0f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andrewmile/FMAPI/zipball/8fa19f97cf2752eff4af427e92b7d34ed617cf0f",
+                "reference": "8fa19f97cf2752eff4af427e92b7d34ed617cf0f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Andrew Morgan",
+                    "email": "andrewmile@gmail.com"
+                }
+            ],
+            "description": "FileMaker API for PHP",
+            "keywords": [
+                "FileMaker"
+            ],
+            "time": "2015-05-14T13:47:29+00:00"
+        },
+        {
+            "name": "andrewmile/fm-hash",
+            "version": "0.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andrewmile/FMHash.git",
+                "reference": "099865bb9d27027cca7d7ecaf2959591916ad981"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andrewmile/FMHash/zipball/099865bb9d27027cca7d7ecaf2959591916ad981",
+                "reference": "099865bb9d27027cca7d7ecaf2959591916ad981",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Andrew Morgan",
+                    "email": "andrewmile@gmail.com"
+                }
+            ],
+            "description": "Key/Value dictionary hasher",
+            "keywords": [
+                "FileMaker",
+                "sixfriedrice"
+            ],
+            "time": "2016-06-16T16:41:18+00:00"
+        },
+        {
+            "name": "andrewmile/fm-laravel",
+            "version": "0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andrewmile/FMLaravel.git",
+                "reference": "3b6fc19f7a7fe81a4d618738ddfa312c67068312"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andrewmile/FMLaravel/zipball/3b6fc19f7a7fe81a4d618738ddfa312c67068312",
+                "reference": "3b6fc19f7a7fe81a4d618738ddfa312c67068312",
+                "shasum": ""
+            },
+            "require": {
+                "andrewmile/fm-api": "0.1.2",
+                "andrewmile/fm-hash": "0.1.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Andrew Morgan",
+                    "email": "andrewmile@gmail.com"
+                }
+            ],
+            "description": "Laravel friendly wrapper for the FileMaker API for PHP",
+            "keywords": [
+                "FileMaker",
+                "laravel"
+            ],
+            "time": "2016-09-09T20:22:16+00:00"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "3.1.0",
@@ -437,16 +555,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.35",
+            "version": "1.0.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "dda7f3ab94158a002d9846a97dc18ebfb7acc062"
+                "reference": "d9c1698582dfbfbd092ec9c5c3325f862cdb3297"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/dda7f3ab94158a002d9846a97dc18ebfb7acc062",
-                "reference": "dda7f3ab94158a002d9846a97dc18ebfb7acc062",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/d9c1698582dfbfbd092ec9c5c3325f862cdb3297",
+                "reference": "d9c1698582dfbfbd092ec9c5c3325f862cdb3297",
                 "shasum": ""
             },
             "require": {
@@ -516,7 +634,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2017-02-09T11:33:58+00:00"
+            "time": "2017-03-18T16:02:30+00:00"
         },
         {
             "name": "monolog/monolog",
