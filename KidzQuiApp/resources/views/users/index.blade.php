@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>All Users</h1>
-        <!-- @if(empty($records))
+        @if(empty($records))
             Nothing to show.
         @else
             @foreach($records as $record)
@@ -16,7 +16,7 @@
                 </div>
             @endforeach
 
-        @endif -->
-        <img src="{{ echo $record }}" alt="">
+        @endif
+
     </body>
 </html>

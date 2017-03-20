@@ -39,4 +39,9 @@ class UsersController extends Controller
         $record = $this->fmdb->showImage();
         return view('users.index', $record);
     }
+
+    public function login()
+    {
+        return view('evaluators.login');
+    }
 }

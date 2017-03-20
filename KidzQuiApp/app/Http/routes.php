@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('evaluators', 'UsersController@image');
+Route::get('evaluators', 'UsersController@login');
 
-Route::get('evaluators', function() {
-    return view('evaluators.index');
-});
+// Route::get('evaluators', function() {
+//     return view('evaluators.index');
+// });
