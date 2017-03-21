@@ -147,7 +147,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        FMLaravel\Database\FileMakerServiceProvider::class,
 
         /*
          * Application Service Providers...
