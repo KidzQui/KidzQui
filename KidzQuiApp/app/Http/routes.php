@@ -15,5 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('evaluators', 'UsersController@index');
-
+Route::get('evaluator', function() {
+    return view('evaluators.index');
+});
