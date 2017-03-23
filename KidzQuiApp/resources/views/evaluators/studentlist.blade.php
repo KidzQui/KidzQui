@@ -25,7 +25,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Projects <small>Listing design</small></h3>
+                <h3>Project <small>KidzQui</small></h3>
               </div>
 
               <div class="title_right">
@@ -46,7 +46,7 @@
               <div class="col-md-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Projects</h2>
+                    <h2>List of Students</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -66,52 +66,35 @@
                   </div>
                   <div class="x_content">
 
-                    <p>Simple table with project listing with progress and editing options</p>
-
-                    <!-- start project list -->
+                
+                    <!-- start student list -->
                     <table class="table table-striped projects">
                       <thead>
                         <tr>
-                          <th style="width: 1%">#</th>
-                          <th style="width: 20%">Project Name</th>
-                          <th>Team Members</th>
-                          <th>Project Progress</th>
-                          <th>Status</th>
-                          <th style="width: 20%">#Edit</th>
+                          <th style="width: 10%">Student Id</th>
+                          <th style="width: 20%">Student Name</th>
+                          <th>Email Address</th>
+                          <th>Phone Number</th>
+                          <th style="width: 20%">Status</th>
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach ($records as $record)
                         <tr>
-                          <td>#</td>
                           <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
+                            {{ $record->getField('___kp_UserId') }}
                           </td>
                           <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
-                            </div>
-                            <small>57% Complete</small>
+                            {{ $record->getField('ct_FullName') }}
                           </td>
                           <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
+                            {{ $record->getField('emailAddress_kqt') }}
+                          </td>
+                          <td>
+                             {{ $record->getField('phoneNumber_kqt') }}
+                          </td>
+                          <td>
+                             {{ $record->getField('isActive_kqt') }}
                           </td>
                           <td>
                             <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
@@ -119,289 +102,8 @@
                             <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                           </td>
                         </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
-                            </div>
-                            <small>47% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
-                            </div>
-                            <small>77% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
-                            </div>
-                            <small>60% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="12"></div>
-                            </div>
-                            <small>12% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="35"></div>
-                            </div>
-                            <small>35% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="87"></div>
-                            </div>
-                            <small>87% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
-                            </div>
-                            <small>77% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
-                            </div>
-                            <small>77% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
+                        <tr>                
+                        @endforeach
                       </tbody>
                     </table>
                     <!-- end project list -->

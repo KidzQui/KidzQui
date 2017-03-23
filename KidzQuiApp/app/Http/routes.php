@@ -55,3 +55,7 @@ Route::get('questionlist', function() {
 Route::get('questiondetails', function() {
     return view('evaluators.questiondetails');
 });
+
+// Created By Mohit Dadu
+
+Route::get('studentlist', 'EvaluatorController@StudentList');
