@@ -34,7 +34,7 @@ class EvaluatorController extends Controller
      * @param void
      * @return list of student
      */
-    public function StudentList()
+    public function studentList()
     {
     	$records = EvaluatorModel::findRecordByType('User_USR', '3');
     	return view('evaluators.studentlist', compact('records'));
@@ -49,4 +49,22 @@ class EvaluatorController extends Controller
         }
     }
 
+    /* 
+     * To display the list of students into grid
+     * @param void
+     * @return list of student
+     */
+    public function studentGridList()
+    {
+    	$records = EvaluatorModel::findRecordByType('User_USR', '3');
+    	return view('evaluators/studentgridlist', compact('records'));
+    }
+
+    public function createRecord()
+    {
+    	$input = Request::all();
+    	//EvaluatorModel::addUser($input);
+    	return $input;
+    	//return view('evaluators/studentform');
+    }
 }
