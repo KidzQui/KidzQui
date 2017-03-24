@@ -29,12 +29,11 @@
               </div>
 
               <div class="title_right">
+                <button class="btn btn-default active" type="button"><a href="{{ URL::to('studentlist') }}">List</a></button>
+                <button class="btn btn-default" type="button"><a href="{{ URL::to('studentgridlist') }}">Grid</a></button>
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+                    <input type="text" id="search" onkeyup="search()" class="form-control" placeholder="Search for...">
                   </div>
                 </div>
               </div>
@@ -68,7 +67,7 @@
 
                 
                     <!-- start student list -->
-                    <table class="table table-striped projects">
+                    <table class="table table-striped projects" id="table">
                       <thead>
                         <tr>
                           <th style="width: 10%">Student Id</th>
@@ -115,6 +114,27 @@
           </div>
         </div>
         <!-- /page content -->
+
+        <!-- script to search name  -->
+        <script>
+          function search() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("table");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[0];
+              if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = "";
+                } else {
+                  tr[i].style.display = "none";
+                }
+              }       
+            }
+          }
+        </script>
 
 @stop
 

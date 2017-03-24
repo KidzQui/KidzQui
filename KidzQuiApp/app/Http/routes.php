@@ -58,4 +58,8 @@ Route::get('questiondetails', function() {
 
 // Created By Mohit Dadu
 
-Route::get('studentlist', 'EvaluatorController@StudentList');
+Route::get('studentlist', 'EvaluatorController@studentList');
+
+Route::get('studentgridlist', 'EvaluatorController@studentGridList');
+
+Route::post('studentform', 'EvaluatorController@createRecord');
