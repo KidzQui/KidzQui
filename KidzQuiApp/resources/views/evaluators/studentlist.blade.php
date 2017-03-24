@@ -1,3 +1,14 @@
+<!--
+/**
+* File: studentlist.blade.php
+* Path: resources/views/evaluators/studentlist.php
+* Purpose: Displays the list of students who are there under the particular Evaluator
+* Created On: 22-03-2017
+* Last Modified On: 23-03-2017
+* Author: Mohit Dadu, R S DEVI PRASAD
+*/
+-->
+
 @extends('layouts.app')
 
 @section('title', 'Student List')
@@ -59,14 +70,12 @@
                           </li>
                         </ul>
                       </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
 
-                
+
                     <!-- start student list -->
                     <table class="table table-striped projects">
                       <thead>
@@ -99,14 +108,13 @@
                           <td>
                             <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                             <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                           </td>
                         </tr>
-                        <tr>                
+                        <tr>
                         @endforeach
                       </tbody>
                     </table>
-                    <!-- end project list -->
+                    <!-- end student list -->
 
                   </div>
                 </div>

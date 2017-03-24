@@ -1,3 +1,14 @@
+<!--
+/**
+* File: app.blade.php
+* Path: resources/views/evaluators/app.blade.php
+* Purpose: The base layout for the display of Evaluator dashboard
+* Created On: 22-03-2017
+* Last Modified On: 23-03-2017
+* Author: R S DEVI PRASAD
+*/
+-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -193,7 +204,7 @@
     <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            KidzQui - Online Maths Tutor by <a href="https://mindfiresolutions.com">Mindfire</a>
           </div>
           <div class="clearfix"></div>
         </footer>
