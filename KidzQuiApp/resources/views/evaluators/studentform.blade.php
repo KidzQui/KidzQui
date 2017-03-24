@@ -54,7 +54,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Form <small></small></h2>
+                    <h2>Student Registration Form</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -74,24 +74,25 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form method="POST"  action = "/studentform" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ URL::to('studentdata') }}" method="post">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name 
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="first-name">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name 
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="last-name" name="last-name" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="email-address" class="control-label col-md-3 col-sm-3 col-xs-12">Email Address<span class="required">*</span>
+                        <label for="email-address" class="control-label col-md-3 col-sm-3 col-xs-12" name="email-address">Email Address<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input id="email-address" name="email-address" required="required" class="form-control col-md-7 col-xs-12" type="email">
@@ -101,22 +102,10 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Phone Number
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="phone" class="date-picker form-control col-md-7 col-xs-12" type="number">
+                          <input id="phone" class="form-control col-md-7 col-xs-12" type="number" name="phone-number">
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div id="status" class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="status" value="male"> &nbsp; Active &nbsp;
-                            </label>
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="status" value="female"> Inactive
-                            </label>
-                          </div>
-                        </div>
-                      </div>
+                      <input type="hidden" name="creatorId" value="{{ 2 }}">
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

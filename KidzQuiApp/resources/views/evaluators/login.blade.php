@@ -1,3 +1,14 @@
+<!--
+/**
+* File: login.blade.php
+* Path: resources/views/evaluators/login.blade.php
+* Purpose: The login page of the evaluator module
+* Created On: 22-03-2017
+* Last Modified On: 23-03-2017
+* Author: R S DEVI PRASAD
+*/
+-->
+
 @extends('layouts.main')
 
 @section('title', 'Login')

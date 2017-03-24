@@ -11,6 +11,9 @@
 |
 */
 
+// Created By: R S Devi Prasad
+// Created On: 22-03-2017
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,9 +26,11 @@ Route::get('studentform', function() {
     return view('evaluators.studentform');
 });
 
-Route::get('studentlist', function() {
-    return view('evaluators.studentlist');
-});
+Route::post('studentdata', 'EvaluatorController@addStudent');
+
+// Route::get('studentlist', function() {
+//     return view('evaluators.studentlist');
+// });
 
 Route::get('studentdetails', function() {
     return view('evaluators.studentdetails');
