@@ -18,7 +18,7 @@ use App\Classes;
 class EvaluatorController extends Controller
 {
     /*
-     * Show all the list of users 
+     * Show all the list of users
      * @param void
      * @return list of users
      */
@@ -29,15 +29,24 @@ class EvaluatorController extends Controller
         return view('test', compact('records'));
     }
 
-    /* 
-     * To display the list of students 
+    /*
+     * To display the list of students
      * @param void
      * @return list of student
      */
     public function StudentList()
     {
     	$records = EvaluatorModel::findRecordByType('User_USR', '3');
-    	return view('evaluators/studentlist', compact('records'));
+    	return view('evaluators.studentlist', compact('records'));
+    }
+
+    public function addStudent()
+    {
+        $input = $_POST;
+        $returnValue = EvaluatorModel::addUser('User_USR',$input);
+        if ($returnValue) {
+            return redirect('studentlist');
+        }
     }
 
 }

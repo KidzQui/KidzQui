@@ -16,12 +16,12 @@ use FileMaker;
 class EvaluatorModel
 {
 	/*
-     * show all records 
+     * show all records
      * @param $Layout(text)
      * @return all records
      */
     public static function showAllRecord($layout)
-    {	
+    {
     	// create connection
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindAllCommand($layout);
@@ -40,7 +40,7 @@ class EvaluatorModel
      * @return list of users
      */
     public static function findRecordByType($layout, $userTypeId)
-    {	
+    {
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
         $request->addFindCriterion('__kf_UserTypeId', $userTypeId);
@@ -59,7 +59,7 @@ class EvaluatorModel
      * @return individual user details
      */
     public static function findRecordById($layout, $userId)
-    {	
+    {
     	// create connection
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
@@ -80,19 +80,19 @@ class EvaluatorModel
      * @param $status(text)
      * @return void
      */
-    public static function editRecord($layout, $userTypeId, $status)
+    public static function editStatus($layout, $userId, $status)
     {
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
         $request->addFindCriterion('___kp_UserId', $userId);
         $result = $request->execute();
-    
+
         $records = $result->getRecords();
         //  storing data record into database
         foreach ($records as $record) {
             $record->setField('isActive_kqt', $status);
             $record->commit();}
-  
+
     } // end of function
 
     /*
@@ -101,15 +101,24 @@ class EvaluatorModel
      * @param $userId(number) ->creater Id
      * @return void
      */
-    public static function addUser($layout, $userId)
-    {   
+    public static function addUser($layout, $input)
+    {
         $fmobject = FilemakerWrapper::getConnection();
         // storing the data into the database.
         $request = $fmobject->createRecord($layout);
-        $request->setField('studentName', $name);
-        $request->setField('email', $email);
-        $request->setField('phoneNo', $phone);
+        $request->setField('firstName_kqt', $input['first-name']);
+        $request->setField('lastName_kqt', $input['last-name']);
+        $request->setField('emailAddress_kqt', $input['email-address']);
+        $request->setField('phoneNumber_kqt', $input['phone-number']);
+        $request->setField('createdBy_kqn', $input['creatorId']);
+        $request->setField('__kf_UserTypeId', 3);
+        $request->setField('isActive_kqt', 'Active');
         $result = $request->commit();
+
+        if (!FileMaker::isError($result)) {
+            return true;
+        }
+        return false;
 
     }// end of function
 
