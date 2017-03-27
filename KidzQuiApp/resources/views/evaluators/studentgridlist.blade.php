@@ -29,8 +29,8 @@
               </div>
 
               <div class="title_right">
-                <button class="btn btn-default" type="button"><a href="{{ URL::to('studentlist') }}">List</a></button>
-                <button class="btn btn-default active" type="button"><a href="{{ URL::to('studentgridlist') }}">Grid</a></button>
+                <a href="{{ URL::to('studentlist') }}"><i class="fa fa-th-list" aria-hidden="true"></i></a>
+                <a href="{{ URL::to('studentgridlist') }}"><i class="fa fa-th" aria-hidden="true"></i></a>
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for...">

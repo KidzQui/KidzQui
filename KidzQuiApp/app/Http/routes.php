@@ -61,10 +61,13 @@ Route::get('questiondetails', function() {
     return view('evaluators.questiondetails');
 });
 
-// Created By Mohit Dadu
+// Edited By: Mohit Dadu
+// Edited On: 23-03-17
 
 Route::get('studentlist', 'EvaluatorController@studentList');
 
 Route::get('studentgridlist', 'EvaluatorController@studentGridList');
 
 Route::post('studentform', 'EvaluatorController@createRecord');
+
+Route::get('imagedata', 'EvaluatorController@showImage');
