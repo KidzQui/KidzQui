@@ -13,7 +13,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\EvaluatorModel;
-use App\Classes;
+use App\Classes\FilemakerWrapper;
+use FileMaker;
 
 class EvaluatorController extends Controller
 {
@@ -34,37 +35,37 @@ class EvaluatorController extends Controller
      * @param void
      * @return list of student
      */
-    public function studentList()
+    public function StudentList()
     {
     	$records = EvaluatorModel::findRecordByType('User_USR', '3');
     	return view('evaluators.studentlist', compact('records'));
+    }
+
+    public function studentGridList()
+    {
+        $records = EvaluatorModel::findRecordByType('UsrManagementWeb_USR', '3');
+        return view('evaluators.studentgridlist', compact('records'));
     }
 
     public function addStudent()
     {
         $input = $_POST;
         $returnValue = EvaluatorModel::addUser('User_USR',$input);
-        if ($returnValue) {
+        if (returnValue) {
             return redirect('studentlist');
         }
+
     }
 
-    /* 
-     * To display the list of students into grid
-     * @param void
-     * @return list of student
-     */
-    public function studentGridList()
+    public function showImage()
     {
-    	$records = EvaluatorModel::findRecordByType('User_USR', '3');
-    	return view('evaluators/studentgridlist', compact('records'));
-    }
-
-    public function createRecord()
-    {
-    	$input = Request::all();
-    	//EvaluatorModel::addUser($input);
-    	return $input;
-    	//return view('evaluators/studentform');
+        $fm = FilemakerWrapper::getConnection();
+        $url = $_GET['-url'];
+        if (isset($url)){
+            //Show the contents of the container field
+            $completeData = $fm->getContainerData($url);
+            return response($completeData)->header('Content-Type', 'image/jpeg');
+        }
+        return 0;
     }
 }
