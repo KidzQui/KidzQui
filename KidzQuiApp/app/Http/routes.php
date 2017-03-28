@@ -66,6 +66,8 @@ Route::get('questiondetails', function() {
 // Edited By: Mohit Dadu
 // Edited On: 23-03-17
 
+Route::get('profile', 'EvaluatorController@findUser');
+
 Route::get('studentlist', 'EvaluatorController@studentList');
 
 Route::get('studentgridlist', 'EvaluatorController@studentGridList');

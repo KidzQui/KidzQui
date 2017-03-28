@@ -13,6 +13,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\EvaluatorModel;
+use App\QuestionModel;
 use App\Classes\FilemakerWrapper;
 use FileMaker;
 
@@ -80,6 +81,22 @@ class EvaluatorController extends Controller
         }
         return 0;
     }
+    
+    /*
+     * to find the Evaluator details from the database
+     * @param void
+     * @return userProfile to Profile page
+     */
+    public function findUser()
+    {
+    	$userProfile = array(
+        // To get the profile details
+    		'profile' => EvaluatorModel::findRecordById('User_USR', '2'), 
+        // To get all questions added by the Evaluator
+    		'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
+    		);
+      // Return to the user profile page
+    	return view('evaluators.profile', compact('userProfile'));
 
     /*
      * Add a new question to the database by the evaluator
