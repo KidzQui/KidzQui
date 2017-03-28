@@ -34,14 +34,18 @@
     <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Project <small>KidzQui</small></h3>
-              </div>
+            <div class="navbar-default">
 
-              <div class="title_right">
-                <a href="{{ URL::to('studentlist') }}"><i class="fa fa-th-list" aria-hidden="true"></i></a>
-                <a href="{{ URL::to('studentgridlist') }}"><i class="fa fa-th" aria-hidden="true"></i></a>
+              <ul class="nav navbar-nav col-md-3">
+                <li class="active">
+                  <a href="{{ URL::to('studentlist') }}"><i class="fa fa-th-list fa-lg" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                  <a href="{{ URL::to('studentgridlist') }}"><i class="fa fa-th fa-lg" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+
+              <div class="navbar-right col-md-9">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for...">
