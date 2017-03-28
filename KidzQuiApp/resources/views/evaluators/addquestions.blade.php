@@ -74,46 +74,66 @@
               </div>
               <div class="x_content">
                 <br />
-                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="newquestion">
 
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 text-right" for="first-name">Question <span class="required">*</span>
+                    </label>
+                    <div class="col-xs-6">
+                      <textarea type="text" id="first-name" required="required" class="form-control col-md-6 col-xs-12" rows="8"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 text-right" for="last-name">Type <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name / Initial</label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <div id="gender" class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                          <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio">
+                                Puzzle
                         </label>
-                        <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                          <input type="radio" name="gender" value="female"> Female
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio">
+                                Game
                         </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio">
+                                Objective Type
+                        </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 text-right">Set</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                          <select class="form-control" id="sel1">
+                            <option>Multiplication</option>
+                            <option>Division</option>
+                            <option>Addition</option>
+                            <option>Subtraction</option>
+                            <option>Counting</option>
+                          </select>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 text-right">Level</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                          <select class="form-control" id="sel1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 text-right">Answer <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                      <input id="answer" class="form-control col-md-7 col-xs-12" required="required" type="text">
                     </div>
                   </div>
                   <div class="ln_solid"></div>

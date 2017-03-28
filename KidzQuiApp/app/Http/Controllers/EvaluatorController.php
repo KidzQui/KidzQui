@@ -42,20 +42,32 @@ class EvaluatorController extends Controller
     	return view('evaluators.studentlist', compact('records'));
     }
 
+    /*
+     * To display the list of students in grid view
+     * @param void
+     * @return list of student
+     */
+
     public function studentGridList()
     {
         $records = EvaluatorModel::findRecordByType('UsrManagementWeb_USR', '3');
         return view('evaluators.studentgridlist', compact('records'));
     }
 
+    /*
+     * Add a student to the web application
+     * @param void
+     * @return void
+     */
+
     public function addStudent()
     {
         $input = $_POST;
         $returnValue = EvaluatorModel::addUser('User_USR',$input);
-        if (returnValue) {
+        if ($returnValue) {
             return redirect('studentlist');
         }
-
+        return back();
     }
 
     public function showImage()
@@ -69,13 +81,31 @@ class EvaluatorController extends Controller
         }
         return 0;
     }
-
+    
+    /*
+     * to find the Evaluator details from the database
+     * @param void
+     * @return userProfile to Profile page
+     */
     public function findUser()
     {
     	$userProfile = array(
+        // To get the profile details
     		'profile' => EvaluatorModel::findRecordById('User_USR', '2'), 
+        // To get all questions added by the Evaluator
     		'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
     		);
+      // Return to the user profile page
     	return view('evaluators.profile', compact('userProfile'));
+
+    /*
+     * Add a new question to the database by the evaluator
+     * @param void
+     * @return void
+     */
+
+    public function addNewQuestion()
+    {
+
     }
 }

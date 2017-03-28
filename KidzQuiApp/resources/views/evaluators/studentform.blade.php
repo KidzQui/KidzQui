@@ -74,7 +74,7 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ URL::to('studentdata') }}" method="post">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="studentdata" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                       <div class="form-group">

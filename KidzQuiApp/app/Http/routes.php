@@ -53,6 +53,8 @@ Route::get('addquestions', function() {
     return view('evaluators.addquestions');
 });
 
+Route::get('newquestion', 'EvaluatorController@addNewQuestion');
+
 Route::get('questionlist', function() {
     return view('evaluators.questionlist');
 });
