@@ -81,7 +81,6 @@
                       <i class="fa fa-mobile user-profile-icon"></i> {{ $userProfile['profile'][0]->getField('phoneNumber_kqt') }} 
                     </li>
                   </ul>
-                  {{--  @endforeach --}}
                   <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
                   <br />
 
@@ -113,22 +112,31 @@
 
                         <!-- start recent activity -->
                         <ul class="messages">
+                        
+                          @if($userProfile['questions'])
+                            @foreach ($userProfile['questions'] as $question)
+
                           <li>
-                            <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/img.jpg') }}" class="avatar" alt="Avatar">
                             <div class="message_date">
-                              <h3 class="date text-info">24</h3>
-                              <p class="Created On :"></p>
+                              <h5 class="date text-error">Created On:</h3>
+                              <p class="month">{{ $question->getField('createdOn_kqd') }}</p>
                             </div>
                             <div class="message_wrapper">
-                              <h4 class="heading">Desmond Davison</h4>
-                              <blockquote class="message">.</blockquote>
+                              <h4 class="date text-error">Question:</h3>
+                              <blockquote class="message">{{ $question->getField('questionText_kqt') }}.</blockquote>
                               <br />
-                              <p class="url">
-                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                              </p>
+                              <h5>Question Type:</h3>
+                                {{ $question->getField('__kf_QuestionTypeId') }}<br>
+                              <h5>  Level:</h3>
+                                {{ $question->getField('__kf_LevelId') }}
+                              <h5 class="date text-error">  Set:</h3>
+                                {{ $question->getField('__kf_SetId') }}
                             </div>
                           </li>
+
+                            @endforeach
+                          @endif
+
                         </ul>
                         <!-- end recent activity -->
                       </div>
