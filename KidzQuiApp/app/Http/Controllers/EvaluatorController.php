@@ -13,6 +13,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\EvaluatorModel;
+use App\QuestionModel;
 use App\Classes\FilemakerWrapper;
 use FileMaker;
 
@@ -67,5 +68,14 @@ class EvaluatorController extends Controller
             return response($completeData)->header('Content-Type', 'image/jpeg');
         }
         return 0;
+    }
+
+    public function findUser()
+    {
+    	$userProfile = array(
+    		'profile' => EvaluatorModel::findRecordById('User_USR', '2'), 
+    		'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
+    		);
+    	return view('evaluators.profile', compact('userProfile'));
     }
 }
