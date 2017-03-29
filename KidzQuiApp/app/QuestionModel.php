@@ -15,14 +15,14 @@ use FileMaker;
 
 class QuestionModel
 {
-	/*
+    /*
      * show all records - Questions
      * @param $layout(text)
      * @return all records
      */
     public static function showAllQuestion($layout)
     {
-    	// create connection
+        // create connection
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindAllCommand($layout);
         $result = $request->execute();
@@ -33,8 +33,8 @@ class QuestionModel
 
     } // end of function
 
-	/*
-     * find the records by type - MCQ/Puzzel/Game 
+    /*
+     * find the records by type - MCQ/Puzzel/Game
      * @param $layout(text)
      * @param $questionTypeId(number)
      * @return list of users
@@ -60,7 +60,7 @@ class QuestionModel
      */
     public static function findQuestionByCreaterId($layout, $userId)
     {
-    	// create connection
+        // create connection
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
         $request->addFindCriterion('createdBy_kqn', $userId);
@@ -73,19 +73,47 @@ class QuestionModel
     } // end of function
 
     /*
-     * Add new record (student)
+     * Add new questions to the sets
      * @param $Layout(text)
      * @param $userId(number) ->creater Id
-     * @return void
+     * @return true or false depending on the success or failure of addition
      */
     public static function addQuestion($layout, $input)
     {
+        $ret = QuestionModel::addChoice('Choice_CHC', $input['answer']);
+        if (!$ret) {
+            return false;
+        }
         $fmobject = FilemakerWrapper::getConnection();
         // storing the data into the database.
         $request = $fmobject->createRecord($layout);
+        $request->setField('questionText_kqt', $input['question']);
         $request->setField('createdBy_kqn', $input['creatorId']);
-        $request->setField('__kf_UserTypeId', 3);
-        $request->setField('isActive_kqt', 'Active');
+        $request->setField('questionStatus_kqt', 'Active');
+        $typeId = $input['radio'] == "Objective Type" ? 1 : ($input['radio'] == "Puzzle" ? 2 : 3);
+        $request->setField('__kf_QuestionTypeId', $typeId);
+        $request->setField('__kf_LevelId', $input['level']);
+        switch ($input['set']) {
+            case 'Addition':
+                $request->setField('__kf_SetId', 1);
+                break;
+
+            case 'Subtraction':
+                $request->setField('__kf_SetId', 2);
+                break;
+
+            case 'Multiplication':
+                $request->setField('__kf_SetId', 3);
+                break;
+
+            case 'Division':
+                $request->setField('__kf_SetId', 4);
+                break;
+
+            default:
+                $request->setField('__kf_SetId', 0);
+                break;
+        }
         $result = $request->commit();
 
         if (!FileMaker::isError($result)) {
@@ -94,6 +122,26 @@ class QuestionModel
         return false;
 
     }// end of function
+
+    /*
+     * Add new questions to the sets
+     * @param $Layout(text)
+     * @param choice(text)
+     * @return true if choice added, else false
+     */
+
+    public static function addChoice($layout, $choice)
+    {
+        $fmobject = FilemakerWrapper::getConnection();
+        // storing the data into the database.
+        $request = $fmobject->createRecord($layout);
+        $request->setField('choiceText_kqt', $choice);
+        $result = $request->commit();
+        if (!FileMaker::isError($result)) {
+            return true;
+        }
+        return false;
+    }
 
 } // end of class
 

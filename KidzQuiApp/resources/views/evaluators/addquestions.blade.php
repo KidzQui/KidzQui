@@ -75,12 +75,12 @@
               <div class="x_content">
                 <br />
                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="newquestion">
-
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12 text-right" for="first-name">Question <span class="required">*</span>
                     </label>
                     <div class="col-xs-6">
-                      <textarea type="text" id="first-name" required="required" class="form-control col-md-6 col-xs-12" rows="8"></textarea>
+                      <textarea name="question" type="text" id="first-name" required="required" class="form-control col-md-6 col-xs-12" rows="8"></textarea>
                     </div>
                   </div>
                   <div class="form-group">
@@ -88,15 +88,15 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <label class="radio-inline">
-                            <input type="radio" name="optradio">
+                            <input type="radio" name="radio" value="Puzzle">
                                 Puzzle
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="optradio">
+                            <input type="radio" name="radio" value="Game">
                                 Game
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="optradio">
+                            <input type="radio" name="radio" value="Objective Type">
                                 Objective Type
                         </label>
                     </div>
@@ -105,7 +105,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12 text-right">Set</label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                          <select class="form-control" id="sel1">
+                          <select name="set" class="form-control" id="sel1">
                             <option>Multiplication</option>
                             <option>Division</option>
                             <option>Addition</option>
@@ -119,7 +119,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12 text-right">Level</label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                          <select class="form-control" id="sel1">
+                          <select name="level" class="form-control" id="sel1">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -133,9 +133,10 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12 text-right">Answer <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input id="answer" class="form-control col-md-7 col-xs-12" required="required" type="text">
+                      <input id="answer" name="answer" class="form-control col-md-7 col-xs-12" required="required" type="text">
                     </div>
                   </div>
+                  <input type="hidden" name="creatorId" value="{{ 2 }}">
                   <div class="ln_solid"></div>
                   <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -144,7 +145,6 @@
                       <button type="submit" class="btn btn-success">Submit</button>
                     </div>
                   </div>
-
                 </form>
               </div>
             </div>
