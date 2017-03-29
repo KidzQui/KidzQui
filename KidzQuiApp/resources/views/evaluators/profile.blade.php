@@ -62,7 +62,7 @@
                 </ul>
                 <div class="clearfix"></div>
               </div>
-              <div class="x_content"> 
+              <div class="x_content">
                 <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
                   <div class="profile_img">
                     <div id="crop-avatar">
@@ -78,7 +78,7 @@
                     </li>
 
                     <li>
-                      <i class="fa fa-mobile user-profile-icon"></i> {{ $userProfile['profile'][0]->getField('phoneNumber_kqt') }} 
+                      <i class="fa fa-mobile user-profile-icon"></i> {{ $userProfile['profile'][0]->getField('phoneNumber_kqt') }}
                     </li>
                   </ul>
                   <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
@@ -112,25 +112,22 @@
 
                         <!-- start recent activity -->
                         <ul class="messages">
-                        
+
                           @if($userProfile['questions'])
                             @foreach ($userProfile['questions'] as $question)
 
                           <li>
                             <div class="message_date">
-                              <h5 class="date text-error">Created On:</h3>
+                              <h5 class="date text-error">Created On:</h5>
                               <p class="month">{{ $question->getField('createdOn_kqd') }}</p>
                             </div>
                             <div class="message_wrapper">
-                              <h4 class="date text-error">Question:</h3>
+                              <h4 class="date text-error">Question:</h4>
                               <blockquote class="message">{{ $question->getField('questionText_kqt') }}.</blockquote>
-                              <br />
-                              <h5>Question Type:</h3>
-                                {{ $question->getField('__kf_QuestionTypeId') }}<br>
-                              <h5>  Level:</h3>
-                                {{ $question->getField('__kf_LevelId') }}
-                              <h5 class="date text-error">  Set:</h3>
-                                {{ $question->getField('__kf_SetId') }}
+                              <h5>Question Type: {{ $question->getField('__kf_QuestionTypeId') }}</h5>
+                              <h5>Level: {{ $question->getField('__kf_LevelId') }}</h5>
+
+                              <h5>Set: {{ $question->getField('__kf_SetId') }}</h5>
                             </div>
                           </li>
 
