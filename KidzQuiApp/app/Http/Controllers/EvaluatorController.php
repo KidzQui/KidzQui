@@ -24,7 +24,6 @@ class EvaluatorController extends Controller
      * @param void
      * @return list of users
      */
-
     public function index()
     {
         $records = EvaluatorModel::showAllRecords('User_USR');
@@ -32,7 +31,7 @@ class EvaluatorController extends Controller
     }
 
     /*
-     * To display the list of students
+     * To display the list of students in list view
      * @param void
      * @return list of student
      */
@@ -47,7 +46,6 @@ class EvaluatorController extends Controller
      * @param void
      * @return list of student
      */
-
     public function studentGridList()
     {
         $records = EvaluatorModel::findRecordByType('UsrManagementWeb_USR', '3');
@@ -59,7 +57,6 @@ class EvaluatorController extends Controller
      * @param void
      * @return void
      */
-
     public function addStudent()
     {
         $input = $_POST;
@@ -70,6 +67,11 @@ class EvaluatorController extends Controller
         return back();
     }
 
+    /*
+     * show image on web
+     * @param void
+     * @return void
+     */
     public function showImage()
     {
         $fm = FilemakerWrapper::getConnection();
@@ -83,7 +85,7 @@ class EvaluatorController extends Controller
     }
 
     /*
-     * to find the Evaluator details from the database
+     * show Evaluator details from the database
      * @param void
      * @return userProfile to Profile page
      */
@@ -91,19 +93,30 @@ class EvaluatorController extends Controller
     {
         $userProfile = array(
         // To get the profile details
-            'profile' => EvaluatorModel::findRecordById('User_USR', '2'),
+    	  'profile' => EvaluatorModel::findRecordById('User_USR', '2'), 
         // To get all questions added by the Evaluator
-            'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
-            );
-      // Return to the user profile page
-        return view('evaluators.profile', compact('userProfile'));
+    	  'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
+    	);
+        // Return to the user profile page
+    	return view('evaluators.profile', compact('userProfile'));
     }
+
+    /*
+     * Show list of questions from database
+     * @param void
+     * @return list of questions
+     */
+    public function questionList()
+    {
+    	$listQuestion = QuestionModel::showAllQuestion('Question_QUS');
+    	return view('evaluators.questionlist', compact('listQuestion'));
+    }
+
     /*
      * Add a new question to the database by the evaluator
      * @param post data of the form
      * @return void
      */
-
     public function addNewQuestion(Request $request)
     {
         $isAdded = QuestionModel::addQuestion('Question_QUS', $request->all());

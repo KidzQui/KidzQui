@@ -25,7 +25,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Projects <small>Listing design</small></h3>
+                <h3>Question List</h3>
               </div>
 
               <div class="title_right">
@@ -46,7 +46,6 @@
               <div class="col-md-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Projects</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -66,342 +65,52 @@
                   </div>
                   <div class="x_content">
 
-                    <p>Simple table with project listing with progress and editing options</p>
-
                     <!-- start project list -->
-                    <table class="table table-striped projects">
+                    <table class="table table-striped projects" id="table">
                       <thead>
                         <tr>
-                          <th style="width: 1%">#</th>
-                          <th style="width: 20%">Project Name</th>
-                          <th>Team Members</th>
-                          <th>Project Progress</th>
-                          <th>Status</th>
-                          <th style="width: 20%">#Edit</th>
+                          <th style="width: 10%">Question Id</th>
+                          <th style="width: 50%">Question</th>
+                          <th style="width: 10%">QuestionType</th>
+                          <th style="width: 10%">Set Is</th>
+                          <th style="width: 10%">Level Id</th>
+                          <th style="width: 10%">Creater Id</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
-                            </div>
-                            <small>57% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
-                            </div>
-                            <small>47% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
-                            </div>
-                            <small>77% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
-                            </div>
-                            <small>60% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="12"></div>
-                            </div>
-                            <small>12% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="35"></div>
-                            </div>
-                            <small>35% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="87"></div>
-                            </div>
-                            <small>87% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
-                            </div>
-                            <small>77% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/user.png') }}" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
-                            </div>
-                            <small>77% Complete</small>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
+
+                        @if($listQuestion)
+                          @foreach ($listQuestion as $list)
+                      
+                          <tr>
+                            <td>
+                              {{ $list->getField('___kp_QuestionId') }}
+                            </td>
+                            <td>
+                              {{ $list->getField('questionText_kqt') }}
+                            </td>
+                            <td>
+                              {{ $list->getField('__kf_QuestionTypeId') }}
+                            </td>
+                            <td>
+                               {{ $list->getField('__kf_SetId') }}
+                            </td>
+                            <td>
+                               {{ $list->getField('__kf_LevelId') }}
+                            </td>
+                            <td>
+                               {{ $list->getField('createdBy_kqn') }}
+                            </td>
+                            <td>
+                              <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                              <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            </td>
+                          </tr>
+                          <tr>
+
+                          @endforeach
+                        @endif
+
                       </tbody>
                     </table>
                     <!-- end project list -->
