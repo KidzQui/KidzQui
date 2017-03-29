@@ -15,14 +15,14 @@ use FileMaker;
 
 class EvaluatorModel
 {
-	/*
+    /*
      * show all records
      * @param $Layout(text)
      * @return all records
      */
     public static function showAllRecord($layout)
     {
-    	// create connection
+        // create connection
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindAllCommand($layout);
         $result = $request->execute();
@@ -33,7 +33,7 @@ class EvaluatorModel
 
     } // end of function
 
-	/*
+    /*
      * find the records by type (student/evaluator)
      * @param $Layout(text)
      * @param $userTypeId(number)
@@ -60,7 +60,7 @@ class EvaluatorModel
      */
     public static function findRecordById($layout, $userId)
     {
-    	// create connection
+        // create connection
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
         $request->addFindCriterion('___kp_UserId', $userId);

@@ -38,8 +38,8 @@ class EvaluatorController extends Controller
      */
     public function StudentList()
     {
-    	$records = EvaluatorModel::findRecordByType('User_USR', '3');
-    	return view('evaluators.studentlist', compact('records'));
+        $records = EvaluatorModel::findRecordByType('User_USR', '3');
+        return view('evaluators.studentlist', compact('records'));
     }
 
     /*
@@ -81,7 +81,7 @@ class EvaluatorController extends Controller
         }
         return 0;
     }
-    
+
     /*
      * to find the Evaluator details from the database
      * @param void
@@ -89,23 +89,27 @@ class EvaluatorController extends Controller
      */
     public function findUser()
     {
-    	$userProfile = array(
+        $userProfile = array(
         // To get the profile details
-    		'profile' => EvaluatorModel::findRecordById('User_USR', '2'), 
+            'profile' => EvaluatorModel::findRecordById('User_USR', '2'),
         // To get all questions added by the Evaluator
-    		'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
-    		);
+            'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
+            );
       // Return to the user profile page
-    	return view('evaluators.profile', compact('userProfile'));
-
+        return view('evaluators.profile', compact('userProfile'));
+    }
     /*
      * Add a new question to the database by the evaluator
-     * @param void
+     * @param post data of the form
      * @return void
      */
 
-    public function addNewQuestion()
+    public function addNewQuestion(Request $request)
     {
-
+        $isAdded = QuestionModel::addQuestion('Question_QUS', $request->all());
+        if ($isAdded == 1) {
+            return redirect('questionlist');
+        }
+        return $isAdded;
     }
 }
