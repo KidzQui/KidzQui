@@ -48,16 +48,11 @@ Route::get('evaluatorlogout', function() {
     return view('evaluators.login');
 });
 
-
 Route::get('addquestions', function() {
     return view('evaluators.addquestions');
 });
 
 Route::get('newquestion', 'EvaluatorController@addNewQuestion');
-
-Route::get('questionlist', function() {
-    return view('evaluators.questionlist');
-});
 
 Route::get('questiondetails', function() {
     return view('evaluators.questiondetails');
@@ -75,3 +70,5 @@ Route::get('studentgridlist', 'EvaluatorController@studentGridList');
 Route::post('studentform', 'EvaluatorController@createRecord');
 
 Route::get('imagedata', 'EvaluatorController@showImage');
+
+Route::get('questionlist', 'EvaluatorController@questionList');
