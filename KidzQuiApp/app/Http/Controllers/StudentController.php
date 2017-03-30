@@ -22,10 +22,8 @@ class StudentController extends Controller
      * @param void
      * @return list of users
      */
-
     public function index()
     {
         //
     }
-
 }

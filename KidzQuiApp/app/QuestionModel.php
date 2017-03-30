@@ -129,7 +129,6 @@ class QuestionModel
      * @param choice(text)
      * @return true if choice added, else false
      */
-
     public static function addChoice($layout, $choice)
     {
         $fmobject = FilemakerWrapper::getConnection();
@@ -144,4 +143,3 @@ class QuestionModel
     }
 
 } // end of class
-
