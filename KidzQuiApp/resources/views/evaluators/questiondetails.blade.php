@@ -16,6 +16,10 @@
 
 @stop
 
+@section('username')
+  {{ $sessiondata['name'] }}
+@stop
+
 @section('content')
 
     <!-- page content -->
