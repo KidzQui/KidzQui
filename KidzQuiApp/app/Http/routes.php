@@ -55,3 +55,29 @@ Route::post('studentform', 'EvaluatorController@createRecord');
 Route::get('imagedata', 'EvaluatorController@showImage');
 
 Route::get('questionlist', 'EvaluatorController@questionList');
+
+// student 
+
+Route::get('admission', function() {
+    return view('student.admission');
+});
+
+Route::get('contact', function() {
+    return view('student.contact');
+});
+
+Route::get('studenthome', function() {
+    return view('student.studenthome');
+});
+
+Route::get('shortcodes', function() {
+    return view('student.shortcodes');
+});
+
+Route::get('singlepage', function() {
+    return view('student.singlepage');
+});
+
+Route::get('staff', function() {
+    return view('student.staff');
+});
