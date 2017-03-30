@@ -24,10 +24,29 @@ class EvaluatorController extends Controller
      * @param void
      * @return list of users
      */
-    public function index()
+
+    public function index(Request $request)
     {
-        $records = EvaluatorModel::showAllRecords('User_USR');
-        return view('test', compact('records'));
+        $isUser = EvaluatorModel::userDetails('User_USR', $request->all());
+        if ($isUser !== false) {
+            session(['users' => $isUser[0]->getField('___kp_UserId')]);
+            $request->session()->put('name', $isUser[0]->getField('firstName_kqt'));
+            $request->session()->put('type', $isUser[0]->getField('__kf_UserTypeId'));
+            return redirect('evaluators');
+        }
+        return $isUser;
+    }
+
+    /*
+     *
+    */
+    public function home(Request $request)
+    {
+        if (!$request->session()->has('users')) {
+            return redirect('evaluatorlogin');
+        }
+        $sessiondata = $request->session()->all();
+        return view('evaluators.index', compact('sessiondata'));
     }
 
     /*
@@ -35,10 +54,23 @@ class EvaluatorController extends Controller
      * @param void
      * @return list of student
      */
-    public function StudentList()
+    public function StudentList(Request $request)
     {
+        if (!$request->session()->has('users')) {
+            return redirect('evaluatorlogin');
+        }
+        $sessiondata = $request->session()->all();
         $records = EvaluatorModel::findRecordByType('User_USR', '3');
-        return view('evaluators.studentlist', compact('records'));
+        return view('evaluators.studentlist', compact('records', 'sessiondata'));
+    }
+
+    public function studentDetails(Request $request)
+    {
+        if (!$request->session()->has('users')) {
+            return redirect('evaluatorlogin');
+        }
+        $sessiondata = $request->session()->all();
+        return view('evaluators.studentdetails', compact('sessiondata'));
     }
 
     /*
@@ -48,8 +80,21 @@ class EvaluatorController extends Controller
      */
     public function studentGridList()
     {
+        if (!$request->session()->has('users')) {
+            return redirect('evaluatorlogin');
+        }
+        $sessiondata = $request->session()->all();
         $records = EvaluatorModel::findRecordByType('UsrManagementWeb_USR', '3');
-        return view('evaluators.studentgridlist', compact('records'));
+        return view('evaluators.studentgridlist', compact('records', 'sessiondata'));
+    }
+
+    public function studentForm(Request $request)
+    {
+        if (!$request->session()->has('users')) {
+            return redirect('evaluatorlogin');
+        }
+        $sessiondata = $request->session()->all();
+        return view('evaluators.studentform', compact('sessiondata'));
     }
 
     /*
@@ -93,12 +138,12 @@ class EvaluatorController extends Controller
     {
         $userProfile = array(
         // To get the profile details
-    	  'profile' => EvaluatorModel::findRecordById('User_USR', '2'), 
+          'profile' => EvaluatorModel::findRecordById('User_USR', '2'),
         // To get all questions added by the Evaluator
-    	  'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
-    	);
+          'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
+        );
         // Return to the user profile page
-    	return view('evaluators.profile', compact('userProfile'));
+        return view('evaluators.profile', compact('userProfile'));
     }
 
     /*
@@ -106,10 +151,14 @@ class EvaluatorController extends Controller
      * @param void
      * @return list of questions
      */
-    public function questionList()
+    public function questionList(Request $request)
     {
-    	$listQuestion = QuestionModel::showAllQuestion('Question_QUS');
-    	return view('evaluators.questionlist', compact('listQuestion'));
+        if (!$request->session()->has('users')) {
+            return redirect('evaluatorlogin');
+        }
+        $sessiondata = $request->session()->all();
+        $listQuestion = QuestionModel::showAllQuestion('Question_QUS');
+        return view('evaluators.questionlist', compact('listQuestion', 'sessiondata'));
     }
 
     /*
@@ -124,5 +173,46 @@ class EvaluatorController extends Controller
             return redirect('questionlist');
         }
         return $isAdded;
+    }
+
+    public function addQuestions(Request $request) {
+        if (!$request->session()->has('users')) {
+            return redirect('evaluatorlogin');
+        }
+        $sessiondata = $request->session()->all();
+        return view('evaluators.addquestions', compact('sessiondata'));
+    }
+
+    public function questionDetails(Request $request)
+    {
+        if (!$request->session()->has('users')) {
+            return redirect('evaluatorlogin');
+        }
+        $sessiondata = $request->session()->all();
+        return view('evaluators.questiondetails', compact('sessiondata'));
+    }
+
+    public function addTutorials(Request $request)
+    {
+        if (!$request->session()->has('users')) {
+            return redirect('evaluatorlogin');
+        }
+        $sessiondata = $request->session()->all();
+        return view('evaluators.addtutorials', compact('sessiondata'));
+    }
+
+    public function tutorialDetails(Request $request)
+    {
+        if (!$request->session()->has('users')) {
+            return redirect('evaluatorlogin');
+        }
+        $sessiondata = $request->session()->all();
+        return view('evaluators.tutorialdetails', compact('sessiondata'));
+    }
+
+    public function evaluatorLogin(Request $request)
+    {
+        $request->session()->flush();
+        return view('evaluators.login');
     }
 }

@@ -18,6 +18,10 @@
 
 @stop
 
+@section('username')
+  {{ $sessiondata['name'] }}
+@stop
+
 @section('content')
 
     <!-- page content -->
@@ -81,7 +85,7 @@
 
                         @if($listQuestion)
                           @foreach ($listQuestion as $list)
-                      
+
                           <tr>
                             <td>
                               {{ $list->getField('___kp_QuestionId') }}

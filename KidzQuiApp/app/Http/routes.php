@@ -18,45 +18,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('evaluators', function() {
-    return view('evaluators.index');
-});
+Route::get('evaluatorindex', 'EvaluatorController@index');
 
-Route::get('studentform', function() {
-    return view('evaluators.studentform');
-});
+Route::get('evaluators', 'EvaluatorController@home');
+
+
+Route::get('studentform', 'EvaluatorController@studentForm');
 
 Route::post('studentdata', 'EvaluatorController@addStudent');
 
-// Route::get('studentlist', function() {
-//     return view('evaluators.studentlist');
-// });
+Route::get('studentdetails', 'EvaluatorController@studentDetails');
 
-Route::get('studentdetails', function() {
-    return view('evaluators.studentdetails');
-});
+Route::get('addtutorials', 'EvaluatorController@addTutorials');
 
-Route::get('addtutorials', function() {
-    return view('evaluators.addtutorials');
-});
+Route::get('tutorialdetails', 'EvaluatorController@tutorialDetails');
 
-Route::get('tutorialdetails', function() {
-    return view('evaluators.tutorialdetails');
-});
+Route::get('evaluatorlogin', 'EvaluatorController@evaluatorLogin');
 
-Route::get('evaluatorlogout', function() {
-    return view('evaluators.login');
-});
-
-Route::get('addquestions', function() {
-    return view('evaluators.addquestions');
-});
+Route::get('addquestions', 'EvaluatorController@addQuestions');
 
 Route::get('newquestion', 'EvaluatorController@addNewQuestion');
 
-Route::get('questiondetails', function() {
-    return view('evaluators.questiondetails');
-});
+Route::get('questiondetails', 'EvaluatorController@questionDetails');
 
 // Edited By: Mohit Dadu
 // Edited On: 23-03-17

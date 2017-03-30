@@ -29,6 +29,10 @@
 
 @stop
 
+@section('username')
+  {{ $sessiondata['name'] }}
+@stop
+
 @section('content')
 
     <!-- page content -->
@@ -120,7 +124,7 @@
 
                           @endforeach
                         @endif
-                        
+
                       </tbody>
                     </table>
                     <!-- end student list -->
