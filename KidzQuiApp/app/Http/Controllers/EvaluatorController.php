@@ -5,7 +5,7 @@
 * Path: App/Http/Controllers/EvaluatorController.php
 * Purpose: Calls the EvaluatorController class to fetch the data from filemaker database
 * Date: 23-03-2017
-* Author: Mohit Dadu
+* Authors: Mohit Dadu, R S DEVI PRASAD
 */
 
 namespace App\Http\Controllers;
@@ -42,11 +42,11 @@ class EvaluatorController extends Controller
     */
     public function home(Request $request)
     {
-        if (!$request->session()->has('users')) {
-            return redirect('evaluatorlogin');
+        if ($request->session()->has('users') && $request->session()->get('type') == 2) {
+            $sessiondata = $request->session()->all();
+            return view('evaluators.index', compact('sessiondata'));
         }
-        $sessiondata = $request->session()->all();
-        return view('evaluators.index', compact('sessiondata'));
+        return redirect('evaluatorlogin');
     }
 
     /*
@@ -54,7 +54,7 @@ class EvaluatorController extends Controller
      * @param void
      * @return list of student
      */
-    public function StudentList(Request $request)
+    public function studentList(Request $request)
     {
         if (!$request->session()->has('users')) {
             return redirect('evaluatorlogin');
@@ -105,7 +105,7 @@ class EvaluatorController extends Controller
     public function addStudent()
     {
         $input = $_POST;
-        $returnValue = EvaluatorModel::addUser('User_USR',$input);
+        $returnValue = EvaluatorModel::addUser('User_USR', $input);
         if ($returnValue) {
             return redirect('studentlist');
         }
@@ -121,7 +121,7 @@ class EvaluatorController extends Controller
     {
         $fm = FilemakerWrapper::getConnection();
         $url = $_GET['-url'];
-        if (isset($url)){
+        if (isset($url)) {
             //Show the contents of the container field
             $completeData = $fm->getContainerData($url);
             return response($completeData)->header('Content-Type', 'image/jpeg');
@@ -175,7 +175,8 @@ class EvaluatorController extends Controller
         return $isAdded;
     }
 
-    public function addQuestions(Request $request) {
+    public function addQuestions(Request $request)
+    {
         if (!$request->session()->has('users')) {
             return redirect('evaluatorlogin');
         }
