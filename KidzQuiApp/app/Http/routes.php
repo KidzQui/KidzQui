@@ -10,7 +10,7 @@
 |
 */
 
-// Created By: R S Devi Prasad
+// Authors: R S Devi Prasad, Mohit Dadu
 // Created On: 22-03-2017
 
 Route::get('/', function () {
@@ -38,9 +38,6 @@ Route::get('addquestions', 'EvaluatorController@addQuestions');
 Route::get('newquestion', 'EvaluatorController@addNewQuestion');
 
 Route::get('questiondetails', 'EvaluatorController@questionDetails');
-
-// Edited By: Mohit Dadu
-// Edited On: 23-03-17
 
 Route::get('profile', 'EvaluatorController@findUser');
 

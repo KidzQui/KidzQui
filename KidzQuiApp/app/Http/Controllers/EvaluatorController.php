@@ -4,7 +4,7 @@
 * Path: App/Http/Controllers/EvaluatorController.php
 * Purpose: Calls the EvaluatorController class to fetch the data from filemaker database
 * Date: 23-03-2017
-* Author: Mohit Dadu
+* Authors: Mohit Dadu, R S DEVI PRASAD
 */
 
 namespace App\Http\Controllers;
@@ -43,11 +43,11 @@ class EvaluatorController extends Controller
      */
     public function home(Request $request)
     {
-        if (!$request->session()->has('users')) {
-            return redirect('evaluatorlogin');
+        if ($request->session()->has('users') && $request->session()->get('type') == 2) {
+            $sessiondata = $request->session()->all();
+            return view('evaluators.index', compact('sessiondata'));
         }
-        $sessiondata = $request->session()->all();
-        return view('evaluators.index', compact('sessiondata'));
+        return redirect('evaluatorlogin');
     }
 
     /*
