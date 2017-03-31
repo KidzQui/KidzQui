@@ -1,5 +1,4 @@
 <?php
-
 /**
 * File: EvaluatorController.php
 * Path: App/Http/Controllers/EvaluatorController.php
@@ -38,8 +37,10 @@ class EvaluatorController extends Controller
     }
 
     /*
-     *
-    */
+     * To create the session for login
+     * @param $request
+     * @return session data to index app
+     */
     public function home(Request $request)
     {
         if ($request->session()->has('users') && $request->session()->get('type') == 2) {
@@ -64,6 +65,11 @@ class EvaluatorController extends Controller
         return view('evaluators.studentlist', compact('records', 'sessiondata'));
     }
 
+    /*
+     * To create the session for login
+     * @param $request
+     * @return session data student details app
+     */
     public function studentDetails(Request $request)
     {
         if (!$request->session()->has('users')) {
@@ -88,6 +94,11 @@ class EvaluatorController extends Controller
         return view('evaluators.studentgridlist', compact('records', 'sessiondata'));
     }
 
+    /*
+     * To create the session for login
+     * @param $request
+     * @return session data to student form app
+     */
     public function studentForm(Request $request)
     {
         if (!$request->session()->has('users')) {
@@ -98,7 +109,7 @@ class EvaluatorController extends Controller
     }
 
     /*
-     * Add a student to the web application
+     * Add new student to the database
      * @param void
      * @return void
      */
@@ -175,6 +186,11 @@ class EvaluatorController extends Controller
         return $isAdded;
     }
 
+    /*
+     * To check the session status
+     * @param $request
+     * @return session data to addquestions app
+     */
     public function addQuestions(Request $request)
     {
         if (!$request->session()->has('users')) {
@@ -184,6 +200,11 @@ class EvaluatorController extends Controller
         return view('evaluators.addquestions', compact('sessiondata'));
     }
 
+    /*
+     * To check the session status
+     * @param $request
+     * @return session data to question details app
+     */
     public function questionDetails(Request $request)
     {
         if (!$request->session()->has('users')) {
@@ -193,6 +214,11 @@ class EvaluatorController extends Controller
         return view('evaluators.questiondetails', compact('sessiondata'));
     }
 
+    /*
+     * To check the session status
+     * @param $request
+     * @return session data to addtutorial app
+     */
     public function addTutorials(Request $request)
     {
         if (!$request->session()->has('users')) {
@@ -202,6 +228,11 @@ class EvaluatorController extends Controller
         return view('evaluators.addtutorials', compact('sessiondata'));
     }
 
+    /*
+     * To check the session status
+     * @param $request
+     * @return session data to tutorial details app
+     */
     public function tutorialDetails(Request $request)
     {
         if (!$request->session()->has('users')) {
@@ -211,6 +242,11 @@ class EvaluatorController extends Controller
         return view('evaluators.tutorialdetails', compact('sessiondata'));
     }
 
+    /*
+     * To check the session status and destroy
+     * @param $request
+     * @return session data to login app
+     */
     public function evaluatorLogin(Request $request)
     {
         $request->session()->flush();

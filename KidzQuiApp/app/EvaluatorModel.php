@@ -137,4 +137,3 @@ class EvaluatorModel
     }
 
 } // end of class
-

@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -21,7 +20,6 @@ Route::get('/', function () {
 Route::get('evaluatorindex', 'EvaluatorController@index');
 
 Route::get('evaluators', 'EvaluatorController@home');
-
 
 Route::get('studentform', 'EvaluatorController@studentForm');
 
@@ -52,3 +50,32 @@ Route::post('studentform', 'EvaluatorController@createRecord');
 Route::get('imagedata', 'EvaluatorController@showImage');
 
 Route::get('questionlist', 'EvaluatorController@questionList');
+
+/* student */
+
+// Edited By: Mohit Dadu
+// Edited On: 30-03-17
+
+Route::get('admission', function () {
+    return view('student.admission');
+});
+
+Route::get('contact', function () {
+    return view('student.contact');
+});
+
+Route::get('studenthome', function () {
+    return view('student.studenthome');
+});
+
+Route::get('shortcodes', function () {
+    return view('student.shortcodes');
+});
+
+Route::get('singlepage', function () {
+    return view('student.singlepage');
+});
+
+Route::get('staff', function () {
+    return view('student.staff');
+});

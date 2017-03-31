@@ -1,7 +1,7 @@
 <!--
 /**
 * File: app.blade.php
-* Path: resources/views/evaluators/app.blade.php
+* Path: resources/views/layouts/app.blade.php
 * Purpose: The base layout for the display of Evaluator dashboard
 * Created On: 22-03-2017
 * Last Modified On: 23-03-2017

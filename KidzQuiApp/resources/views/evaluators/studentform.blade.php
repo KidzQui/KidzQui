@@ -79,7 +79,7 @@
                   <div class="x_content">
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="studentdata" method="post">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name
