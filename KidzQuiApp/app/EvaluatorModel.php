@@ -52,8 +52,8 @@ class EvaluatorModel
 
     } // end of function
 
-     /*
-     * find the records by Id (student)
+    /*
+     * find the records by Id (Evaluator)
      * @param $Layout(text)
      * @param $userId(number)
      * @return individual user details
@@ -71,7 +71,6 @@ class EvaluatorModel
         return ["No", "records", "Found", $result->getMessage()];
 
     } // end of function
-
 
     /*
      * Edit the record (student/evaluator)
@@ -133,7 +132,7 @@ class EvaluatorModel
         if(!FileMaker::isError($result)) {
             return $result->getRecords();
         }
-        return $result->getMessage();
+        return false;
     }
 
 } // end of class
