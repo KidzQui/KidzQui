@@ -12,8 +12,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Test;
-use App\Classes;
+use App\StudentModel;
+use App\Classes\FilemakerWrapper;
+use FileMaker;
 
 class StudentController extends Controller
 {
@@ -25,5 +26,17 @@ class StudentController extends Controller
     public function index()
     {
         //
+    }
+
+    /*
+     * show Evaluator details from the database
+     * @param void
+     * @return userProfile to Profile page
+     */
+    public function findUser()
+    {
+        $userProfile = StudentModel::findRecordById('User_USR', '3');
+        // Return to the user profile page
+        return view('student.studentprofile', compact('userProfile'));
     }
 }

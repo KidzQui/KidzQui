@@ -11,7 +11,7 @@
 
 @extends('layouts.student')
 
-@section('title', 'studenthome')
+@section('title', 'Home')
 
 @section('header')
 
@@ -23,6 +23,10 @@
 
 <!--students-->
   <div class="students">
+    <div class="row well">
+      <button type="button" class="btn btn-info btn-lg col-md-2" style="margin-left: 40%">Start Quiz </button>
+    </div>
+
     <div class="col-md-8 students-left wow fadeInLeft animated" data-wow-delay=".5s">
       <h2>Science and Research</h2>
       <h3>We are among the leading research</h3>
@@ -31,16 +35,16 @@
     <div class="col-md-4 students-right wow fadeInRight animated" data-wow-delay=".5s">
       <ul>
         <li><div class="history-grid-image">
-            <img src="images/t10.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/t10.jpg") }} class="img-responsive zoom-img" alt="">
           </div></li>
         <li><div class="history-grid-image">
-            <img src="images/t11.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/t11.jpg") }} class="img-responsive zoom-img" alt="">
           </div></li>
         <li><div class="history-grid-image">
-            <img src="images/t12.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/t12.jpg") }} class="img-responsive zoom-img" alt="">
           </div></li>
         <li><div class="history-grid-image">
-            <img src="images/t13.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/t13.jpg") }} class="img-responsive zoom-img" alt="">
           </div></li>
       </ul>
     </div>
@@ -55,7 +59,7 @@
         <div class="bes-top">
           <div class="bes-lft">
             <div class="history-grid-image">
-            <img src="images/t8.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/t8.jpg") }} class="img-responsive zoom-img" alt="">
           </div>
           </div>
           <div class="bes-rgt">
@@ -68,7 +72,7 @@
         <div class="bes-top1">
           <div class="bes-lft">
             <div class="history-grid-image">
-            <img src="images/t9.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/t9.jpg") }} class="img-responsive zoom-img" alt="">
           </div>
           </div>
           <div class="bes-rgt">
@@ -85,17 +89,17 @@
         <div class="bes-top">
           <ul>
             <li><div class="history-grid-image">
-            <img src="images/t1.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/t1.jpg") }} class="img-responsive zoom-img" alt="">
           </div>
             <h6><a href="singlepage">Sarah Nilson</a></h6>
             <h5>2016</h5></li>
             <li><div class="history-grid-image">
-            <img src="images/t2.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/t2.jpg") }} class="img-responsive zoom-img") }} alt="">
           </div>
             <h6><a href="singlepage">JessicaMcQuay</a></h6>
             <h5>2015</h5></li>
             <li><div class="history-grid-image">
-            <img src="images/t3.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/t3.jpg") }} class="img-responsive zoom-img") }} alt="">
           </div>
             <h6><a href="singlepage">Neil Johnson</a></h6>
             <h5>2014</h5></li>
@@ -112,14 +116,14 @@
       <div class="col-md-4 course-left wow fadeInLeft animated" data-wow-delay=".5s">
         <h3>Why Join Us</h3>
         <div class="history-grid-image">
-            <img src="images/n2.jpg" class="img-responsive zoom-img" alt="">
+            <img src=images/n2.jpg" class="img-responsive zoom-img" alt="">
           </div>
         <p>Lorem ipsum dolor sit amet, consectetu er adipiscing elit, sed diam nonummy nibh eu ismod tincidunt ut laoreetd.</p>
       </div>
       <div class="col-md-4 course-left animated wow fadeInUp animated animated" data-wow-duration="1200ms" data-wow-delay="500ms">
         <h3>Affordable</h3>
         <div class="history-grid-image">
-            <img src="images/n3.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/n3.jpg") }} class="img-responsive zoom-img" alt="">
           </div>
         <p>Lorem ipsum dolor sit amet, consectetu er adipiscing elit, sed diam nonummy nibh eu ismod tincidunt ut laoreetd.</p>
       </div>
@@ -149,19 +153,19 @@
         <ul>
           <li>
             <div class="history-grid-image">
-            <img src="images/t4.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/t4.jpg") }} class="img-responsive zoom-img" alt="">
           </div>
             <p>Lorem ipsum dolor sit amet, consectetu er elit.</p>
           </li>
           <li>
             <div class="history-grid-image">
-            <img src="images/t5.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/t5.jpg") }} class="img-responsive zoom-img" alt="">
           </div>
             <p>Consectetu er adipiscing elit, sed diam nonummy.</p>
           </li>
           <li>
             <div class="history-grid-image">
-            <img src="images/t6.jpg" class="img-responsive zoom-img" alt="">
+            <img src={{ asset("KidzQuiApp/resources/assets/images/t6.jpg") }} class="img-responsive zoom-img" alt="">
           </div>
             <p>Sed diam nonummy nibh eu ismod tincidunt ut.</p>
           </li>

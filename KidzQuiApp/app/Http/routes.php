@@ -56,9 +56,10 @@ Route::get('questionlist', 'EvaluatorController@questionList');
 // Edited By: Mohit Dadu
 // Edited On: 30-03-17
 
-Route::get('admission', function () {
-    return view('student.admission');
-});
+Route::get('studentprofile', 'StudentController@findUser');
+// Route::get('admission', function () {
+//     return view('student.admission');
+// });
 
 Route::get('contact', function () {
     return view('student.contact');

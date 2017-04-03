@@ -22,8 +22,8 @@
 
     <!-- //Custom Theme files -->
     <link rel="stylesheet" href={{ asset("KidzQuiApp/resources/assets/css/flexslider.css") }} type="text/css" media="screen" />
-    <link href={{ URL::asset("KidzQuiApp/resources/assets/css/bootstrap.css") }} type="text/css" rel="stylesheet" media="all">
-    <link href={{ URL::asset("KidzQuiApp/resources/assets/css/style.css") }} type="text/css" rel="stylesheet" media="all">
+    <link href={{ asset("KidzQuiApp/resources/assets/css/bootstrap.css") }} type="text/css" rel="stylesheet" media="all">
+    <link href={{ asset("KidzQuiApp/resources/assets/css/style.css") }} type="text/css" rel="stylesheet" media="all">
 
     <!--fonts-->
     <link href='//fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
@@ -52,25 +52,25 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ URL::to('studenthome') }}">Home</a></li>
-                <li><a href="{{ URL::to('admission') }}" >Admission</a></li>
+                <li><a href="{{ URL::to('studenthome') }}" >Home</a></li>
                 <li><a href="{{ URL::to('staff') }}" >Staff</a></li>
                 <li><a href="{{ URL::to('shortcodes') }}" >Short Codes</a></li>
-                <li><a href="{{ URL::to('contact') }}" class="active">Contact</a></li>
+                <li><a href="{{ URL::to('contact') }}" >Contact</a></li>
+                <li><a href="{{ URL::to('studentprofile') }}" >My Profile</a></li>
               </ul>
             </div>
         </nav>
         <div class="logo">
-          <a class="navbar-brand" href="{{ URL::to('studenthome') }}">Mentors</a>
+          <a class="navbar-brand" href="{{ URL::to('studenthome') }}">KidzQui</a>
         </div>
 
-        <div class="search-bar">
+        {{-- <div class="search-bar">
           <form action="#" method="post">
             <input type="text" name="search" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
             <input type="submit" value="">
           </form>
-        </div>
-          <div class="clearfix"> </div>
+        </div> --}}
+        <div class="clearfix"> </div>
     </div>
     <!--//header-->
   </div>
@@ -111,7 +111,7 @@
       </div>
         <div class="clearfix"></div>
       <div class="copy animated wow fadeInUp animated animated" data-wow-duration="1200ms" data-wow-delay="500ms">
-        <p>© 2016 Mentors . All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+        <p>© KidzQui - Online Maths Tutor by <a href="https://mindfiresolutions.com">Mindfire</a></p>
       </div>
     </div>
   </diV>
@@ -119,8 +119,8 @@
 
   <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
   <!-- js -->
-  <script src={{ URL::asset("KidzQuiApp/resources/assets/js/jquery-1.11.1.min.js") }}></script>
-  <script src={{ URL::asset("KidzQuiApp/resources/assets/js/bootstrap.js") }}> </script>
+  <script src={{ asset("KidzQuiApp/resources/assets/js/jquery-1.11.1.min.js") }}></script>
+  <script src={{ asset("KidzQuiApp/resources/assets/js/bootstrap.js") }}> </script>
 
 @yield('footer')
 
