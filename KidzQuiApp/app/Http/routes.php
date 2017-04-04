@@ -17,39 +17,42 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('evaluatorindex', 'EvaluatorController@index');
+Route::group(['middleware' => 'web'], function() {
 
-Route::get('evaluators', 'EvaluatorController@home');
+    Route::get('evaluatorindex', 'EvaluatorController@index');
 
-Route::get('studentform', 'EvaluatorController@studentForm');
+    Route::get('evaluators', 'EvaluatorController@home');
 
-Route::post('studentdata', 'EvaluatorController@addStudent');
+    Route::get('studentform', 'EvaluatorController@studentForm');
 
-Route::get('studentdetails', 'EvaluatorController@studentDetails');
+    Route::post('studentdata', 'EvaluatorController@addStudent');
 
-Route::get('addtutorials', 'EvaluatorController@addTutorials');
+    Route::get('studentdetails', 'EvaluatorController@studentDetails');
 
-Route::get('tutorialdetails', 'EvaluatorController@tutorialDetails');
+    Route::get('addtutorials', 'EvaluatorController@addTutorials');
 
-Route::get('evaluatorlogin', 'EvaluatorController@evaluatorLogin');
+    Route::get('tutorialdetails', 'EvaluatorController@tutorialDetails');
 
-Route::get('addquestions', 'EvaluatorController@addQuestions');
+    Route::get('evaluatorlogin', 'EvaluatorController@evaluatorLogin');
 
-Route::get('newquestion', 'EvaluatorController@addNewQuestion');
+    Route::get('addquestions', 'EvaluatorController@addQuestions');
 
-Route::get('questiondetails', 'EvaluatorController@questionDetails');
+    Route::get('newquestion', 'EvaluatorController@addNewQuestion');
 
-Route::get('profile', 'EvaluatorController@findUser');
+    Route::get('questiondetails', 'EvaluatorController@questionDetails');
 
-Route::get('studentlist', 'EvaluatorController@studentList');
+    Route::get('profile', 'EvaluatorController@findUser');
 
-Route::get('studentgridlist', 'EvaluatorController@studentGridList');
+    Route::get('studentlist', 'EvaluatorController@studentList');
 
-Route::post('studentform', 'EvaluatorController@createRecord');
+    Route::get('studentgridlist', 'EvaluatorController@studentGridList');
 
-Route::get('imagedata', 'EvaluatorController@showImage');
+    Route::post('studentform', 'EvaluatorController@createRecord');
 
-Route::get('questionlist', 'EvaluatorController@questionList');
+    Route::get('imagedata', 'EvaluatorController@showImage');
+
+    Route::get('questionlist', 'EvaluatorController@questionList');
+});
 
 /* student */
 
