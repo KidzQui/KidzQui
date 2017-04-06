@@ -105,10 +105,10 @@ class EvaluatorModel
         $fmobject = FilemakerWrapper::getConnection();
         // storing the data into the database.
         $request = $fmobject->createRecord($layout);
-        $request->setField('firstName_kqt', $input['first-name']);
-        $request->setField('lastName_kqt', $input['last-name']);
-        $request->setField('emailAddress_kqt', $input['email-address']);
-        $request->setField('phoneNumber_kqt', $input['phone-number']);
+        $request->setField('firstName_kqt', $input['firstname']);
+        $request->setField('lastName_kqt', $input['lastname']);
+        $request->setField('emailAddress_kqt', $input['emailaddress']);
+        $request->setField('phoneNumber_kqt', $input['phonenumber']);
         $request->setField('createdBy_kqn', $input['creatorId']);
         $request->setField('__kf_UserTypeId', 3);
         $request->setField('isActive_kqt', 'Active');

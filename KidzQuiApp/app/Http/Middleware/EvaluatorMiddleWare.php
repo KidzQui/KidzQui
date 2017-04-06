@@ -24,7 +24,7 @@ class EvaluatorMiddleWare
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->session()->has('users')) {
+        if (!$request->session()->has('users') || !($request->session()->get('type') == 2)) {
             return redirect('evaluatorlogin');
         }
         return $next($request);
