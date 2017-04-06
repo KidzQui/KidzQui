@@ -80,7 +80,12 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12 text-right" for="first-name">Question <span class="required">*</span>
                     </label>
                     <div class="col-xs-6">
-                      <textarea name="question" type="text" id="first-name" required="required" class="form-control col-md-6 col-xs-12" rows="8"></textarea>
+                      <textarea name="question" type="text" class="form-control col-md-6 col-xs-12" rows="8"></textarea>
+                      @if ($errors->has('question'))
+                          <span>
+                            <strong>{{ $errors->first('question') }}</strong>
+                          </span>
+                      @endif
                     </div>
                   </div>
                   <div class="form-group">
@@ -98,7 +103,12 @@
                         <label class="radio-inline">
                             <input type="radio" name="radio" value="Objective Type">
                                 Objective Type
-                        </label>
+                        </label> <br>
+                        @if ($errors->has('radio'))
+                            <span>
+                              <strong>{{ $errors->first('radio') }}</strong>
+                            </span>
+                        @endif
                     </div>
                   </div>
                   <div class="form-group">
@@ -133,7 +143,12 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12 text-right">Answer <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input id="answer" name="answer" class="form-control col-md-7 col-xs-12" required="required" type="text">
+                      <input id="answer" name="answer" class="form-control col-md-7 col-xs-12" type="text">
+                      @if ($errors->has('answer'))
+                        <span>
+                          <strong>{{ $errors->first('answer') }}</strong>
+                        </span>
+                      @endif
                     </div>
                   </div>
                   <input type="hidden" name="creatorId" value="{{ 2 }}">

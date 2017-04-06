@@ -17,7 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => 'web'], function() {
 
     Route::get('evaluatorindex', 'EvaluatorController@index');
 
@@ -52,7 +51,6 @@ Route::group(['middleware' => 'web'], function() {
     Route::get('imagedata', 'EvaluatorController@showImage');
 
     Route::get('questionlist', 'EvaluatorController@questionList');
-});
 
 /* student */
 

@@ -17,6 +17,7 @@ use App\EvaluatorModel;
 use App\QuestionModel;
 use App\Classes\FilemakerWrapper;
 use FileMaker;
+use Validator;
 
 class EvaluatorController extends Controller
 {
@@ -104,6 +105,13 @@ class EvaluatorController extends Controller
      */
     public function addStudent(Request $request)
     {
+        $this->validate($request, [
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'emailaddress' => 'required|email',
+            'phonenumber' => 'required|digits:10'
+        ]);
+
         $returnValue = EvaluatorModel::addUser('User_USR', $request->all());
 
         if ($returnValue) {
@@ -169,6 +177,14 @@ class EvaluatorController extends Controller
      */
     public function addNewQuestion(Request $request)
     {
+        $this->validate($request, [
+            'question' => 'required',
+            'radio' => 'required',
+            'set' => 'required',
+            'level' => 'required',
+            'answer' => 'required'
+        ]);
+
         $isAdded = QuestionModel::addQuestion('Question_QUS', $request->all());
 
         if ($isAdded == 1) {
