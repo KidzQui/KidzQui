@@ -58,12 +58,12 @@ class EvaluatorModel
      * @param $userId(number)
      * @return individual user details
      */
-    public static function findRecordById($layout, $userId)
+    public static function findRecordById($layout, $userId, $fieldName)
     {
         // create connection
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
-        $request->addFindCriterion('___kp_UserId', $userId);
+        $request->addFindCriterion($fieldName, $userId);
         $result = $request->execute();
         if(!FileMaker::isError($result)) {
             return $result->getRecords();
