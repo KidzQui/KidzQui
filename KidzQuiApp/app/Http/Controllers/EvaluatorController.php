@@ -40,6 +40,7 @@ class EvaluatorController extends Controller
             session(['users' => $isUser[0]->getField('___kp_UserId')]);
             $request->session()->put('name', $isUser[0]->getField('firstName_kqt'));
             $request->session()->put('type', $isUser[0]->getField('__kf_UserTypeId'));
+            $request->session()->put('mediaId', urlencode(EvaluatorController::findMedia($isUser[0]->getField('__kf_MediaId'))));
             return redirect('evaluators');
         }
 
@@ -126,18 +127,24 @@ class EvaluatorController extends Controller
      * @param void
      * @return void
      */
-    public function showImage()
+    public function showImage(Request $request)
     {
+        $url = $request['url'];
+
         $fm = FilemakerWrapper::getConnection();
-        $url = $_GET['-url'];
+        $url = substr($url, 0, strpos($url, "?"));
+        $url = substr($url, strrpos($url, ".") + 1);
 
-        if (isset($url)) {
-            //Show the contents of the container field
-            $completeData = $fm->getContainerData($url);
-            return response($completeData)->header('Content-Type', 'image/jpeg');
+        if($url == "jpg"){
+            header('Content-type: image/jpeg');
         }
-
-        return 0;
+        else if($url == "gif"){
+            header('Content-type: image/gif');
+        }
+        else{
+            header('Content-type: application/octet-stream');
+        }
+        echo $fm->getContainerData($request['url']);
     }
 
     /*
@@ -149,7 +156,7 @@ class EvaluatorController extends Controller
     {
         $userProfile = array(
         // To get the profile details
-          'profile' => EvaluatorModel::findRecordById('User_USR', '2'),
+          'profile' => EvaluatorModel::findRecordById('User_USR', '2', '___kp_UserId'),
 
         // To get all questions added by the Evaluator
           'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
@@ -243,6 +250,12 @@ class EvaluatorController extends Controller
     {
         $request->session()->flush();
         return view('evaluators.login');
+    }
+
+    public static function findMedia($id)
+    {
+        $medRecord = EvaluatorModel::findRecordById('Media_MED', $id, '___kp_MediaId');
+        return $medRecord[0]->getField('mediaFile_kqr');
     }
 
 }
