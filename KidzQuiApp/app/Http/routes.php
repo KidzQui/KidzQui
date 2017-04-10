@@ -83,3 +83,10 @@ Route::get('singlepage', function () {
 Route::get('staff', function () {
     return view('student.staff');
 });
+
+
+// Route::get('test', 'GraphController@Graph');
+
+Route::get('test', function() {
+    return view('test');
+});

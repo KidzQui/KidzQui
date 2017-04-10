@@ -19,86 +19,51 @@
 
 @section('content')
 
-
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
             <div class="row top_tiles">
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
-                  <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
-                  <div class="count">179</div>
-                  <h3>New Sign ups</h3>
-                  <p>Lorem ipsum psdea itgum rixt.</p>
+                  <div class="icon"><i class="fa fa-users"></i></div>
+                  <div class="count">{{ $totalStudents[0]->getField('cn_TotalStudents') }}</div>
+                  <h3>Total Students</h3>
                 </div>
               </div>
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
-                  <div class="icon"><i class="fa fa-comments-o"></i></div>
-                  <div class="count">179</div>
-                  <h3>New Sign ups</h3>
-                  <p>Lorem ipsum psdea itgum rixt.</p>
+                  <div class="icon"><i class="fa fa-user"></i></div>
+                  <div class="count">{{ count($myStudents) }}</div>
+                  <h3>My Students</h3>
+                </div>
+              </div><div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                  <div class="icon"><i class="fa fa-question-circle"></i></div>
+                  <div class="count">{{ count($totalQuestions) }}</div>
+                  <h3>Total Questions</h3>
                 </div>
               </div>
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
-                  <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
-                  <div class="count">179</div>
-                  <h3>New Sign ups</h3>
-                  <p>Lorem ipsum psdea itgum rixt.</p>
+                  <div class="icon"><i class="fa fa-book"></i></div>
+                  <div class="count">{{ count($totalTutorials) }}</div>
+                  <h3>Total Tutorials</h3>
                 </div>
               </div>
-              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                  <div class="icon"><i class="fa fa-check-square-o"></i></div>
-                  <div class="count">179</div>
-                  <h3>New Sign ups</h3>
-                  <p>Lorem ipsum psdea itgum rixt.</p>
-                </div>
-              </div>
+
             </div>
             <div class="row">
               <div class="col-md-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Transaction Summary <small>Weekly progress</small></h2>
-                    <div class="filter">
-                      <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                        <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                      </div>
-                    </div>
+                    <h2>Student Added Summary<small>Per Day </small></h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <div class="col-md-9 col-sm-12 col-xs-12">
-                      <div class="demo-container" style="height:280px">
-                        <div id="chart_plot_02" class="demo-placeholder"></div>
+                      <div class="demo-container" style="max-height:280px">
+                        <canvas id="myChart" width="600" height="300"></canvas>
                       </div>
-                      <div class="tiles">
-                        <div class="col-md-4 tile">
-                          <span>Total Sessions</span>
-                          <h2>231,809</h2>
-                          <span class="sparkline11 graph" style="height: 160px;">
-                               <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                          </span>
-                        </div>
-                        <div class="col-md-4 tile">
-                          <span>Total Revenue</span>
-                          <h2>$231,809</h2>
-                          <span class="sparkline22 graph" style="height: 160px;">
-                                <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                          </span>
-                        </div>
-                        <div class="col-md-4 tile">
-                          <span>Total Sessions</span>
-                          <h2>231,809</h2>
-                          <span class="sparkline11 graph" style="height: 160px;">
-                                 <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                          </span>
-                        </div>
-                      </div>
-
                     </div>
 
                     <div class="col-md-3 col-sm-12 col-xs-12">
@@ -181,7 +146,6 @@
                         </ul>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -190,18 +154,77 @@
         </div>
         <!-- /page content -->
 
-
 @stop
 
     @section('footer')
+
+    <!-- Chart.js -->
+    <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/Chart.js/dist/Chart.min.js') }}"></script>
+    <script>
+      @php
+        $records = array_count_values($results);
+      @endphp
+
+        var gkeys=[];
+        var gvals=[];
+
+        @foreach($records as $key => $value)
+          gkeys.push("{{ $key }}");
+          gvals.push("{{ $value }}");
+        @endforeach
+
+        console.log(gkeys);
+        console.log(gvals);
+
+      (function() {
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var myChart = new Chart(ctx, {
+              type: 'bar',
+              data:  {
+                  labels: gkeys,
+                  datasets: [{
+                      label: 'no. of students',
+                      data: gvals,
+                      backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(255, 159, 64, 0.2)'
+                      ],
+                      borderColor: [
+                          'rgba(255,99,132,1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)'
+                      ],
+                      borderWidth: 1
+                  }]
+               },
+               options: {
+                  scales: {
+                      yAxes: [{
+                          ticks: {
+                              beginAtZero:true
+                          }
+                      }]
+                  }
+              }
+          });
+
+      })();
+
+    </script>
+
     <!-- Bootstrap -->
     <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <!-- FastClick -->
     <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/fastclick/lib/fastclick.js') }}"></script>
     <!-- NProgress -->
     <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/nprogress/nprogress.js') }}"></script>
-    <!-- Chart.js -->
-    <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/Chart.js/dist/Chart.min.js') }}"></script>
     <!-- jQuery Sparklines -->
     <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
     <!-- Flot -->
@@ -221,5 +244,5 @@
     <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/build/js/custom.min.js') }}"></script>
+    <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/build/js/custom.js') }}"></script>
 @stop

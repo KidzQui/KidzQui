@@ -80,7 +80,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="firstname">
+                          <input type="text" id="first-name" value="{{ old('firstname') }}" class="form-control col-md-7 col-xs-12" name="firstname">
                             @if ($errors->has('firstname'))
                               <span>
                                 <strong>{{ $errors->first('firstname') }}</strong>
@@ -92,7 +92,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last">Last Name
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="lastname" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="last-name" name="lastname" value="{{ old('lastname') }}" class="form-control col-md-7 col-xs-12">
                           @if ($errors->has('lastname'))
                               <span>
                                 <strong>{{ $errors->first('lastname') }}</strong>
@@ -104,7 +104,7 @@
                         <label for="email-address" class="control-label col-md-3 col-sm-3 col-xs-12" name="email-address">Email Address<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="email-address" name="emailaddress" class="form-control col-md-7 col-xs-12" type="email">
+                          <input id="email-address" name="emailaddress" value="{{ old('emailaddress') }}" class="form-control col-md-7 col-xs-12" type="email">
                           @if ($errors->has('emailaddress'))
                               <span>
                                 <strong>{{ $errors->first('emailaddress') }}</strong>
@@ -116,7 +116,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Phone Number
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="phone" class="form-control col-md-7 col-xs-12" type="number" name="phonenumber">
+                          <input id="phone" class="form-control col-md-7 col-xs-12" value="{{ old('phonenumber') }}" type="number" name="phonenumber">
                           @if ($errors->has('phonenumber'))
                               <span>
                                 <strong>{{ $errors->first('phonenumber') }}</strong>
@@ -128,7 +128,6 @@
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button class="btn btn-primary" type="button">Cancel</button>
                           <button class="btn btn-primary" type="reset">Reset</button>
                           <button type="submit" class="btn btn-success">Submit</button>
                         </div>
