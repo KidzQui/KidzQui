@@ -72,7 +72,8 @@
               </div>
               <div class="x_content">
                 <br />
-                <form id="demo-form2" class="form-horizontal form-label-left">
+                <form id="demo-form2" action = "tutorialdata" method="POST" class="form-horizontal form-label-left">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                   <div class="form-group">
                     <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Title <span class="required">*</span>
