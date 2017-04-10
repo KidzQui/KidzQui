@@ -115,4 +115,21 @@ class EvaluatorModel
         return false;
     }
 
+    public static function createRecord($layout, $inputs, $fields, $numberOfFields)
+    {
+        $fmobject = FilemakerWrapper::getConnection();
+        // storing the data into the database.
+        $request = $fmobject->createRecord($layout);
+        $i = 0;
+        while ($i < $numberOfFields) {
+            $request->setField($fields[$i], $inputs[$i]);
+            $i += 1;
+        }
+        $result = $request->commit();
+        if (!FileMaker::isError($result)) {
+            return true;
+        }
+        return false;
+    }
+
 } // end of class

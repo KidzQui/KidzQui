@@ -52,6 +52,8 @@ Route::get('/', function () {
 
     Route::get('questionlist', 'EvaluatorController@questionList');
 
+    Route::post('tutorialdata', 'EvaluatorController@addTutorial');
+
 /* student */
 
 // Edited By: Mohit Dadu

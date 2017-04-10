@@ -41,7 +41,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production\images/img.jpg') }}" alt="..." class="img-circle profile_img">
+                <img src="imagedata?url={{ Session::get('mediaId') }}" alt="profile image" class="img-responsive img-circle">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -113,7 +113,8 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/img.jpg') }}" alt="">{{ Session::get('name')}}
+                    <img src="imagedata?url={{ Session::get('mediaId') }}" alt="profile image" class="img-responsive img-circle pull-left">
+                    {{ Session::get('name')}}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

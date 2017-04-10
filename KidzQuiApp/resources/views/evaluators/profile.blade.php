@@ -67,7 +67,7 @@
                   <div class="profile_img">
                     <div id="crop-avatar">
                       <!-- Current avatar -->
-                      <img class="img-responsive avatar-view" src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/picture.jpg') }}" alt="Avatar" title="Change the avatar">
+                      <img src="imagedata?url={{ Session::get('mediaId') }}" alt="profile image" class="img-responsive">
                     </div>
                   </div>
 
