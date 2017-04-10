@@ -17,7 +17,7 @@ class EvaluatorModel
 {
     /*
      * show all records
-     * @param $Layout(text)
+     * @param $Layout(string)
      * @return all records
      */
     public static function showAllRecord($layout)
@@ -35,35 +35,15 @@ class EvaluatorModel
 
     /*
      * find the records by type (student/evaluator)
-     * @param $Layout(text)
+     * @param $Layout(string)
      * @param $userTypeId(number)
      * @return list of users
      */
-    public static function findRecordByType($layout, $userTypeId)
+    public static function findRecordByField($layout, $fieldName, $fieldValue)
     {
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
-        $request->addFindCriterion('__kf_UserTypeId', $userTypeId);
-        $result = $request->execute();
-        if(!FileMaker::isError($result)) {
-            return $result->getRecords();
-        }
-        return ["No", "records", "Found", $result->getMessage()];
-
-    } // end of function
-
-    /*
-     * find the records by Id (Evaluator)
-     * @param $Layout(text)
-     * @param $userId(number)
-     * @return individual user details
-     */
-    public static function findRecordById($layout, $userId)
-    {
-        // create connection
-        $fmobject = FilemakerWrapper::getConnection();
-        $request = $fmobject->newFindCommand($layout);
-        $request->addFindCriterion('___kp_UserId', $userId);
+        $request->addFindCriterion($fieldName, $fieldValue);
         $result = $request->execute();
         if(!FileMaker::isError($result)) {
             return $result->getRecords();
@@ -74,9 +54,9 @@ class EvaluatorModel
 
     /*
      * Edit the record (student/evaluator)
-     * @param $Layout(text)
+     * @param $Layout(string)
      * @param $userTypeId(number)
-     * @param $status(text)
+     * @param $status(string)
      * @return void
      */
     public static function editStatus($layout, $userId, $status)
@@ -96,7 +76,7 @@ class EvaluatorModel
 
     /*
      * Add new record (student)
-     * @param $Layout(text)
+     * @param $Layout(string)
      * @param $userId(number) ->creater Id
      * @return void
      */

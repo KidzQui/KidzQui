@@ -1,7 +1,6 @@
 <?php
 
 /**
-
 * File: EvaluatorController.php
 * Path: App/Http/Controllers/EvaluatorController.php
 * Purpose: Calls the EvaluatorController class to fetch the data from filemaker database
@@ -53,7 +52,28 @@ class EvaluatorController extends Controller
      */
     public function home()
     {
-        return view('evaluators.index');
+        $records = EvaluatorModel::findRecordByField('User_USR', '__kf_UserTypeId', '3');
+        $results = array();
+
+        // To create array of student created dates
+        foreach ($records as $record) {
+            array_push($results, $record->getField('createdOn_kqd'));
+        }
+
+        // To find th total number of students.
+        $totalStudents = EvaluatorModel::showAllRecord('User_USR');
+
+        // To find student added by particular user
+        $myStudents = EvaluatorModel::findRecordByField('User_USR', 'createdBy_kqn', '2');
+
+        // To find number of questions
+        $totalQuestions = EvaluatorModel::showAllRecord('Question_QUS');
+
+        // To find number of tutorials
+        $totalTutorials = EvaluatorModel::showAllRecord('Tutorial_TUT');
+
+        // Return to the evaluator dashboard
+        return view('evaluators.index', compact('results', 'totalStudents', 'myStudents', 'totalQuestions', 'totalTutorials'));
     }
 
     /*
@@ -63,7 +83,7 @@ class EvaluatorController extends Controller
      */
     public function studentList()
     {
-        $records = EvaluatorModel::findRecordByType('User_USR', '3');
+        $records = EvaluatorModel::findRecordByField('User_USR', '__kf_UserTypeId', '3');
         return view('evaluators.studentlist', compact('records'));
     }
 
@@ -84,7 +104,7 @@ class EvaluatorController extends Controller
      */
     public function studentGridList()
     {
-        $records = EvaluatorModel::findRecordByType('UsrManagementWeb_USR', '3');
+        $records = EvaluatorModel::findRecordByField('UsrManagementWeb_USR', '__kf_UserTypeId', '3');
         return view('evaluators.studentgridlist', compact('records'));
     }
 
@@ -149,7 +169,7 @@ class EvaluatorController extends Controller
     {
         $userProfile = array(
         // To get the profile details
-          'profile' => EvaluatorModel::findRecordById('User_USR', '2'),
+          'profile' => EvaluatorModel::findRecordByField('User_USR', '___kp_UserId', '2'),
 
         // To get all questions added by the Evaluator
           'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
