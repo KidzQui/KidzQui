@@ -231,6 +231,25 @@ class EvaluatorController extends Controller
         return view('evaluators.addtutorials');
     }
 
+    public function addTutorial(Request $request)
+    {
+        $inputs = array(
+            0 => $request['title'],
+            1 => $request['description'],
+            2 => $request->session()->get('users')
+        );
+        $fields = array(
+            0 => 'tutorialTitle_kqt',
+            1 => 'tutorialDescription_kqt',
+            2 => 'createdBy_kqn'
+        );
+        $retValue = EvaluatorModel::createRecord('Tutorial_TUT', $inputs, $fields, count($inputs));
+        if ($retValue) {
+            return redirect('tutorialdetails');
+        }
+        return back();
+    }
+
     /*
      * To check the session status
      * @param $request
