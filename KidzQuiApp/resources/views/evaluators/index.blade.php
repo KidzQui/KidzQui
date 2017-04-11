@@ -1,3 +1,14 @@
+<!--
+/**
+* File: index.blade.php
+* Path: resources/views/evaluators/index.blade.php
+* Purpose: The layout to display the graph and top profile on evaluator dashboard
+* Created On: 22-03-2017
+* Last Modified On: 11-04-2017
+* Author: R S DEVI PRASAD, Mohit Dadu
+*/
+-->
+
 @extends('layouts.app')
 
 @section('title', 'Evaluators')
@@ -60,6 +71,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+
                     <div class="col-md-9 col-sm-12 col-xs-12">
                       <div class="demo-container" style="max-height:280px">
                         <canvas id="myChart" width="600" height="300"></canvas>
@@ -160,7 +172,9 @@
 
     <!-- Chart.js -->
     <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/Chart.js/dist/Chart.min.js') }}"></script>
+
     <script>
+
       @php
         $records = array_count_values($results);
       @endphp
@@ -173,51 +187,10 @@
           gvals.push("{{ $value }}");
         @endforeach
 
-        console.log(gkeys);
-        console.log(gvals);
-
-      (function() {
-          var ctx = document.getElementById('myChart').getContext('2d');
-          var myChart = new Chart(ctx, {
-              type: 'bar',
-              data:  {
-                  labels: gkeys,
-                  datasets: [{
-                      label: 'no. of students',
-                      data: gvals,
-                      backgroundColor: [
-                          'rgba(255, 99, 132, 0.2)',
-                          'rgba(54, 162, 235, 0.2)',
-                          'rgba(255, 206, 86, 0.2)',
-                          'rgba(75, 192, 192, 0.2)',
-                          'rgba(153, 102, 255, 0.2)',
-                          'rgba(255, 159, 64, 0.2)'
-                      ],
-                      borderColor: [
-                          'rgba(255,99,132,1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(255, 206, 86, 1)',
-                          'rgba(75, 192, 192, 1)',
-                          'rgba(153, 102, 255, 1)',
-                          'rgba(255, 159, 64, 1)'
-                      ],
-                      borderWidth: 1
-                  }]
-               },
-               options: {
-                  scales: {
-                      yAxes: [{
-                          ticks: {
-                              beginAtZero:true
-                          }
-                      }]
-                  }
-              }
-          });
-
-      })();
-
     </script>
+
+    <script src="{{ asset('KidzQuiApp/public/js/graph.js') }}"></script>
+    <!-- end chart -->
 
     <!-- Bootstrap -->
     <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>

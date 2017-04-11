@@ -48,8 +48,8 @@ class EvaluatorController extends Controller
 
     /*
      * To create the session for login
-     * @param $request
-     * @return session data to index app
+     * @param void
+     * @return data to index app
      */
     public function home()
     {
@@ -89,13 +89,14 @@ class EvaluatorController extends Controller
     }
 
     /*
-     * To create the session for login
-     * @param $request
-     * @return session data student details app
+     * To get particular student details
+     * @param $record (number)
+     * @return record details
      */
-    public function studentDetails()
+    public function studentDetails($record)
     {
-        return view('evaluators.studentdetails');
+        $records = EvaluatorModel::findRecordByField('UsrManagementWeb_USR', '___kp_UserId', $record);
+        return view('evaluators.studentdetails', compact('records'));
     }
 
     /*
@@ -111,8 +112,8 @@ class EvaluatorController extends Controller
 
     /*
      * To create the session for login
-     * @param $request
-     * @return session data to student form app
+     * @param void
+     * @return void
      */
     public function studentForm()
     {
@@ -144,8 +145,8 @@ class EvaluatorController extends Controller
 
     /*
      * show image on web
-     * @param void
-     * @return void
+     * @param $request
+     * @return image url fetched from database
      */
     public function showImage(Request $request)
     {
@@ -175,7 +176,7 @@ class EvaluatorController extends Controller
     public function findUser()
     {
         $userProfile = array(
- 
+
         // To get the profile details
           'profile' => EvaluatorModel::findRecordByField('User_USR', '___kp_UserId', '2'),
 
@@ -200,7 +201,7 @@ class EvaluatorController extends Controller
 
     /*
      * Add a new question to the database by the evaluator
-     * @param post data of the form
+     * @param $request
      * @return void
      */
     public function addNewQuestion(Request $request)
@@ -223,9 +224,9 @@ class EvaluatorController extends Controller
     }
 
     /*
-     * To check the session status
-     * @param $request
-     * @return session data to addquestions app
+     * To redirect to the add question page
+     * @param void
+     * @return void
      */
     public function addQuestions()
     {
@@ -233,9 +234,9 @@ class EvaluatorController extends Controller
     }
 
     /*
-     * To check the session status
-     * @param $request
-     * @return session data to question details app
+     * To redirect to the question details page
+     * @param void
+     * @return void
      */
     public function questionDetails()
     {
@@ -243,15 +244,20 @@ class EvaluatorController extends Controller
     }
 
     /*
-     * To check the session status
-     * @param $request
-     * @return session data to addtutorial app
+     * To redirect to the add tuutorial page
+     * @param void
+     * @return void
      */
     public function addTutorials()
     {
         return view('evaluators.addtutorials');
     }
 
+    /*
+     * To add new tutorial into database
+     * @param $request
+     * @return void
+     */
     public function addTutorial(Request $request)
     {
         $inputs = array(
@@ -272,9 +278,9 @@ class EvaluatorController extends Controller
     }
 
     /*
-     * To check the session status
-     * @param $request
-     * @return session data to tutorial details app
+     * To redirect to the tutorial details page
+     * @param void
+     * @return void
      */
     public function tutorialDetails()
     {
@@ -292,9 +298,14 @@ class EvaluatorController extends Controller
         return view('evaluators.login');
     }
 
+    /*
+     * To find the media file from database
+     * @param $id (number)
+     * @return media file
+     */
     public static function findMedia($id)
     {
-        $medRecord = EvaluatorModel::findRecordById('Media_MED', $id, '___kp_MediaId');
+        $medRecord = EvaluatorModel::findRecordByField('Media_MED', '___kp_MediaId', $id);
         return $medRecord[0]->getField('mediaFile_kqr');
     }
 

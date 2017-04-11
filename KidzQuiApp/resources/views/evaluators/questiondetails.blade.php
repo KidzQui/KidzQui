@@ -1,3 +1,14 @@
+<!--
+/**
+* File: questiondetails.blade.php
+* Path: resources/views/evaluators/questiondetails.blade.php
+* Purpose: The layout to display the list of question in grid form
+* Created On: 22-03-2017
+* Last Modified On: 11-04-2017
+* Author: R S DEVI PRASAD, Mohit Dadu
+*/
+-->
+
 @extends('layouts.app')
 
 @section('title', 'Tutorial Details')
@@ -23,7 +34,7 @@
       <div class="">
         <div class="page-title">
           <div class="title_left">
-            <h3>Contacts Design</h3>
+            <h3>Question Details</h3>
           </div>
 
           <div class="title_right">
@@ -46,18 +57,6 @@
               <div class="x_content">
                 <div class="row">
                   <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                    <ul class="pagination pagination-split">
-                      <li><a href="#">A</a></li>
-                      <li><a href="#">B</a></li>
-                      <li><a href="#">C</a></li>
-                      <li><a href="#">D</a></li>
-                      <li><a href="#">E</a></li>
-                      <li>...</li>
-                      <li><a href="#">W</a></li>
-                      <li><a href="#">X</a></li>
-                      <li><a href="#">Y</a></li>
-                      <li><a href="#">Z</a></li>
-                    </ul>
                   </div>
 
                   <div class="clearfix"></div>

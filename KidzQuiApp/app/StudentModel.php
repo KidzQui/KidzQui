@@ -16,6 +16,24 @@ use FileMaker;
 class StudentModel
 {
     /*
+     * show all records
+     * @param $Layout(string)
+     * @return all records
+     */
+    public static function showAllRecord($layout)
+    {
+        // create connection
+        $fmobject = FilemakerWrapper::getConnection();
+        $request = $fmobject->newFindAllCommand($layout);
+        $result = $request->execute();
+        if(!FileMaker::isError($result)) {
+            return $result->getRecords();
+        }
+        return ["No", "records", "Found", $result->getMessage()];
+
+    } // end of function
+
+    /*
      * find the records by Id (student)
      * @param $Layout(text)
      * @param $userId(number)

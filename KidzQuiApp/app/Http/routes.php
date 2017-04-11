@@ -13,10 +13,9 @@
 // Authors: R S Devi Prasad, Mohit Dadu
 // Created On: 22-03-2017
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+    Route::get('/', function () {
+        return view('welcome');
+    });
 
     Route::get('evaluatorindex', 'EvaluatorController@index');
 
@@ -26,7 +25,7 @@ Route::get('/', function () {
 
     Route::post('studentdata', 'EvaluatorController@addStudent');
 
-    Route::get('studentdetails', 'EvaluatorController@studentDetails');
+    Route::get('studentdetails/{record}', 'EvaluatorController@studentDetails');
 
     Route::get('addtutorials', 'EvaluatorController@addTutorials');
 
@@ -56,37 +55,22 @@ Route::get('/', function () {
 
 /* student */
 
-// Edited By: Mohit Dadu
-// Edited On: 30-03-17
+    Route::get('studentprofile', 'StudentController@findUser');
 
-Route::get('studentprofile', 'StudentController@findUser');
-// Route::get('admission', function () {
-//     return view('student.admission');
-// });
+    Route::get('studenthome', 'StudentController@listTutorial');
 
-Route::get('contact', function () {
-    return view('student.contact');
-});
+    Route::get('contact', function () {
+        return view('student.contact');
+    });
 
-Route::get('studenthome', function () {
-    return view('student.studenthome');
-});
+    Route::get('shortcodes', function () {
+        return view('student.shortcodes');
+    });
 
-Route::get('shortcodes', function () {
-    return view('student.shortcodes');
-});
+    Route::get('singlepage', function () {
+        return view('student.singlepage');
+    });
 
-Route::get('singlepage', function () {
-    return view('student.singlepage');
-});
-
-Route::get('staff', function () {
-    return view('student.staff');
-});
-
-
-// Route::get('test', 'GraphController@Graph');
-
-Route::get('test', function() {
-    return view('test');
-});
+    Route::get('staff', function () {
+        return view('student.staff');
+    });

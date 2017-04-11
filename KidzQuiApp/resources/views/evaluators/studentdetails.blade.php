@@ -1,3 +1,14 @@
+<!--
+/**
+* File: studentdetails.blade.php
+* Path: resources/views/layouts/studentdetails.blade.php
+* Purpose: The layout to display the details of particular student
+* Created On: 22-03-2017
+* Last Modified On: 11-04-2017
+* Author: R S DEVI PRASAD, Mohit Dadu
+*/
+-->
+
 @extends('layouts.app')
 
 @section('title', 'Student Details')
@@ -25,18 +36,15 @@
       <div class="">
         <div class="page-title">
           <div class="title_left">
-            <h3>User Profile</h3>
+            <h3>Student Details</h3>
           </div>
 
           <div class="title_right">
-            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Go!</button>
-                </span>
-              </div>
-            </div>
+            <ul class="col-md-9 breadcrumb">
+              <li><a href="{{ URL::to('evaluators') }}">Home</a></li>
+              <li><a href="{{ URL::to('studentlist') }}">Student List</a></li>
+              <li>Student Profile</li>
+            </ul>
           </div>
         </div>
 
@@ -46,7 +54,6 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_title">
-                <h2>User Report <small>Activity report</small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                   <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                   </li>
@@ -72,61 +79,27 @@
                       <img class="img-responsive avatar-view" src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/picture.jpg') }}" alt="Avatar" title="Change the avatar">
                     </div>
                   </div>
-                  <h3>Samuel Doe</h3>
+                  <h3>{{ $records[0]->getField('ct_FullName')}}</h3>
 
                   <ul class="list-unstyled user_data">
-                    <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
+                    <li><i class="fa fa-envelope-o user-profile-icon"></i> {{ $records[0]->getField('emailAddress_kqt')}}
                     </li>
 
                     <li>
-                      <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                      <i class="fa fa-mobile user-profile-icon"></i>  {{ $records[0]->getField('phoneNumber_kqt') }}
                     </li>
 
-                    <li class="m-top-xs">
-                      <i class="fa fa-external-link user-profile-icon"></i>
-                      <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
-                    </li>
                   </ul>
 
                   <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
                   <br />
-
-                  <!-- start skills -->
-                  <h4>Skills</h4>
-                  <ul class="list-unstyled user_data">
-                    <li>
-                      <p>Web Applications</p>
-                      <div class="progress progress_sm">
-                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                      </div>
-                    </li>
-                    <li>
-                      <p>Website Design</p>
-                      <div class="progress progress_sm">
-                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70"></div>
-                      </div>
-                    </li>
-                    <li>
-                      <p>Automation & Testing</p>
-                      <div class="progress progress_sm">
-                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"></div>
-                      </div>
-                    </li>
-                    <li>
-                      <p>UI / UX</p>
-                      <div class="progress progress_sm">
-                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                      </div>
-                    </li>
-                  </ul>
-                  <!-- end of skills -->
 
                 </div>
                 <div class="col-md-9 col-sm-9 col-xs-12">
 
                   <div class="profile_title">
                     <div class="col-md-6">
-                      <h2>User Activity Report</h2>
+                      <h2>Student Activity Report</h2>
                     </div>
                     <div class="col-md-6">
                       <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">

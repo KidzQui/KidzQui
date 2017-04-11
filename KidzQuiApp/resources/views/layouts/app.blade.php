@@ -58,18 +58,17 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                   <li><a href="{{ URL::to('evaluators') }}"><i class="fa fa-home"></i> Home </a></li>
+                  <li><a><i class="fa fa-child"></i> Students <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{ URL::to('studentform') }}">Add New Students</a></li>
+                      <li><a href="{{ URL::to('studentlist') }}">List Students</a></li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-question-circle"></i> Questions <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ URL::to('addquestions') }}">Add Questions</a></li>
                       <li><a href="{{ URL::to('questionlist') }}">Show Questions</a></li>
                       <li><a href="{{ URL::to('questiondetails') }}">Show Question Details</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-child"></i> Students <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{ URL::to('studentform') }}">Add New Students</a></li>
-                      <li><a href="{{ URL::to('studentlist') }}">List Students</a></li>
-                      <li><a href="{{ URL::to('studentdetails') }}">Edit Student Details</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-university"></i> Tutorials <span class="fa fa-chevron-down"></span></a>

@@ -39,4 +39,11 @@ class StudentController extends Controller
         // Return to the user profile page
         return view('student.studentprofile', compact('userProfile'));
     }
+
+    public function listTutorial()
+    {
+        $records = StudentModel::showAllRecord('Tutorial_TUT');
+        //return to student home page
+        return view('student.studenthome', compact('records'));
+    }
 }
