@@ -1,3 +1,13 @@
+<!--
+/**
+* File: questionlist.blade.php
+* Path: resources/views/evaluators/questionlist.blade.php
+* Purpose: The layout to display the list of question
+* Created On: 22-03-2017
+* Last Modified On: 11-04-2017
+* Author: R S DEVI PRASAD, Mohit Dadu
+*/
+-->
 @extends('layouts.app')
 
 @section('title', 'Student List')
@@ -58,8 +68,6 @@
                           </li>
                         </ul>
                       </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -72,9 +80,10 @@
                           <th style="width: 10%">Question Id</th>
                           <th style="width: 50%">Question</th>
                           <th style="width: 10%">QuestionType</th>
-                          <th style="width: 10%">Set Is</th>
-                          <th style="width: 10%">Level Id</th>
+                          <th style="width: 10%">Set</th>
+                          <th style="width: 10%">Level</th>
                           <th style="width: 10%">Creater Id</th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody>

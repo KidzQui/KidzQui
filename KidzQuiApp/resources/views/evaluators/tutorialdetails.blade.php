@@ -1,3 +1,15 @@
+<!--
+/**
+* File: tutorialdetails.blade.php
+* Path: resources/views/evaluators/tutorialdetails.blade.php
+* Purpose: The layout to display the details of particular tutorial
+* Created On: 22-03-2017
+* Last Modified On: 11-04-2017
+* Author: R S DEVI PRASAD, Mohit Dadu
+*/
+-->
+
+
 @extends('layouts.app')
 
 @section('title', 'Tutorial Details')

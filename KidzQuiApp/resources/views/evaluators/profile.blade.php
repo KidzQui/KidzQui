@@ -1,3 +1,14 @@
+<!--
+/**
+* File: profile.blade.php
+* Path: resources/views/evaluators/profile.blade.php
+* Purpose: The layout to display the profile details
+* Created On: 22-03-2017
+* Last Modified On: 11-04-2017
+* Author: R S DEVI PRASAD, Mohit Dadu
+*/
+-->
+
 @extends('layouts.app')
 
 @section('title', 'Student Details')
@@ -26,17 +37,6 @@
         <div class="page-title">
           <div class="title_left">
             <h3>My Profile</h3>
-          </div>
-
-          <div class="title_right">
-            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Go!</button>
-                </span>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -81,26 +81,33 @@
                       <i class="fa fa-mobile user-profile-icon"></i> {{ $userProfile['profile'][0]->getField('phoneNumber_kqt') }}
                     </li>
                   </ul>
-                  <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                  <a id="editprofile" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
                   <br />
 
+                  <div id="editdiv" class="well no-display">
+                    <form action="edit.php" method="POST">
+                      <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" class="form-control" name="first-name" value="{{ $userProfile['profile'][0]->getField('firstName_kqt') }}">
+                      </div>
+                      <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" class="form-control" name="last-name" value="{{ $userProfile['profile'][0]->getField('lastName_kqt') }}">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" name="email" value="{{ $userProfile['profile'][0]->getField('emailAddress_kqt') }}">
+                      </div>
+                      <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="number" class="form-control" name="phone" value="{{ $userProfile['profile'][0]->getField('phoneNumber_kqt') }}">
+                      </div>
+                      <button type="submit" class="btn btn-warning pull-right">Save</button>
+                    </form>
+                  </div>
                 </div>
                 <div class="col-md-9 col-sm-9 col-xs-12">
-
-                  <div class="profile_title">
-                    <div class="col-md-6">
-                      <h2>My Activity Report</h2>
-                    </div>
-                    <div class="col-md-6">
-                      <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                        <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- start of user-activity-graph -->
-                  <div id="graph_bar" style="width:100%; height:280px;"></div>
-                  <!-- end of user-activity-graph -->
 
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
@@ -169,5 +176,10 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/build/js/custom.min.js') }}"></script>
+    <script type="text/javascript">
+      $("#editprofile").on('click', function() {
+        $("#editdiv").toggle('.no-display');
+      });
+    </script>
 
 @stop

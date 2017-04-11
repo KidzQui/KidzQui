@@ -44,6 +44,10 @@
                 </li>
               </ul>
               <div class="navbar-right col-md-9">
+                <ul class="col-md-4 breadcrumb">
+                  <li><a href="{{ URL::to('evaluators') }}">Home</a></li>
+                  <li>Student List</li>
+                </ul>
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for...">
@@ -112,7 +116,7 @@
                                {{ $record->getField('isActive_kqt') }}
                             </td>
                             <td>
-                              <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                              <a href="{{ URL::to('studentdetails', $record->getField('___kp_UserId')) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                               <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                             </td>
                           </tr>
