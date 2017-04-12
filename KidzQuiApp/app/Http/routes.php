@@ -55,6 +55,9 @@
 
     Route::post('editdetails', 'EvaluatorController@editRecord');
 
+    Route::get('editstatus/{id}/{status}', 'EvaluatorController@changeStatus');
+
+
 /* student */
 
     Route::get('studentprofile', 'StudentController@findUser');

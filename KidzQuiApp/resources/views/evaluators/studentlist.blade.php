@@ -116,8 +116,11 @@
                                {{ $record->getField('isActive_kqt') }}
                             </td>
                             <td>
-                              <a href="{{ URL::to('studentdetails', $record->getField('___kp_UserId')) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                              <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                              @if($record->getField('isActive_kqt') === "Active")
+                                <a href="editstatus/{{ $record->getRecordId() }}/{{ "Inactive" }}" class="btn btn-danger btn-xs"><i class="fa fa-pencil"></i> Deactivate </a>
+                              @else
+                                <a href="editstatus/{{ $record->getRecordId() }}/{{ "Active" }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Activate </a>
+                              @endif
                             </td>
                           </tr>
                           <tr>

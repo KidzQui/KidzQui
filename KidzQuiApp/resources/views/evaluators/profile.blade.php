@@ -86,8 +86,6 @@
 
                   <div id="editdiv" class="well no-display">
                     <form action="editdetails" method="POST">
-                      <input type="hidden" name="_token" value={{ csrf_token() }}>
-                      <input type="hidden" name="recordid" value="{{ $userProfile['profile'][0]->getRecordId() }}">
                       <div class="form-group">
                         <label for="first-name">First Name</label>
                         <input type="text" class="form-control" name="firstname" value="{{ $userProfile['profile'][0]->getField('firstName_kqt') }}">
@@ -125,6 +123,8 @@
                           </span>
                         @endif
                       </div>
+                      <input type="hidden" name="_token" value={{ csrf_token() }}>
+                      <input type="hidden" name="recordid" value="{{ $userProfile['profile'][0]->getRecordId() }}">
                       <button type="submit" class="btn btn-warning pull-right">Save</button>
                     </form>
                   </div>
