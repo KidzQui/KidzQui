@@ -209,6 +209,7 @@ class EvaluatorController extends Controller
 
         // To get all tutorials added by the Evaluator
           'tutorials' => EvaluatorModel::findRecordByField('Tutorial_TUT', 'createdBy_kqn',  $request->session()->get('users'), 'createdOn_kqd', FILEMAKER_SORT_DESCEND)
+
         );
 
         // Return to the user profile page
