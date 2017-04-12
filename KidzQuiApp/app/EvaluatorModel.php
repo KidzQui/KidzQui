@@ -110,14 +110,15 @@ class EvaluatorModel
      * @param $userId(number) ->creater Id
      * @return void
      */
-    public static function editRecord($layout, $input )
+    public static function editRecord($layout, $inputs, $fields, $numberOfFields )
     {
         $fmobject = FilemakerWrapper::getConnection();
-        $request = $fmobject->newEditCommand($layout, $input['recordid']);
-        $request->setField('firstName_kqt', $input['firstname']);
-        $request->setField('lastName_kqt', $input['lastname']);
-        $request->setField('emailAddress_kqt', $input['emailaddress']);
-        $request->setField('phoneNumber_kqt', $input['phonenumber']);
+        $request = $fmobject->newEditCommand($layout, $inputs['recordid']);
+        $i = 0;
+        while ($i < $numberOfFields) {
+            $request->setField($fields[$i], $inputs[$i]);
+            $i += 1;
+        }
         $result = $request->execute();
 
         if (!FileMaker::isError($result)) {

@@ -157,11 +157,63 @@ class EvaluatorController extends Controller
             'emailaddress' => 'required|email',
             'phonenumber' => 'required|digits:10'
         ]);
+        $fields = array(
+            0 => 'firstName_kqt',
+            1 => 'lastName_kqt',
+            2 => 'emailAddress_kqt',
+            3 => 'phoneNumber_kqt'
+        );
 
-        $returnValue = EvaluatorModel::editRecord('User_USR', $request->all());
+        $inputs = array(
+            0 => $request->get('firstname'),
+            1 => $request->get('lastname'),
+            2 => $request->get('emailaddress'),
+            3 => $request->get('phonenumber'),
+            'recordid' => $request->get('recordid')
+        );
+
+        $returnValue = EvaluatorModel::editRecord('User_USR', $inputs, $fields, count($fields));
         if ($returnValue) {
             $request->session()->put('name', $request->get('firstname'));
             return redirect('profile');
+        }
+
+        return back();
+    }
+
+    public function changeStatus($id, $status)
+    {
+        $inputs = array(
+             0 => $status,
+             'recordid' => $id
+        );
+
+        $fields = array(
+            0 => 'isActive_kqt',
+        );
+
+        $returnValue = EvaluatorModel::editRecord('User_USR', $inputs, $fields, count($fields));
+        if ($returnValue) {
+            return redirect('studentlist');
+        }
+
+        return back();
+    }
+
+    public function activateRecord($id)
+    {
+        $inputs = array(
+             0 => 'Active',
+             'recordid' => $id
+        );
+
+        $fields = array(
+            0 => 'isActive_kqt',
+        );
+
+        $returnValue = EvaluatorModel::editRecord('User_USR', $inputs, $fields, count($fields));
+        if ($returnValue) {
+            return redirect('studentlist');
         }
 
         return back();
