@@ -33,7 +33,6 @@ class EvaluatorController extends Controller
     public function index(Request $request)
     {
         $isUser = EvaluatorModel::userDetails('User_USR', $request->all());
-
         // to check if the record found
         if ($isUser) {
             session(['users' => $isUser[0]->getField('___kp_UserId')]);
@@ -73,8 +72,11 @@ class EvaluatorController extends Controller
         // To find number of tutorials
         $totalTutorials = EvaluatorModel::showAllRecord('Tutorial_TUT');
 
+        // to display recentle added student
+        $sortRecord = EvaluatorModel::findRecordByField('User_USR', '__kf_UserTypeId', '3', 'createdOn_kqd', FILEMAKER_SORT_DESCEND);
+
         // Return to the evaluator dashboard
-        return view('evaluators.index', compact('results', 'totalStudents', 'myStudents', 'totalQuestions', 'totalTutorials'));
+        return view('evaluators.index', compact('results', 'totalStudents', 'myStudents', 'totalQuestions', 'totalTutorials', 'sortRecord'));
     }
 
     /*
@@ -135,9 +137,31 @@ class EvaluatorController extends Controller
         ]);
 
         $returnValue = EvaluatorModel::addUser('User_USR', $request->all());
-
         if ($returnValue) {
             return redirect('studentlist');
+        }
+
+        return back();
+    }
+
+    /*
+     * To edit profile details into database
+     * @param void
+     * @return void
+     */
+    public function editRecord(Request $request)
+    {
+        $this->validate($request, [
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'emailaddress' => 'required|email',
+            'phonenumber' => 'required|digits:10'
+        ]);
+
+        $returnValue = EvaluatorModel::editRecord('User_USR', $request->all());
+        if ($returnValue) {
+            $request->session()->put('name', $request->get('firstname'));
+            return redirect('profile');
         }
 
         return back();
@@ -173,15 +197,18 @@ class EvaluatorController extends Controller
      * @param void
      * @return userProfile to Profile page
      */
-    public function findUser()
+    public function findUser(Request $request)
     {
         $userProfile = array(
 
         // To get the profile details
-          'profile' => EvaluatorModel::findRecordByField('User_USR', '___kp_UserId', '2'),
+          'profile' => EvaluatorModel::findRecordByField('User_USR', '___kp_UserId', $request->session()->get('users')),
 
         // To get all questions added by the Evaluator
-          'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
+          'questions' => EvaluatorModel::findRecordByField('Question_QUS', 'createdBy_kqn',  $request->session()->get('users'), 'createdOn_kqd', FILEMAKER_SORT_DESCEND),
+
+        // To get all tutorials added by the Evaluator
+          'tutorials' => EvaluatorModel::findRecordByField('Tutorial_TUT', 'createdBy_kqn',  $request->session()->get('users'), 'createdOn_kqd', FILEMAKER_SORT_DESCEND)
         );
 
         // Return to the user profile page

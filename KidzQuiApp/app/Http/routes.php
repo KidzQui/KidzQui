@@ -53,6 +53,8 @@
 
     Route::post('tutorialdata', 'EvaluatorController@addTutorial');
 
+    Route::post('editdetails', 'EvaluatorController@editRecord');
+
 /* student */
 
     Route::get('studentprofile', 'StudentController@findUser');
