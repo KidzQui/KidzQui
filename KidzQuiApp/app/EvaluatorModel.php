@@ -39,11 +39,14 @@ class EvaluatorModel
      * @param $userTypeId(number)
      * @return list of users
      */
-    public static function findRecordByField($layout, $fieldName, $fieldValue)
+    public static function findRecordByField($layout, $fieldName, $fieldValue, $sortField=null, $sortType=null)
     {
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
         $request->addFindCriterion($fieldName, $fieldValue);
+        if($sortField && $sortType) {
+            $request->addSortRule($sortField, 1, $sortType);
+        }
         $result = $request->execute();
         if(!FileMaker::isError($result)) {
             return $result->getRecords();
@@ -93,6 +96,29 @@ class EvaluatorModel
         $request->setField('__kf_UserTypeId', 3);
         $request->setField('isActive_kqt', 'Active');
         $result = $request->commit();
+
+        if (!FileMaker::isError($result)) {
+            return true;
+        }
+        return false;
+
+    }// end of function
+
+    /*
+     * edit record (student)
+     * @param $Layout(string)
+     * @param $userId(number) ->creater Id
+     * @return void
+     */
+    public static function editRecord($layout, $input )
+    {
+        $fmobject = FilemakerWrapper::getConnection();
+        $request = $fmobject->newEditCommand($layout, $input['recordid']);
+        $request->setField('firstName_kqt', $input['firstname']);
+        $request->setField('lastName_kqt', $input['lastname']);
+        $request->setField('emailAddress_kqt', $input['emailaddress']);
+        $request->setField('phoneNumber_kqt', $input['phonenumber']);
+        $result = $request->execute();
 
         if (!FileMaker::isError($result)) {
             return true;

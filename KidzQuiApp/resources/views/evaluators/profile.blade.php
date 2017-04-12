@@ -85,23 +85,45 @@
                   <br />
 
                   <div id="editdiv" class="well no-display">
-                    <form action="edit.php" method="POST">
+                    <form action="editdetails" method="POST">
+                      <input type="hidden" name="_token" value={{ csrf_token() }}>
+                      <input type="hidden" name="recordid" value="{{ $userProfile['profile'][0]->getRecordId() }}">
                       <div class="form-group">
                         <label for="first-name">First Name</label>
-                        <input type="text" class="form-control" name="first-name" value="{{ $userProfile['profile'][0]->getField('firstName_kqt') }}">
+                        <input type="text" class="form-control" name="firstname" value="{{ $userProfile['profile'][0]->getField('firstName_kqt') }}">
+                        @if ($errors->has('lastname'))
+                          <span>
+                            <strong>{{ $errors->first('firstname') }}</strong>
+                          </span>
+                        @endif
                       </div>
                       <div class="form-group">
                         <label for="last-name">Last Name</label>
-                        <input type="text" class="form-control" name="last-name" value="{{ $userProfile['profile'][0]->getField('lastName_kqt') }}">
+                        <input type="text" class="form-control" name="lastname" value="{{ $userProfile['profile'][0]->getField('lastName_kqt') }}">
+                        @if ($errors->has('lastname'))
+                          <span>
+                            <strong>{{ $errors->first('lastname') }}</strong>
+                          </span>
+                        @endif
                       </div>
 
                       <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" class="form-control" name="email" value="{{ $userProfile['profile'][0]->getField('emailAddress_kqt') }}">
+                        <input type="email" class="form-control" name="emailaddress" value="{{ $userProfile['profile'][0]->getField('emailAddress_kqt') }}">
+                        @if ($errors->has('lastname'))
+                          <span>
+                            <strong>{{ $errors->first('lastname') }}</strong>
+                          </span>
+                        @endif
                       </div>
                       <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="number" class="form-control" name="phone" value="{{ $userProfile['profile'][0]->getField('phoneNumber_kqt') }}">
+                        <input type="number" class="form-control" name="phonenumber" value="{{ $userProfile['profile'][0]->getField('phoneNumber_kqt') }}">
+                        @if ($errors->has('lastname'))
+                          <span>
+                            <strong>{{ $errors->first('lastname') }}</strong>
+                          </span>
+                        @endif
                       </div>
                       <button type="submit" class="btn btn-warning pull-right">Save</button>
                     </form>
@@ -111,13 +133,15 @@
 
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
+                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Added Questions</a>
+                      </li>
+                      <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Recent Added Tutorials</a>
                       </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                       <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
-                        <!-- start recent activity -->
+                        <!-- start recent Questions -->
                         <ul class="messages">
 
                           @if($userProfile['questions'])
@@ -142,7 +166,32 @@
                           @endif
 
                         </ul>
-                        <!-- end recent activity -->
+                        <!-- end recent Questions -->
+                      </div>
+                      <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                        <!-- start recent tutorials -->
+                        <ul class="messages">
+
+                          @if($userProfile['tutorials'])
+                            @foreach ($userProfile['tutorials'] as $tutorial)
+
+                          <li>
+                            <div class="message_date">
+                              <h5 class="date text-error">Created On:</h5>
+                              <p class="month">{{ $tutorial->getField('createdOn_kqd') }}</p>
+                            </div>
+                            <div class="message_wrapper">
+                              <h4 class="date text-error">Tutorial:</h4>
+                              <blockquote class="message">{{ $tutorial->getField('tutorialTitle_kqt') }}.</blockquote>
+                              <h5>Question Type: {{ $tutorial->getField('tutorialDescription_kqt') }}</h5>
+                            </div>
+                          </li>
+
+                            @endforeach
+                          @endif
+
+                        </ul>
+                        <!-- end recent Tutorials -->
                       </div>
                     </div>
                   </div>

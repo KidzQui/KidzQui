@@ -24,6 +24,7 @@
     <link rel="stylesheet" href={{ asset("KidzQuiApp/resources/assets/css/flexslider.css") }} type="text/css" media="screen" />
     <link href={{ asset("KidzQuiApp/resources/assets/css/bootstrap.css") }} type="text/css" rel="stylesheet" media="all">
     <link href={{ asset("KidzQuiApp/resources/assets/css/style.css") }} type="text/css" rel="stylesheet" media="all">
+    <link href={{ asset("KidzQuiApp/public/css/custom.css") }} type="text/css" rel="stylesheet">
 
     <!--fonts-->
     <link href='//fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>

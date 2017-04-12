@@ -15,7 +15,7 @@
 
 @section('header')
 
-  <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
 
 @stop
 
@@ -24,15 +24,15 @@
 <!--students-->
   <div class="students">
     <div class="row well">
-      {{-- <div class="col-md-12"><center>
-        <button class="btn btn-primary" type="submit">Button</button>
-        <button class="btn btn-primary" type="submit">Button</button>
-        <button class="btn btn-primary" type="submit">Button</button>
+      <div class="col-md-12"><center>
+        <button type="button" class="btn btn-primary btn-circle btn-xl" type="submit">Level 1</button>
+        <button class="btn btn-primary btn-circle btn-xl" type="submit">Level 2</button>
+        <button class="btn btn-primary btn-circle btn-xl" type="submit">Level 3</button>
         </center></div><br>
       <div class="col-md-12"><center>
-        <button class="btn btn-primary" type="submit">Button</button>
-        <button class="btn btn-primary" type="submit">Button</button>
-      </center></div> --}}
+        <button class="btn btn-primary btn-circle btn-xl" type="submit">Level 4</button>
+        <button class="btn btn-primary btn-circle btn-xl" type="submit">Level 5</button>
+      </center></div>
       <div class="col-md-12">
         <button type="button" class="btn btn-info btn-lg col-md-2" style="margin-left: 40%">Start Quiz </button>
       </div>
