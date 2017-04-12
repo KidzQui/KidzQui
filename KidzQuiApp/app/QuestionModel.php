@@ -58,7 +58,7 @@ class QuestionModel
      * @param $userId(number)
      * @return individual user details
      */
-    public static function findQuestionByCreaterId($layout, $userId)
+    public static function findQuestionByCreatorId($layout, $userId)
     {
         // create connection
         $fmobject = FilemakerWrapper::getConnection();
