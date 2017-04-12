@@ -33,7 +33,6 @@ class EvaluatorController extends Controller
     public function index(Request $request)
     {
         $isUser = EvaluatorModel::userDetails('User_USR', $request->all());
-
         // to check if the record found
         if ($isUser) {
             session(['users' => $isUser[0]->getField('___kp_UserId')]);
@@ -181,7 +180,7 @@ class EvaluatorController extends Controller
           'profile' => EvaluatorModel::findRecordByField('User_USR', '___kp_UserId', '2'),
 
         // To get all questions added by the Evaluator
-          'questions' => QuestionModel::findQuestionByCreaterId('Question_QUS', '2')
+          'questions' => QuestionModel::findQuestionByCreatorId('Question_QUS', '2')
         );
 
         // Return to the user profile page
