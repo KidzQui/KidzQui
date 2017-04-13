@@ -17,6 +17,7 @@ use App\QuestionModel;
 use App\Classes\FilemakerWrapper;
 use FileMaker;
 use Validator;
+use Mail;
 
 class EvaluatorController extends Controller
 {
@@ -138,7 +139,7 @@ class EvaluatorController extends Controller
 
         $returnValue = EvaluatorModel::addUser('User_USR', $request->all());
         if ($returnValue) {
-            return redirect('studentlist');
+            return EvaluatorController::sendMail($request->emailaddress);
         }
 
         return back();
@@ -369,6 +370,24 @@ class EvaluatorController extends Controller
     {
         $medRecord = EvaluatorModel::findRecordByField('Media_MED', '___kp_MediaId', $id);
         return $medRecord[0]->getField('mediaFile_kqr');
+    }
+
+    public static function sendMail($email)
+    {
+        $dataEmail = array(
+            'name' => 'Kids',
+            'email' => $email,
+            'content' => 'Please login to <a href="http://localhost/KidzQui/">KidzQui</a> and start your course.
+    Happy Mathematics solving.'
+        );
+
+        Mail::send('email.test', $dataEmail, function($message) use ($dataEmail)
+        {
+            $message->to($dataEmail['email']);
+            $message->subject('Hello Email');
+        });
+
+        return redirect('studentlist');
     }
 
 }

@@ -57,6 +57,8 @@
 
     Route::post('editstatus', 'EvaluatorController@changeStatus');
 
+    Route::get('mail', 'EvaluatorController@sendMail');
+
 
 /* student */
 
