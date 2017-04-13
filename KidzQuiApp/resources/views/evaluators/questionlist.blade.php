@@ -73,7 +73,7 @@
                   </div>
                   <div class="x_content">
 
-                    <!-- start project list -->
+                    <!-- start question list -->
                     <table class="table table-striped projects" id="table">
                       <thead>
                         <tr>
@@ -111,8 +111,25 @@
                                {{ $list->getField('createdBy_kqn') }}
                             </td>
                             <td>
-                              <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                              <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                              @if($list->getField('isActive_kqt') === "Active")
+                                <form action="editstatus" method="post">
+                                  <input type="hidden" name="id" value="{{ $list->getRecordId() }}">
+                                  <input type="hidden" name="status" value="Inactive">
+                                  <input type="hidden" name="layout" value="Question_QUS">
+                                  <input type="hidden" name="page" value="questionlist">
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                  <button type="submit" class="btn btn-danger">Deactivate</button>
+                                </form>
+                              @else
+                                <form action="editstatus" method="post">
+                                  <input type="hidden" name="id" value="{{ $list->getRecordId() }}">
+                                  <input type="hidden" name="status" value="Active">
+                                  <input type="hidden" name="layout" value="Question_QUS">
+                                  <input type="hidden" name="page" value="questionlist">
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                  <button type="submit" class="btn btn-success">Activate</button>
+                                </form>
+                              @endif
                             </td>
                           </tr>
                           <tr>

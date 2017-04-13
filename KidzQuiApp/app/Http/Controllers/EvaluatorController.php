@@ -181,43 +181,25 @@ class EvaluatorController extends Controller
         return back();
     }
 
-    public function changeStatus($id, $status)
+    public function changeStatus(Request $request)
     {
         $inputs = array(
-             0 => $status,
-             'recordid' => $id
+             0 => $request->status,
+             'recordid' => $request->id
         );
 
         $fields = array(
             0 => 'isActive_kqt',
         );
 
-        $returnValue = EvaluatorModel::editRecord('User_USR', $inputs, $fields, count($fields));
+        $returnValue = EvaluatorModel::editRecord($request->layout, $inputs, $fields, count($fields));
         if ($returnValue) {
-            return redirect('studentlist');
+            return redirect($request->page);
         }
 
         return back();
     }
 
-    public function activateRecord($id)
-    {
-        $inputs = array(
-             0 => 'Active',
-             'recordid' => $id
-        );
-
-        $fields = array(
-            0 => 'isActive_kqt',
-        );
-
-        $returnValue = EvaluatorModel::editRecord('User_USR', $inputs, $fields, count($fields));
-        if ($returnValue) {
-            return redirect('studentlist');
-        }
-
-        return back();
-    }
 
     /*
      * show image on web
