@@ -117,9 +117,23 @@
                             </td>
                             <td>
                               @if($record->getField('isActive_kqt') === "Active")
-                                <a href="editstatus/{{ $record->getRecordId() }}/{{ "Inactive" }}" class="btn btn-danger btn-xs"><i class="fa fa-pencil"></i> Deactivate </a>
+                                <form action="editstatus" method="post">
+                                  <input type="hidden" name="id" value="{{ $record->getRecordId() }}">
+                                  <input type="hidden" name="status" value="Inactive">
+                                  <input type="hidden" name="layout" value="User_USR">
+                                  <input type="hidden" name="page" value="studentlist">
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                  <button type="submit" class="btn btn-danger">Deactivate</button>
+                                </form>
                               @else
-                                <a href="editstatus/{{ $record->getRecordId() }}/{{ "Active" }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Activate </a>
+                                <form action="editstatus" method="post">
+                                  <input type="hidden" name="id" value="{{ $record->getRecordId() }}">
+                                  <input type="hidden" name="status" value="Active">
+                                  <input type="hidden" name="layout" value="User_USR">
+                                  <input type="hidden" name="page" value="studentlist">
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                  <button type="submit" class="btn btn-success">Activate</button>
+                                </form>
                               @endif
                             </td>
                           </tr>
