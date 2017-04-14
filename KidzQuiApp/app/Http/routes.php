@@ -61,6 +61,10 @@
 
     Route::get('studenthome', 'StudentController@listTutorial');
 
+    Route::post('sets', 'StudentController@listSets');
+
+    Route::post('questions', 'StudentController@listQuestions');
+
     Route::get('contact', function () {
         return view('student.contact');
     });

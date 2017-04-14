@@ -13,6 +13,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\EvaluatorModel;
+use App\StudentModel;
 use App\QuestionModel;
 use App\Classes\FilemakerWrapper;
 use FileMaker;
@@ -97,8 +98,22 @@ class EvaluatorController extends Controller
      */
     public function studentDetails($record)
     {
+        $scores = array();
+        $student = array('0' => '__kf_StudentId' );
+
         $records = EvaluatorModel::findRecordByField('UsrManagementWeb_USR', '___kp_UserId', $record);
-        return view('evaluators.studentdetails', compact('records'));
+        $results = StudentModel::findRecordByField('StudentAnswer_STUANS', $student, $record, '1', 'answeredOn_kqd', FILEMAKER_SORT_DESCEND);
+
+        // // To create array of scores
+        foreach ($results as $result) {
+            array_push($scores, $result->getField('studentAnswer_kqn'));
+        }
+
+        $count = count($scores);
+        $scores = array_count_values($scores);
+        $score = isset($scores['1']) ? $scores['1'] : null;
+        $score = $score/$count*100;
+        return view('evaluators.studentdetails', compact('records','results','scores', 'score'));
     }
 
     /*

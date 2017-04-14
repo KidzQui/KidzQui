@@ -136,7 +136,7 @@
 
         var gkeys=[];
         var gvals=[];
-
+        var title = 'No. Of Students';
         @foreach($records as $key => $value)
           gkeys.push("{{ $key }}");
           gvals.push("{{ $value }}");
