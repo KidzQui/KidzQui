@@ -18,6 +18,7 @@ use App\QuestionModel;
 use App\Classes\FilemakerWrapper;
 use FileMaker;
 use Validator;
+use Mail;
 
 class EvaluatorController extends Controller
 {
@@ -61,7 +62,7 @@ class EvaluatorController extends Controller
             array_push($results, $record->getField('createdOn_kqd'));
         }
 
-        // To find th total number of students.
+        // To find the total number of students.
         $totalStudents = EvaluatorModel::showAllRecord('User_USR');
 
         // To find student added by particular user
@@ -139,7 +140,7 @@ class EvaluatorController extends Controller
 
     /*
      * Add new student to the database
-     * @param void
+     * @param request object
      * @return void
      */
     public function addStudent(Request $request)
@@ -153,7 +154,7 @@ class EvaluatorController extends Controller
 
         $returnValue = EvaluatorModel::addUser('User_USR', $request->all());
         if ($returnValue) {
-            return redirect('studentlist');
+            return EvaluatorController::sendMail($request->emailaddress);
         }
 
         return back();
@@ -161,7 +162,7 @@ class EvaluatorController extends Controller
 
     /*
      * To edit profile details into database
-     * @param void
+     * @param request object
      * @return void
      */
     public function editRecord(Request $request)
@@ -195,6 +196,12 @@ class EvaluatorController extends Controller
 
         return back();
     }
+
+    /*
+     * To update the status of the question or student
+     * @param request object
+     * @return void
+     */
 
     public function changeStatus(Request $request)
     {
@@ -243,7 +250,7 @@ class EvaluatorController extends Controller
 
     /*
      * show Evaluator details from the database
-     * @param void
+     * @param request object
      * @return userProfile to Profile page
      */
     public function findUser(Request $request)
@@ -278,7 +285,7 @@ class EvaluatorController extends Controller
 
     /*
      * Add a new question to the database by the evaluator
-     * @param $request
+     * @param request object
      * @return void
      */
     public function addNewQuestion(Request $request)
@@ -332,7 +339,7 @@ class EvaluatorController extends Controller
 
     /*
      * To add new tutorial into database
-     * @param $request
+     * @param request object
      * @return void
      */
     public function addTutorial(Request $request)
@@ -365,7 +372,7 @@ class EvaluatorController extends Controller
     }
 
     /*
-     * To check the session status and destroy
+     * To destroy the session of the user and logout them out
      * @param $request
      * @return session data to login app
      */
@@ -384,6 +391,30 @@ class EvaluatorController extends Controller
     {
         $medRecord = EvaluatorModel::findRecordByField('Media_MED', '___kp_MediaId', $id);
         return $medRecord[0]->getField('mediaFile_kqr');
+    }
+
+    /*
+     * To send mail to the user (student) after they are created
+     * @param email of student
+     * @return void
+     */
+
+    public static function sendMail($email)
+    {
+        $dataEmail = array(
+            'name' => 'Kids',
+            'email' => $email,
+            'content' => 'Please login to <a href="http://localhost/KidzQui/">KidzQui</a> and start your course.
+    Happy Mathematics solving.'
+        );
+
+        Mail::send('email.test', $dataEmail, function($message) use ($dataEmail)
+        {
+            $message->to($dataEmail['email']);
+            $message->subject('Hello Email');
+        });
+
+        return redirect('studentlist');
     }
 
 }
