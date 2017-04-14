@@ -16,7 +16,7 @@ use Closure;
 class EvaluatorMiddleWare
 {
     /**
-     * Handle an incoming request.
+     * check if the user and only if it is evaluator.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
