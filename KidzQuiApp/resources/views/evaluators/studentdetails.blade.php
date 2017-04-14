@@ -66,8 +66,6 @@
                       </li>
                     </ul>
                   </li>
-                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                  </li>
                 </ul>
                 <div class="clearfix"></div>
               </div>
@@ -99,168 +97,60 @@
 
                   <div class="profile_title">
                     <div class="col-md-6">
-                      <h2>Student Activity Report</h2>
-                    </div>
-                    <div class="col-md-6">
-                      <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                        <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                      </div>
+                      <h2>Result</h2>
                     </div>
                   </div>
                   <!-- start of user-activity-graph -->
-                  <div id="graph_bar" style="width:100%; height:280px;"></div>
+                  <canvas id="myChart" width="600" height="300"></canvas>
+                  {{-- <div id="graph_bar" style="width:100%; height:280px;"></div> --}}
                   <!-- end of user-activity-graph -->
 
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
+                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Attended Questions</a>
                       </li>
-                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Projects Worked on</a>
-                      </li>
-                      <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
+                      <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">My Score</a>
                       </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                       <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
                         <!-- start recent activity -->
-                        <ul class="messages">
-                          <li>
-                            <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/img.jpg') }}" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                              <h3 class="date text-info">24</h3>
-                              <p class="month">May</p>
-                            </div>
-                            <div class="message_wrapper">
-                              <h4 class="heading">Desmond Davison</h4>
-                              <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                              <br />
-                              <p class="url">
-                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                              </p>
-                            </div>
-                          </li>
-                          <li>
-                            <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/img.jpg') }}" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                              <h3 class="date text-error">21</h3>
-                              <p class="month">May</p>
-                            </div>
-                            <div class="message_wrapper">
-                              <h4 class="heading">Brian Michaels</h4>
-                              <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                              <br />
-                              <p class="url">
-                                <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                <a href="#" data-original-title="">Download</a>
-                              </p>
-                            </div>
-                          </li>
-                          <li>
-                            <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/img.jpg') }}" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                              <h3 class="date text-info">24</h3>
-                              <p class="month">May</p>
-                            </div>
-                            <div class="message_wrapper">
-                              <h4 class="heading">Desmond Davison</h4>
-                              <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                              <br />
-                              <p class="url">
-                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                              </p>
-                            </div>
-                          </li>
-                          <li>
-                            <img src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/img.jpg') }}" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                              <h3 class="date text-error">21</h3>
-                              <p class="month">May</p>
-                            </div>
-                            <div class="message_wrapper">
-                              <h4 class="heading">Brian Michaels</h4>
-                              <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                              <br />
-                              <p class="url">
-                                <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                <a href="#" data-original-title="">Download</a>
-                              </p>
-                            </div>
-                          </li>
+                          <table class="table table-striped projects">
+                            <thead>
+                              <tr>
+                                <th>Question</th>
+                                <th>Answer</th>
+                                <th>Attended On</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              @if($results)
+                                @foreach($results as $result)
+                                <tr>
+                                  <td>
+                                    {{ $result->getField('__kf_QuestionId')}}
+                                  </td>
+                                  <td>
+                                    {{ $result->getField('studentAnswer_kqn') }}
+                                  </td>
+                                  <td>
+                                    {{ $result->getField('answeredOn_kqd') }}
+                                  </td>
+                                </tr>
 
-                        </ul>
+                                @endforeach
+                              @endif
+                            </tbody>
+                          </table>
                         <!-- end recent activity -->
 
                       </div>
-                      <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-
-                        <!-- start user projects -->
-                        <table class="data table table-striped no-margin">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>Project Name</th>
-                              <th>Client Company</th>
-                              <th class="hidden-phone">Hours Spent</th>
-                              <th>Contribution</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>1</td>
-                              <td>New Company Takeover Review</td>
-                              <td>Deveint Inc</td>
-                              <td class="hidden-phone">18</td>
-                              <td class="vertical-align-mid">
-                                <div class="progress">
-                                  <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>2</td>
-                              <td>New Partner Contracts Consultanci</td>
-                              <td>Deveint Inc</td>
-                              <td class="hidden-phone">13</td>
-                              <td class="vertical-align-mid">
-                                <div class="progress">
-                                  <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>3</td>
-                              <td>Partners and Inverstors report</td>
-                              <td>Deveint Inc</td>
-                              <td class="hidden-phone">30</td>
-                              <td class="vertical-align-mid">
-                                <div class="progress">
-                                  <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>4</td>
-                              <td>New Company Takeover Review</td>
-                              <td>Deveint Inc</td>
-                              <td class="hidden-phone">28</td>
-                              <td class="vertical-align-mid">
-                                <div class="progress">
-                                  <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                        <!-- end user projects -->
-
-                      </div>
                       <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                        <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui
-                          photo booth letterpress, commodo enim craft beer mlkshk </p>
+                            <div class="message_wrapper">
+                              <h4 class="date text-error">Score:</h4>
+                              <blockquote class="message">@php echo number_format($score, 2); @endphp %</blockquote>
+                            </div>
                       </div>
                     </div>
                   </div>
@@ -276,6 +166,22 @@
 @stop
 
 @section('footer')
+
+    <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/Chart.js/dist/Chart.min.js') }}"></script>
+
+    <script>
+
+        var gkeys=[];
+        var gvals=[];
+        var title = 'No. of Correct Answers';
+        @foreach($scores as $key => $value)
+          gkeys.push("{{ $key }}");
+          gvals.push("{{ $value }}");
+        @endforeach
+
+    </script>
+
+    <script src="{{ asset('KidzQuiApp/public/js/graph.js') }}"></script>
 
     <!-- Bootstrap -->
     <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>

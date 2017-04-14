@@ -89,7 +89,7 @@
                       <div class="form-group">
                         <label for="first-name">First Name</label>
                         <input type="text" class="form-control" name="firstname" value="{{ $userProfile['profile'][0]->getField('firstName_kqt') }}">
-                        @if ($errors->has('lastname'))
+                        @if ($errors->has('firstname'))
                           <span>
                             <strong>{{ $errors->first('firstname') }}</strong>
                           </span>
@@ -108,18 +108,18 @@
                       <div class="form-group">
                         <label for="email">Email Address</label>
                         <input type="email" class="form-control" name="emailaddress" value="{{ $userProfile['profile'][0]->getField('emailAddress_kqt') }}">
-                        @if ($errors->has('lastname'))
+                        @if ($errors->has('emailaddress'))
                           <span>
-                            <strong>{{ $errors->first('lastname') }}</strong>
+                            <strong>{{ $errors->first('emailaddress') }}</strong>
                           </span>
                         @endif
                       </div>
                       <div class="form-group">
                         <label for="phone">Phone Number</label>
                         <input type="number" class="form-control" name="phonenumber" value="{{ $userProfile['profile'][0]->getField('phoneNumber_kqt') }}">
-                        @if ($errors->has('lastname'))
+                        @if ($errors->has('phonenumber'))
                           <span>
-                            <strong>{{ $errors->first('lastname') }}</strong>
+                            <strong>{{ $errors->first('phonenumber') }}</strong>
                           </span>
                         @endif
                       </div>

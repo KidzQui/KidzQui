@@ -26,30 +26,44 @@ class StudentModel
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindAllCommand($layout);
         $result = $request->execute();
+
         if(!FileMaker::isError($result)) {
             return $result->getRecords();
         }
-        return ["No", "records", "Found", $result->getMessage()];
+
+        return false;
 
     } // end of function
 
     /*
-     * find the records by Id (student)
+     * find the records by fields array (student)
      * @param $Layout(text)
-     * @param $userId(number)
-     * @return individual user details
+     * @param $field(string)
+     * @param $value(string)
+     * @return records details
      */
-    public static function findRecordById($layout, $userId)
+    public static function findRecordByField($layout, $field, $value, $numberOfFields, $sortField=null, $sortType=null)
     {
         // create connection
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
-        $request->addFindCriterion('___kp_UserId', $userId);
+        $i=0;
+
+        while ( $i < $numberOfFields ) {
+            $request->addFindCriterion($field[$i], $value[$i]);
+            $i += 1;
+        }
+
+        if($sortField && $sortType) {
+            $request->addSortRule($sortField, 1, $sortType);
+        }
+
         $result = $request->execute();
+
         if(!FileMaker::isError($result)) {
             return $result->getRecords();
         }
-        return ["No", "records", "Found", $result->getMessage()];
+        return false;
 
     } // end of function
 
