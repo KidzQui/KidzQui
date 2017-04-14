@@ -38,85 +38,47 @@
 
         <div class="clearfix"></div>
           <div class="about-top">
-            <h1>My History</h1><hr>
-            <div class="col-md-3 abt-1">
-              <h2>Admission tips</h2>
-              <div class="history-grid-image">
-                <img src={{ asset("KidzQuiApp/resources/assets/images/t13.jpg") }}  class="img-responsive zoom-img" alt="">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-9">
+                  <h2>My Answers</h2>
+                </div>
+                <div class="col-md-3">
+                    <h5><strong>Score: </strong>@php echo number_format($score, 2); @endphp %</h5>
+                </div>
               </div>
-              <ul>
-                <li><a href="#">Vestibulum molestie aenean</a></li>
-                <li><a href="#">Maecenas tristique lacus</a></li>
-                <li><a href="#">Nascetur ridiculus magnis</a></li>
-              </ul>
             </div>
-            <div class="col-md-3 abt-1">
-              <h3>Admission payment</h3>
-              <div class="history-grid-image">
-                <img src={{ asset("KidzQuiApp/resources/assets/images/t12.jpg") }}  class="img-responsive zoom-img" alt="">
-              </div>
-              <p>Sed laoreet aliquam leo utellus dolor dapibus eget praesent vestibulum molestie.</p>
-            </div>
-            <div class="col-md-3 abt-1">
-              <h3>Admission tests</h3>
-              <div class="history-grid-image">
-                <img src={{ asset("KidzQuiApp/resources/assets/images/t11.jpg") }}  class="img-responsive zoom-img" alt="">
-              </div>
-              <ul>
-                <li><a href="#">Vestibulum molestie aenean</a></li>
-                <li><a href="#">Nascetur ridiculus magnis</a></li>
-                <li><a href="#">Maecenas tristique lacus</a></li>
-              </ul>
-            </div>
-            <div class="col-md-3 abt-1">
-              <h3>Early decision</h3>
-              <div class="history-grid-image">
-                <img src={{ asset("KidzQuiApp/resources/assets/images/t10.jpg") }}  class="img-responsive zoom-img" alt="">
-              </div>
-              <P>Lacus aenean nonummy hendrerit mauris phasellus porta usce suscipit varius mi. </P>
-            </div>
+            <hr>
+
+            <table class="table table-striped projects">
+              <thead>
+                <tr>
+                  <th>Question</th>
+                  <th>Answer</th>
+                </tr>
+              </thead>
+              <tbody>
+                @if($records)
+                  @foreach($records as $record)
+                  <tr>
+                    <td>
+                      {{ $record->getField('__kf_QuestionId')}}
+                    </td>
+                    <td>
+                      {{ $record->getField('studentAnswer_kqn') }}
+                    </td>
+                  </tr>
+
+                  @endforeach
+                @endif
+              </tbody>
+            </table>
+
             <div class="clearfix"></div>
           </div>
       </div>
     </div>
   <!--//about-->
 
-  <!--semst-->
-    <div class="semst">
-      <div class="container">
-        <div class="col-md-7 semst-left">
-          <h3>Semester's best teachers</h3>
-          <ul>
-            <li>
-              <div class="history-grid-image">
-                <img src={{ asset("KidzQuiApp/resources/assets/images/t4.jpg" ) }} class="img-responsive zoom-img" alt="">
-              </div>
-              <p>Lorem ipsum dolor sit amet, consectetu er elit.</p>
-            </li>
-            <li>
-              <div class="history-grid-image">
-                <img src={{ asset("KidzQuiApp/resources/assets/images/t5.jpg" ) }} class="img-responsive zoom-img" alt="">
-              </div>
-              <p>Consectetu er adipiscing elit, sed diam nonummy .</p>
-            </li>
-            <li>
-              <div class="history-grid-image">
-                <img src={{ asset("KidzQuiApp/resources/assets/images/t6.jpg" ) }} class="img-responsive zoom-img" alt="">
-              </div>
-              <p>Sed diam nonummy nibh eu ismod tincidunt ut.</p>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-5 semst-right">
-          <h3>NewsLetter</h3>
-            <form action="#" method="post">
-              <input type="text" name="search" value="Enter Your email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your email';}">
-              <input type="submit" value="Subscribe">
-            </form>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-    </div>
-  <!--semst-->
-
 @stop
+

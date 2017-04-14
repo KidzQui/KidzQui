@@ -22,17 +22,27 @@
 @section('content')
 
 <!--students-->
-  <div class="students">
+  <div class="students container">
+    <div class="row">
+
+      @if($levels)
+        @foreach($levels as $level)
+
+            <div class="col-md-4 level thumbnail">
+              <form action="sets" method="POST">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="levelid" value="{{ $level->getField('___kp_LevelId') }}">
+                <h4 class="text-center">Level {{ $level->getField('___kp_LevelId') }}</h4>
+                <p class="text-center"></p>
+                <button class="btn btn-info" type="submit">Go</button>
+              </form>
+            </div>
+
+        @endforeach
+      @endif
+
+    </div>
     <div class="row well">
-      <div class="col-md-12"><center>
-        <button type="button" class="btn btn-primary btn-circle btn-xl" type="submit">Level 1</button>
-        <button class="btn btn-primary btn-circle btn-xl" type="submit">Level 2</button>
-        <button class="btn btn-primary btn-circle btn-xl" type="submit">Level 3</button>
-        </center></div><br>
-      <div class="col-md-12"><center>
-        <button class="btn btn-primary btn-circle btn-xl" type="submit">Level 4</button>
-        <button class="btn btn-primary btn-circle btn-xl" type="submit">Level 5</button>
-      </center></div>
       <div class="col-md-12">
         <button type="button" class="btn btn-info btn-lg col-md-2" style="margin-left: 40%">Start Quiz </button>
       </div>
@@ -42,26 +52,30 @@
 <!--best-->
   <div class="best">
     <div class="container">
-      <div class="col-md-12 best-left wow fadeInLeft animated" data-wow-delay=".5s">
-        <h3>Tutorials</h3>
+      <div class="row">
+        <div class="col-md-12 best-left wow fadeInLeft animated" data-wow-delay=".5s">
+          <h3>Tutorials</h3>
 
-        @foreach($records as $record)
+          @if($tutorials)
+            @foreach($tutorials as $tutorial)
 
-        <div class="bes-top">
-          <div class="bes-lft">
-            <div class="history-grid-image">
-            <img src={{ asset("KidzQuiApp/resources/assets/images/t8.jpg") }} class="img-responsive zoom-img" alt="">
-          </div>
-          </div>
-          <div class="bes-rgt">
-            <h4><a href="singlepage">{{ $record->getField('tutorialTitle_kqt') }}</a></h4>
-            <p>{{ $record->getField('tutorialDescription_kqt') }}</p>
-          </div>
-            <div class="clearfix"></div>
+            <div class="bes-top col-md-6">
+              <div class="bes-lft">
+                <div class="history-grid-image">
+                  <img src={{ asset("KidzQuiApp/resources/assets/images/t8.jpg") }} class="img-responsive zoom-img" alt="">
+                </div>
+              </div>
+              <div class="bes-rgt">
+                <h4><a href="singlepage">{{ $tutorial->getField('tutorialTitle_kqt') }}</a></h4>
+                <p>{{ $tutorial->getField('tutorialDescription_kqt') }}</p>
+              </div>
+                <div class="clearfix"></div>
+            </div>
+
+            @endforeach
+          @endif
+
         </div>
-        <br>
-        @endforeach
-
       </div>
       <div class="clearfix"></div>
     </div>
