@@ -16,3 +16,9 @@
      height:100%;
      border-left:1px solid gray;
 }
+
+.btn-xl {
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+}

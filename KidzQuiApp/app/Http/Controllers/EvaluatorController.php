@@ -362,6 +362,17 @@ class EvaluatorController extends Controller
     }
 
     /*
+     * Show list of tutorials from database
+     * @param void
+     * @return list of tutorials
+     */
+    public function tutorialList()
+    {
+        $listTutorial = EvaluatorModel::showAllRecord('Tutorial_TUT');
+        return view('evaluators.tutoriallist', compact('listTutorial'));
+    }
+
+    /*
      * To redirect to the tutorial details page
      * @param void
      * @return void

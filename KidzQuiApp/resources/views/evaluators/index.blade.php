@@ -11,7 +11,7 @@
 
 @extends('layouts.app')
 
-@section('title', 'Evaluators')
+@section('title', 'Dashboard')
 
 @section('header')
 

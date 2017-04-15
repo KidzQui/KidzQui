@@ -13,38 +13,13 @@
 
 @section('title', 'Home')
 
-@section('header')
-
-<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
-
-@stop
-
 @section('content')
 
 <!--students-->
-  <div class="students container">
-    <div class="row">
-
-      @if($levels)
-        @foreach($levels as $level)
-
-            <div class="col-md-4 level thumbnail">
-              <form action="sets" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" name="levelid" value="{{ $level->getField('___kp_LevelId') }}">
-                <h4 class="text-center">Level {{ $level->getField('___kp_LevelId') }}</h4>
-                <p class="text-center"></p>
-                <button class="btn btn-info" type="submit">Go</button>
-              </form>
-            </div>
-
-        @endforeach
-      @endif
-
-    </div>
+  <div class="students">
     <div class="row well">
       <div class="col-md-12">
-        <button type="button" class="btn btn-info btn-lg col-md-2" style="margin-left: 40%">Start Quiz </button>
+        <a href="{{ URL::to('levels') }}" class="btn btn-info btn-lg col-md-2" style="margin-left: 40%">Start Quiz </a>
       </div>
     </div>
   </div>

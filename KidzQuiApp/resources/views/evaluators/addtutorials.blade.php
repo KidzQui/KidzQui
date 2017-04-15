@@ -11,7 +11,7 @@
 
 @extends('layouts.app')
 
-@section('title', 'Add New Questions')
+@section('title', 'Add New Tutorial')
 
 @section('header')
 
