@@ -10,7 +10,7 @@
 -->
 @extends('layouts.app')
 
-@section('title', 'Question List')
+@section('title', 'Tutorial List')
 
 @section('header')
 
@@ -26,6 +26,9 @@
     <!-- Custom Theme Style -->
     <link href="{{ asset('KidzQuiApp/public/bower_components/gentelella/build/css/custom.min.css') }}" rel="stylesheet">
 
+    <!-- custom js -->
+    <script src="{{ asset('KidzQuiApp/public/js/custom.js') }}"></script>
+
 @stop
 
 @section('content')
@@ -35,7 +38,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Question</h3>
+                <h3>Tutorials</h3>
               </div>
 
               <div class="title_right">
@@ -43,7 +46,7 @@
                   <div class="input-group">
                     <input type="text" id="search" onkeyup="search()" class="form-control" placeholder="Search for...">
                     <span class="input-group-btn">
-                      <button id="search" class="btn btn-default" type="button">Go!</button>
+                      <button class="btn btn-default" type="button">Go!</button>
                     </span>
                   </div>
                 </div>
@@ -73,63 +76,33 @@
                   </div>
                   <div class="x_content">
 
-                    <!-- start question list -->
+                    <!-- start tutorial list -->
                     <table class="table table-striped projects" id="table">
-                      <thead>
+                      <thead id="myTable">
                         <tr class="header">
-                          <th style="width: 10%">Question Id</th>
-                          <th style="width: 50%">Question</th>
-                          <th style="width: 10%">QuestionType</th>
-                          <th style="width: 10%">Set</th>
-                          <th style="width: 10%">Level</th>
+                          <th style="width: 10%">Tutorial Id</th>
+                          <th style="width: 20%">Tutorial Title</th>
+                          <th style="width: 60%">Description</th>
                           <th style="width: 10%">Creator Id</th>
-                          <th></th>
                         </tr>
                       </thead>
-                      <tbody id="myTable">
+                      <tbody>
 
-                        @if($listQuestion)
-                          @foreach ($listQuestion as $list)
+                        @if($listTutorial)
+                          @foreach ($listTutorial as $list)
 
                           <tr>
                             <td>
-                              {{ $list->getField('___kp_QuestionId') }}
+                              {{ $list->getField('___kp_TutorialId') }}
                             </td>
                             <td>
-                              {{ $list->getField('questionText_kqt') }}
+                              {{ $list->getField('tutorialTitle_kqt') }}
                             </td>
                             <td>
-                              {{ $list->getField('__kf_QuestionTypeId') }}
-                            </td>
-                            <td>
-                               {{ $list->getField('__kf_SetId') }}
-                            </td>
-                            <td>
-                               {{ $list->getField('__kf_LevelId') }}
+                              {{ $list->getField('tutorialDescription_kqt') }}
                             </td>
                             <td>
                                {{ $list->getField('createdBy_kqn') }}
-                            </td>
-                            <td>
-                              @if($list->getField('isActive_kqt') === "Active")
-                                <form action="editstatus" method="post">
-                                  <input type="hidden" name="id" value="{{ $list->getRecordId() }}">
-                                  <input type="hidden" name="status" value="Inactive">
-                                  <input type="hidden" name="layout" value="Question_QUS">
-                                  <input type="hidden" name="page" value="questionlist">
-                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                  <button type="submit" class="btn btn-danger">Deactivate</button>
-                                </form>
-                              @else
-                                <form action="editstatus" method="post">
-                                  <input type="hidden" name="id" value="{{ $list->getRecordId() }}">
-                                  <input type="hidden" name="status" value="Active">
-                                  <input type="hidden" name="layout" value="Question_QUS">
-                                  <input type="hidden" name="page" value="questionlist">
-                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                  <button type="submit" class="btn btn-success">Activate</button>
-                                </form>
-                              @endif
                             </td>
                           </tr>
 
@@ -141,7 +114,7 @@
                   </div>
                   <div class="col-md-12 text-center">
                     <ul class="pagination pagination-lg pager" id="myPager"></ul>
-                  </div
+                  </div>
                 </div>
               </div>
             </div>

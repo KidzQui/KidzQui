@@ -27,158 +27,139 @@
     <!-- Custom Theme Style -->
     <link href="{{ asset('KidzQuiApp/public/bower_components/gentelella/build/css/custom.min.css') }}" rel="stylesheet">
 
+    <!-- custom js -->
+    <script src="{{ asset('KidzQuiApp/public/js/custom.js') }}"></script>
+
 @stop
 
 @section('content')
 
     <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="navbar-default">
-              <ul class="nav navbar-nav col-md-3">
-                <li class="active">
-                  <a href="{{ URL::to('studentlist') }}"><i class="fa fa-th-list fa-lg" aria-hidden="true"></i></a>
-                </li>
-                <li>
-                  <a href="{{ URL::to('studentgridlist') }}"><i class="fa fa-th fa-lg" aria-hidden="true"></i></a>
-                </li>
-              </ul>
-              <div class="navbar-right col-md-9">
-                <ul class="col-md-4 breadcrumb">
-                  <li><a href="{{ URL::to('evaluators') }}">Home</a></li>
-                  <li>Student List</li>
-                </ul>
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>List of Students</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-
-
-                    <!-- start student list -->
-                    <table class="table table-striped projects" id="table">
-                      <thead>
-                        <tr>
-                          <th style="width: 10%">Student Id</th>
-                          <th style="width: 20%">Student Name</th>
-                          <th>Email Address</th>
-                          <th>Phone Number</th>
-                          <th style="width: 20%">Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @if($records)
-                          @foreach ($records as $record)
-
-                          <tr>
-                            <td>
-                              {{ $record->getField('___kp_UserId') }}
-                            </td>
-                            <td>
-                              {{ $record->getField('ct_FullName') }}
-                            </td>
-                            <td>
-                              {{ $record->getField('emailAddress_kqt') }}
-                            </td>
-                            <td>
-                               {{ $record->getField('phoneNumber_kqt') }}
-                            </td>
-                            <td>
-                               {{ $record->getField('isActive_kqt') }}
-                            </td>
-                            <td>
-                              @if($record->getField('isActive_kqt') === "Active")
-                                <form action="editstatus" method="post">
-                                  <input type="hidden" name="id" value="{{ $record->getRecordId() }}">
-                                  <input type="hidden" name="status" value="Inactive">
-                                  <input type="hidden" name="layout" value="User_USR">
-                                  <input type="hidden" name="page" value="studentlist">
-                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                  <button type="submit" class="btn btn-danger">Deactivate</button>
-                                </form>
-                              @else
-                                <form action="editstatus" method="post">
-                                  <input type="hidden" name="id" value="{{ $record->getRecordId() }}">
-                                  <input type="hidden" name="status" value="Active">
-                                  <input type="hidden" name="layout" value="User_USR">
-                                  <input type="hidden" name="page" value="studentlist">
-                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                  <button type="submit" class="btn btn-success">Activate</button>
-                                </form>
-                              @endif
-                            </td>
-                          </tr>
-                          <tr>
-
-                          @endforeach
-                        @endif
-
-                      </tbody>
-                    </table>
-                    <!-- end student list -->
-
-                  </div>
-                </div>
-              </div>
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="navbar-default">
+        <ul class="nav navbar-nav col-md-3">
+          <li class="active">
+            <a href="{{ URL::to('studentlist') }}"><i class="fa fa-th-list fa-lg" aria-hidden="true"></i></a>
+          </li>
+          <li>
+            <a href="{{ URL::to('studentgridlist') }}"><i class="fa fa-th fa-lg" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <div class="navbar-right col-md-9">
+          <ul class="col-md-4 breadcrumb">
+            <li><a href="{{ URL::to('evaluators') }}">Home</a></li>
+            <li>Student List</li>
+          </ul>
+          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+              <input type="text" id="search" onkeyup="search()" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="">Go!</button>
+              </span>
             </div>
           </div>
         </div>
-        <!-- /page content -->
+      </div>
 
-        <!-- script to search name  -->
-        <script>
-          function search() {
-            var input, filter, table, tr, td, i;
-            input = document.getElementById("search");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("table");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-              td = tr[i].getElementsByTagName("td")[0];
-              if (td) {
-                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                  tr[i].style.display = "";
-                } else {
-                  tr[i].style.display = "none";
-                }
-              }
-            }
-          }
-        </script>
+      <div class="clearfix"></div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>List of Students</h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings 1</a>
+                    </li>
+                    <li><a href="#">Settings 2</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <table class="table table-striped projects" id="table">
+                <thead>
+                  <tr id="header">
+                    <th style="width: 10%">Student Id</th>
+                    <th style="width: 20%">Student Name</th>
+                    <th>Email Address</th>
+                    <th>Phone Number</th>
+                    <th style="width: 20%">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="myTable">
+                  @if($records)
+                    @foreach ($records as $record)
+
+                    <tr>
+                      <td>
+                        {{ $record->getField('___kp_UserId') }}
+                      </td>
+                      <td>
+                        {{ $record->getField('ct_FullName') }}
+                      </td>
+                      <td>
+                        {{ $record->getField('emailAddress_kqt') }}
+                      </td>
+                      <td>
+                         {{ $record->getField('phoneNumber_kqt') }}
+                      </td>
+                      <td>
+                         {{ $record->getField('isActive_kqt') }}
+                      </td>
+                      <td>
+                        @if($record->getField('isActive_kqt') === "Active")
+                          <form action="editstatus" method="post">
+                            <input type="hidden" name="id" value="{{ $record->getRecordId() }}">
+                            <input type="hidden" name="status" value="Inactive">
+                            <input type="hidden" name="layout" value="User_USR">
+                            <input type="hidden" name="page" value="studentlist">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-danger">Deactivate</button>
+                          </form>
+                        @else
+                          <form action="editstatus" method="post">
+                            <input type="hidden" name="id" value="{{ $record->getRecordId() }}">
+                            <input type="hidden" name="status" value="Active">
+                            <input type="hidden" name="layout" value="User_USR">
+                            <input type="hidden" name="page" value="studentlist">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-success">Activate</button>
+                          </form>
+                        @endif
+                      </td>
+                    </tr>
+
+                    @endforeach
+                  @endif
+
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-12 text-center">
+              <ul class="pagination pagination-lg pager" id="myPager"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /page content -->
 
 @stop
 
 @section('footer')
 
+    <!-- custom js -->
+    <script src="{{ asset('KidzQuiApp/public/js/custom.js') }}"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <!-- FastClick -->

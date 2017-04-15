@@ -22,7 +22,7 @@
 @section('content')
 
   <div class="panel col-md-12">
-    <a class="col-md-2 btn btn-primary" href="{{ URL::to('sets') }}" >Go Back</a>
+    {{-- <a class="col-md-2 btn btn-primary" href="{{ URL::to('') }}" >Go Back</a> --}}
   </div>
 <!--best-->
   <div class="best">
@@ -31,34 +31,38 @@
         <div class="col-md-12 best-left wow fadeInLeft animated" data-wow-delay=".5s">
           <h3>Questions</h3>
 
-          @if($questions)
+            @if($questions)
+                @php $i = 0;  @endphp
+                @foreach($questions as $question)
 
-            @foreach($questions as $question)
+                  <div class="panel bes-top col-md-6 col-md-offset-3">
+                      <h4>{{ $i+1 }}. {{ $question->getField('questionText_kqt') }}</h4>
+                    <div class="clearfix"></div>
+                    <div class="bes-rgt">
+                      <ul class="answers">
 
-              <div class="panel bes-top col-md-6 col-md-offset-3">
-                <div class="bes-lft">
-                  <div class="history-grid-image">
-                    <img src={{ asset("KidzQuiApp/resources/assets/images/t8.jpg") }} class="img-responsive zoom-img" alt="">
+                        @foreach($choices[$i] as $choice)
+                          <div>
+                            <h5>{{ $choice }}</label>
+                          </div>
+                        @endforeach
+                        <input type="text" name="answer" id="answer">
+                        @php $i += 1;  @endphp
+                      </ul>
+                    </div>
                   </div>
+
+                @endforeach
+
+                <div class="col-md-12 col-md-offset-3">
+                  <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-                <div class="bes-rgt">
-                  <p>{{ $question->getField('questionText_kqt') }}</p>
+
+              @else
+                <div class="col-md-12">
+                  <h4>Sorry! Question will Come Soon. :)</h4>
                 </div>
-                <div class="clearfix"></div>
-              </div>
-
-            @endforeach
-
-            <div class="col-md-12 col-md-offset-3">
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-
-            @else
-              <div class="col-md-12">
-                <h4>Sorry! Question will Come Soon. :)</h4>
-              </div>
-          @endif
-
+            @endif
         </div>
       </div>
       <div class="clearfix"></div>

@@ -21,10 +21,11 @@
     <title>@yield('title')</title>
 
     <!-- //Custom Theme files -->
-    <link rel="stylesheet" href={{ asset("KidzQuiApp/resources/assets/css/flexslider.css") }} type="text/css" media="screen" />
-    <link href={{ asset("KidzQuiApp/resources/assets/css/bootstrap.css") }} type="text/css" rel="stylesheet" media="all">
-    <link href={{ asset("KidzQuiApp/resources/assets/css/style.css") }} type="text/css" rel="stylesheet" media="all">
-    <link href={{ asset("KidzQuiApp/public/css/custom.css") }} type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('KidzQuiApp/resources/assets/css/flexslider.css') }}" type="text/css" media="screen" />
+    <link href="{{ asset('KidzQuiApp/resources/assets/css/bootstrap.css') }}" type="text/css" rel="stylesheet" media="all">
+    <link href="{{ asset('KidzQuiApp/resources/assets/css/style.css') }}" type="text/css" rel="stylesheet" media="all">
+    <link href="{{ asset('KidzQuiApp/public/css/custom.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('KidzQuiApp/resources/assets/css/animate.css') }} " rel="stylesheet" type="text/css" media="all">
 
     <!--fonts-->
     <link href='//fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
@@ -92,8 +93,8 @@
 
   <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
   <!-- js -->
-  <script src={{ asset("KidzQuiApp/resources/assets/js/jquery-1.11.1.min.js") }}></script>
-  <script src={{ asset("KidzQuiApp/resources/assets/js/bootstrap.js") }}> </script>
+  <script src="{{ asset('KidzQuiApp/resources/assets/js/jquery-1.11.1.min.js') }}"></script>
+  <script src="{{ asset('KidzQuiApp/resources/assets/js/bootstrap.js') }}"> </script>
 
 @yield('footer')
 

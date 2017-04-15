@@ -173,7 +173,7 @@
 
         var gkeys=[];
         var gvals=[];
-        var title = 'No. of Correct Answers';
+        var title = 'No. of questions';
         @foreach($scores as $key => $value)
           gkeys.push("{{ $key }}");
           gvals.push("{{ $value }}");
