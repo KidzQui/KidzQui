@@ -1,7 +1,7 @@
 <?php
 
 /**
-* File: student.blade.php
+* File: EvaluatorMiddleWare.php
 * Path: App/Http/Middleware/EvaluatorMiddleWare.php
 * Purpose: The middleware to authenticate the evaluators only to access the page
 * Created On: 04-04-2017
