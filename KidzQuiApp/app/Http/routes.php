@@ -66,6 +66,12 @@
 
     /* student module routes*/
 
+    Route::get('studentindex', 'StudentController@index');
+
+    // Route::get('student' , 'StudentController@listTutorial');
+
+    Route::get('studentlogin', 'StudentController@studentLogin');
+
     Route::get('studentprofile', 'StudentController@findUser');
 
     Route::get('studenthome', 'StudentController@listTutorial');
@@ -76,18 +82,4 @@
 
     Route::post('questions', 'StudentController@listQuestions');
 
-    Route::get('contact', function () {
-        return view('student.contact');
-    });
-
-    Route::get('shortcodes', function () {
-        return view('student.shortcodes');
-    });
-
-    Route::get('singlepage', function () {
-        return view('student.singlepage');
-    });
-
-    Route::get('staff', function () {
-        return view('student.staff');
-    });
+    Route::post('answerdata', 'StudentController@studentAnswer');

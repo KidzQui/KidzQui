@@ -26,9 +26,11 @@ class EvaluatorModel
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindAllCommand($layout);
         $result = $request->execute();
+
         if(!FileMaker::isError($result)) {
             return $result->getRecords();
         }
+
         return ["No", "records", "Found", $result->getMessage()];
 
     } // end of function
@@ -44,13 +46,17 @@ class EvaluatorModel
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
         $request->addFindCriterion($fieldName, $fieldValue);
+
         if($sortField && $sortType) {
             $request->addSortRule($sortField, 1, $sortType);
         }
+
         $result = $request->execute();
+
         if(!FileMaker::isError($result)) {
             return $result->getRecords();
         }
+
         return ["No", "records", "Found", $result->getMessage()];
 
     } // end of function
@@ -70,6 +76,7 @@ class EvaluatorModel
         $result = $request->execute();
 
         $records = $result->getRecords();
+
         //  storing data record into database
         foreach ($records as $record) {
             $record->setField('isActive_kqt', $status);
@@ -100,6 +107,7 @@ class EvaluatorModel
         if (!FileMaker::isError($result)) {
             return true;
         }
+
         return false;
 
     }// end of function
@@ -115,15 +123,18 @@ class EvaluatorModel
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newEditCommand($layout, $inputs['recordid']);
         $i = 0;
+
         while ($i < $numberOfFields) {
             $request->setField($fields[$i], $inputs[$i]);
             $i += 1;
         }
+
         $result = $request->execute();
 
         if (!FileMaker::isError($result)) {
             return true;
         }
+
         return false;
 
     }// end of function
@@ -134,11 +145,13 @@ class EvaluatorModel
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
         $request->addFindCriterion('emailAddress_kqt', '=='.$input['username']);
-        $request->addFindCriterion('password_kqt', $input['password']);
+        $request->addFindCriterion('password_kqt', '=='.$input['password']);
         $result = $request->execute();
+
         if(!FileMaker::isError($result)) {
             return $result->getRecords();
         }
+
         return false;
     }
 
@@ -148,14 +161,18 @@ class EvaluatorModel
         // storing the data into the database.
         $request = $fmobject->createRecord($layout);
         $i = 0;
+
         while ($i < $numberOfFields) {
             $request->setField($fields[$i], $inputs[$i]);
             $i += 1;
         }
+
         $result = $request->commit();
+
         if (!FileMaker::isError($result)) {
             return true;
         }
+
         return false;
     }
 

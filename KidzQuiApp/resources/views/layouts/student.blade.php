@@ -26,6 +26,7 @@
     <link href="{{ asset('KidzQuiApp/resources/assets/css/style.css') }}" type="text/css" rel="stylesheet" media="all">
     <link href="{{ asset('KidzQuiApp/public/css/custom.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('KidzQuiApp/resources/assets/css/animate.css') }} " rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('KidzQuiApp/resources/assets/css/font-awesome.css') }}">
 
     <!--fonts-->
     <link href='//fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
@@ -55,15 +56,15 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ URL::to('studenthome') }}" >Home</a></li>
-                <li><a href="{{ URL::to('staff') }}" >Staff</a></li>
-                <li><a href="{{ URL::to('shortcodes') }}" >Short Codes</a></li>
-                <li><a href="{{ URL::to('contact') }}" >Contact</a></li>
                 <li><a href="{{ URL::to('studentprofile') }}" >My Profile</a></li>
               </ul>
             </div>
         </nav>
         <div class="logo">
           <a class="navbar-brand" href="{{ URL::to('studenthome') }}">KidzQui</a>
+        </div>
+        <div class="text-right">
+          <a href="{{URL::to('studentlogin')}}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
         </div>
 
         {{-- <div class="search-bar">

@@ -18,34 +18,53 @@ use FileMaker;
 
 class StudentController extends Controller
 {
-    /*
-     * Show all the list of users in the database
-     * @param void
-     * @return list of users
-     */
-    public function index()
+    function __construct()
     {
-        //
+        $this->middleware('student', ['except' => ['index', 'studentLogin']]);
     }
 
     /*
-     * show Evaluator details from the database
+     * find the student from the list of users
+     * @param request object - $request
+     * @return student
+     */
+    public function index(Request $request)
+    {
+        $isUser = StudentModel::userDetails('User_USR', $request->all());
+        // to check if the record found
+        if ($isUser) {
+            session(['users' => $isUser[0]->getField('___kp_UserId')]);
+            $request->session()->put('name', $isUser[0]->getField('firstName_kqt'));
+            $request->session()->put('type', $isUser[0]->getField('__kf_UserTypeId'));
+            // $request->session()->put('mediaId', urlencode(StudentController::findMedia($isUser[0]->getField('__kf_MediaId'))));
+            return redirect('studenthome');
+        }
+
+        return back();
+    }
+
+    /*
+     * Find student details
      * @param void
      * @return userProfile, score, questions answered to Profile page
      */
-    public function findUser()
+    public function findUser(Request $request)
     {
         $fields = array('0' => '___kp_UserId' );
         $student = array('0' => '__kf_StudentId' );
-        $scores = array();
-        $userProfile = StudentModel::findRecordByField('User_USR', $fields, '3', '1');
-        $records = StudentModel::findRecordByField('StudentAnswer_STUANS', $student, '3', '1', 'answeredOn_kqd', FILEMAKER_SORT_DESCEND);
 
-        // To create array of scores
+        // To get the profile details
+        $scores = array();
+        $userProfile = StudentModel::findRecordByField('User_USR', $fields, $request->session()->get('users'), '1');
+
+        $records = StudentModel::findRecordByField('StudentAnswer_STUANS', $student, $request->session()->get('users'), '1', 'answeredOn_kqd', FILEMAKER_SORT_DESCEND);
+
+        // To create array of answers given by student
         foreach ($records as $record) {
             array_push($scores, $record->getField('studentAnswer_kqn'));
         }
 
+        // to find the score gained by student
         $count = count($scores);
         $scores = array_count_values($scores);
         $score = isset($scores['1']) ? $scores['1'] : null;
@@ -111,14 +130,17 @@ class StudentController extends Controller
         );
 
         $questions = StudentModel::findRecordByField('Question_QusChoice', $fields, $inputs, count($inputs));
+
+        // To check for available choices.
         if ($questions) {
             $choices = StudentController::Question($questions);
         } else { $choices = null; }
+
         return view('student.questions', compact('questions', 'choices'));
     }
 
     /*
-     * calculate choices
+     * Find the choices related to the questions
      * @param $question
      * @return choice to listquestion function
      */
@@ -140,4 +162,25 @@ class StudentController extends Controller
         return $choices;
     }
 
+    /*
+    * To store the answer given by the student(s)
+    * @param $requests
+    * @return void
+    */
+    public function studentAnswer(Request $request)
+    {
+        $request->get()->all();
+        dd($request);
+    }
+
+    /*
+     * To check the session status and destroy
+     * @param $request
+     * @return session data to login app
+     */
+    public function studentLogin(Request $request)
+    {
+        $request->session()->flush();
+        return view('student.studentlogin');
+    }
 }

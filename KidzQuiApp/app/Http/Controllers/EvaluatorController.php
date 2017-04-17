@@ -36,6 +36,7 @@ class EvaluatorController extends Controller
     {
         $isUser = EvaluatorModel::userDetails('User_USR', $request->all());
         // to check if the record found
+
         if ($isUser) {
             session(['users' => $isUser[0]->getField('___kp_UserId')]);
             $request->session()->put('name', $isUser[0]->getField('firstName_kqt'));
@@ -105,11 +106,12 @@ class EvaluatorController extends Controller
         $records = EvaluatorModel::findRecordByField('UsrManagementWeb_USR', '___kp_UserId', $record);
         $results = StudentModel::findRecordByField('StudentAnswer_STUANS', $student, $record, '1', 'answeredOn_kqd', FILEMAKER_SORT_DESCEND);
 
-        // // To create array of scores
+        // // To find the answer given by students
         foreach ($results as $result) {
             array_push($scores, $result->getField('studentAnswer_kqn'));
         }
 
+        // To calculate the score of student
         $count = count($scores);
         $scores = array_count_values($scores);
         $score = isset($scores['1']) ? $scores['1'] : null;
@@ -153,6 +155,7 @@ class EvaluatorController extends Controller
         ]);
 
         $returnValue = EvaluatorModel::addUser('User_USR', $request->all());
+
         if ($returnValue) {
             return EvaluatorController::sendMail($request->emailaddress);
         }
@@ -189,6 +192,7 @@ class EvaluatorController extends Controller
         );
 
         $returnValue = EvaluatorModel::editRecord('User_USR', $inputs, $fields, count($fields));
+
         if ($returnValue) {
             $request->session()->put('name', $request->get('firstname'));
             return redirect('profile');

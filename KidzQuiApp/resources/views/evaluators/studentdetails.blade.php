@@ -124,7 +124,7 @@
                                 <th>Attended On</th>
                               </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="myTable">
                               @if($results)
                                 @foreach($results as $result)
                                 <tr>
@@ -143,8 +143,10 @@
                               @endif
                             </tbody>
                           </table>
-                        <!-- end recent activity -->
-
+                        <!-- end recent attempt questions -->
+                        <div class="col-md-12 text-center">
+                          <ul class="pagination pagination-lg pager" id="myPager"></ul>
+                        </div>
                       </div>
                       <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                             <div class="message_wrapper">
@@ -183,6 +185,8 @@
 
     <script src="{{ asset('KidzQuiApp/public/js/graph.js') }}"></script>
 
+    <!-- custom js -->
+    <script src="{{ asset('KidzQuiApp/public/js/custom.js') }}"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <!-- FastClick -->
