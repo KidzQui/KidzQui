@@ -67,14 +67,13 @@
                   <li><a><i class="fa fa-question-circle"></i> Questions <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ URL::to('addquestions') }}">Add Questions</a></li>
-                      <li><a href="{{ URL::to('questionlist') }}">Show Questions</a></li>
-                      <li><a href="{{ URL::to('questiondetails') }}">Show Question Details</a></li>
+                      <li><a href="{{ URL::to('questionlist') }}">List Questions</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-university"></i> Tutorials <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ URL::to('addtutorials') }}">Add New</a></li>
-                      <li><a href="{{ URL::to('tutorialdetails') }}">Edit Tutorials</a></li>
+                      <li><a href="{{ URL::to('tutoriallist') }}">List Tutorials</a></li>
                     </ul>
                   </li>
                 </ul>

@@ -13,61 +13,54 @@
 
 @section('title', 'Home')
 
-@section('header')
-
-<link rel="stylesheet" href="{{ asset('KidzQuiApp/public/css/custom.css') }}">
-<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
-
-@stop
-
 @section('content')
 
 <!--best-->
   <div class="best">
     <div class="container">
       <div class="row">
-        <h3>Sets</h3><hr>
         <div class="col-md-12 best-left wow fadeInLeft animated" data-wow-delay=".5s">
+          <h3>Sets</h3><hr>
 
           @if($sets)
+            @php $i = 0; @endphp
             @foreach($sets as $set)
-              <div class="col-md-4">
-                  <h4>{{ $set->getField('___kp_SetId') }} {{ $set->getField('setName_kqt') }}</h4>
-              </div>
-              <div class="col-md-8"></div>
+
+              <div class="container well">
+                <div class="col-md-3">
+                    <h4>{{ $i+1 }}. {{ $set->getField('setName_kqt') }}</h4>
+                </div>
+
                 @if($sets)
                   @foreach($questionTypes as $questionType)
-                      <div class="col-md-2">
-                        <h4>{{ $questionType->getField('___kp_QuestionTypeId') }} {{ $questionType->getField('questionType_kqt') }}</h4>
-                        <form action="questions" method="POST">
-                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          <input type="hidden" name="level" value="{{ $level }}">
-                          <input type="hidden" name="set" value="{{ $set->getField('___kp_SetId') }}">
-                          <input type="hidden" name="questiontype" value="{{ $questionType->getField('___kp_QuestionTypeId') }}">
-                          <button type="submit" class="btn btn-success">Solve</button>
-                        </form>
-                      </div>
+
+                    <div class="col-md-3 text-center">
+                      <form action="questions" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="level" value="{{ $level }}">
+                        <input type="hidden" name="set" value="{{ $set->getField('___kp_SetId') }}">
+                        <input type="hidden" name="questiontype" value="{{ $questionType->getField('___kp_QuestionTypeId') }}">
+                        <button type="submit" class="btn btn-info btn-block btn-lg">{{ $questionType->getField('questionType_kqt') }}</button>
+                      </form>
+                    </div>
+
                   @endforeach
                 @endif
               </div>
+
+              @php $i += 1; @endphp
             @endforeach
           @endif
 
+          </div>
         </div>
       </div>
       <div class="clearfix"></div>
-    </div>
   </div>
 <!--best-->
 
 @stop
 
 @section('footer')
-
-  <script src="js/wow.min.js"></script>
-    <script>
-      new WOW().init();
-    </script>
-  <!--//end-animate-->
 
 @stop

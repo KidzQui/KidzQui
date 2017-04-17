@@ -53,6 +53,8 @@
 
     Route::get('questionlist', 'EvaluatorController@questionList');
 
+    Route::get('tutoriallist', 'EvaluatorController@tutorialList');
+
     Route::post('tutorialdata', 'EvaluatorController@addTutorial');
 
     Route::post('editdetails', 'EvaluatorController@editRecord');
@@ -67,6 +69,8 @@
     Route::get('studentprofile', 'StudentController@findUser');
 
     Route::get('studenthome', 'StudentController@listTutorial');
+
+    Route::get('levels', 'StudentController@levels');
 
     Route::post('sets', 'StudentController@listSets');
 

@@ -11,7 +11,7 @@
 
 @extends('layouts.app')
 
-@section('title', 'Student Details')
+@section('title', 'My Profile')
 
 @section('header')
 

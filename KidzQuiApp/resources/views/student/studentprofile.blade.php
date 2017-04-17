@@ -16,27 +16,25 @@
 @section('content')
 
   <!--about-->
-    <div class="about">
-      <div class="container">
-        <div class="">
+  <div class="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 best-left wow fadeInLeft animated" data-wow-delay=".5s">
           <h1>My Profile</h1><hr>
-        </div>
-
-        <div class="col-md-4 about-left">
-          <div class="history-grid-image">
-            <img src={{ asset("KidzQuiApp/resources/assets/images/n3.jpg" ) }} class="img-responsive zoom-img" alt="">
+          <div class="col-md-4 about-left">
+            <div class="history-grid-image">
+              <img src={{ asset("KidzQuiApp/resources/assets/images/n3.jpg" ) }} class="img-responsive zoom-img" alt="">
+            </div>
           </div>
-        </div>
-        <div class="col-md-8 about-right">
+          <div class="col-md-8 about-right">
             <h4>{{ $userProfile[0]->getField('ct_FullName') }}</h4><hr>
             <p>Email Address: {{ $userProfile[0]->getField('emailAddress_kqt') }}</p>
             <p>Phone Number: {{ $userProfile[0]->getField('phoneNumber_kqt') }}</p>
             <div class="col-md-2">
               <button type="button" class="btn btn-primary btn-block">Edit</button>
             </div>
-        </div>
-
-        <div class="clearfix"></div>
+          </div>
+          <div class="clearfix"></div>
           <div class="about-top">
             <div class="row">
               <div class="col-md-12">
@@ -49,7 +47,6 @@
               </div>
             </div>
             <hr>
-
             <table class="table table-striped projects">
               <thead>
                 <tr>
@@ -73,11 +70,12 @@
                 @endif
               </tbody>
             </table>
-
             <div class="clearfix"></div>
-          </div>
+            </div>
+        </div>
       </div>
     </div>
+  </div>
   <!--//about-->
 
 @stop
