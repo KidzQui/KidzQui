@@ -11,7 +11,7 @@
 
 @extends('layouts.student')
 
-@section('title', 'Home')
+@section('title', 'Quiz')
 
 @section('header')
 
@@ -24,68 +24,73 @@
 
 @section('content')
 
-  <div class="panel col-md-12">
-    {{-- <a class="col-md-2 btn btn-primary" href="{{ URL::to('') }}" >Go Back</a> --}}
-  </div>
+<div class="panel col-md-12">
+  {{-- <a class="col-md-2 btn btn-primary" href="{{ URL::to('') }}" >Go Back</a> --}}
+</div>
 <!--best-->
-  <div class="best">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 best-left wow fadeInLeft animated" data-wow-delay=".5s">
-          <h3>Questions</h3>
+<div class="best">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 best-left wow fadeInLeft animated" data-wow-delay=".5s">
+        <h3>Questions</h3>
 
-          @if($questions)
-            @php $i = 0;  @endphp
+        @if($questions)
+          @php $i = 0;  @endphp
 
             <form action="answerdata" method="POST">
 
               @foreach($questions as $question)
 
-                <div class="panel bes-top col-md-5 col-md-offset-3">
+                <div class="panel bes-top col-md-5 col-md-offset-3" id="{{ $question->getField('___kp_QuestionId') }}">
                   <h4>{{ $i+1 }}. {{ $question->getField('questionText_kqt') }}</h4>
                   <ul class="answers text-center">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <input type="hidden" name="question{{ $question->getField('___kp_QuestionId') }}" value="{{ $question->getField('___kp_QuestionId') }}">
+                      <input type="hidden" name="answer{{ $question->getField('___kp_QuestionId') }}" value="{{ $choices[1][$i] }}">
 
-                    @foreach($choices[$i] as $choice)
+                      @foreach($choices[0][$i] as $choice)
 
-                      <li>
-                        <i class="fa fa-circle-o fa-sm" aria-hidden="true"></i>&nbsp;&nbsp;{{ $choice }}
-                      </li>
+                        <li>
+                          <input type="radio" name="choice{{ $question->getField('___kp_QuestionId') }}" value="{{ $choice }}">&nbsp;&nbsp;{{ $choice }}
+                        </li>
 
-                    @endforeach
+                      @endforeach
+
                   </ul>
-                  <div class="text-center">
-                    {{-- <label for="answer">Answer:</label> --}}
-                    <input type="text" class="form-control text-center" name="answer" id="{{ $question->getField('___kp _QuestionId') }}" placeholder="Your Answer.....">
-                  </div>
-
-                  @php $i += 1;  @endphp
-
                 </div>
 
+                @php $i += 1;  @endphp
               @endforeach
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-              <div class="col-md-3 col-md-offset-5 text-right">
-                <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
+
+              <div class="col-md-3 col-xs-3 col-md-offset-5">
+                <button class="btn btn-success btn-lg btn-group-justified" type="submit" name="submit"><strong>Submit</strong></button>
               </div>
             </form>
-          @else
 
-            <div class="col-md-12">
-              <h4>Sorry! Question will Come Soon. :)</h4>
-            </div>
+        @else
 
-          @endif
-        </div>
+          <div class="col-md-12">
+            <h4>Sorry! Question will Come Soon. :)</h4>
+          </div>
+
+        @endif
       </div>
-      <div class="clearfix"></div>
     </div>
+    <div class="clearfix"></div>
   </div>
+</div>
 <!--best-->
 
 @stop
 
 @section('footer')
 
+  <script>
+    $("div.").live("click", function(event){
+        event.preventDefault();
+        $(this).next('.show-more').toggle();
+    });
+  </script>
   <script src="{{ asset('KidzQuiApp/resources/assets/js/wow.min.js') }}"></script>
     <script>
       new WOW().init();

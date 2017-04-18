@@ -1,8 +1,8 @@
 <?php
 
 /**
-* File: EvaluatorModel.php
-* Path: App/EvaluatorModel.php
+* File: StudentModel.php
+* Path: App/StudentModel.php
 * Purpose: fetches data from filemaker database and serves to controller
 * Date: 22-03-2017
 * Author: Mohit Dadu
@@ -90,4 +90,58 @@ class StudentModel
         return false;
     }
 
+    /*
+     * Add new record (student)
+     * @param $Layout(string)
+     * @param $userId(number) ->creater Id
+     * @return void
+     */
+    public static function addRecord($layout,$fields, $values, $numberOfFields)
+    {
+        $fmobject = FilemakerWrapper::getConnection();
+        // storing the data into the database.
+        $request = $fmobject->createRecord($layout);
+        $i = 0;
+
+        while ($i < $numberOfFields) {
+            $request->setField($fields[$i], $values[$i]);
+            $i += 1;
+        }
+
+        $result = $request->commit();
+
+        if (!FileMaker::isError($result)) {
+            return true;
+        }
+
+        return false;
+
+    }// end of function
+
+    /*
+     * edit record
+     * @param $Layout(string)
+     * @param $userId(number) ->creater Id
+     * @return void
+     */
+    public static function editRecord($layout, $inputs, $fields, $numberOfFields, $recordId)
+    {
+        $fmobject = FilemakerWrapper::getConnection();
+        $request = $fmobject->newEditCommand($layout, $recordId);
+        $i = 0;
+
+        while ($i < $numberOfFields) {
+            $request->setField($fields[$i], $inputs[$i]);
+            $i += 1;
+        }
+
+        $result = $request->execute();
+
+        if (!FileMaker::isError($result)) {
+            return true;
+        }
+
+        return false;
+
+    }// end of function
 }

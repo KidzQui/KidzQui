@@ -1,8 +1,8 @@
 <!--
 /**
-* File: staff.blade.php
-* Path: resources/views/student/staff.blade.php
-* Purpose: The base layout for the display of student app
+* File: levels.blade.php
+* Path: resources/views/student/levels.blade.php
+* Purpose: To display of levels on student app
 * Created On: 30-03-2017
 * Last Modified On: 30-03-2017
 * Author: MOHIT DADU

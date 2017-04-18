@@ -104,6 +104,7 @@ class StudentController extends Controller
      */
     public function listSets(Request $request)
     {
+        $request->session()->put('level', $request['levelid']);
         $fields = array('0' => '__kf_LevelId' );
         $level = $request['levelid'];
         $sets = StudentModel::findRecordByField('Set_SET', $fields, $level, '1');
@@ -118,6 +119,7 @@ class StudentController extends Controller
      */
     public function listQuestions(Request $request)
     {
+        $request->session()->put('sets', $request['set']);
         $fields = array(
             '0' => '__kf_LevelId',
             '1' => '__kf_SetId',
@@ -147,20 +149,32 @@ class StudentController extends Controller
     public static function Question($questions)
     {
         $choices = array();
+        $answer = array();
 
+        // To find the related records from question layout
         foreach ($questions as $question) {
             $choice = array();
             $related = $question->getRelatedSet('qus_QUSC');
 
             foreach ($related as $relatedField) {
+
+                // To find and create array of correct answers
+                if($relatedField->getField('qus_QUSC::isCorrect_kqn')) {
+                    array_push($answer, $relatedField->getField('qus_QUSC::choiceValue_kqt'));
+
+                }
+
+                // To create the array of choices of a question
                 array_push($choice, $relatedField->getField('qus_QUSC::choiceValue_kqt'));
             }
 
+            // To create array of choices of all questions
             array_push($choices, $choice);
         }
 
-        return $choices;
-    }
+        // return array of choices and answers of questions
+        return array($choices, $answer);
+    } // end Question
 
     /*
     * To store the answer given by the student(s)
@@ -169,9 +183,53 @@ class StudentController extends Controller
     */
     public function studentAnswer(Request $request)
     {
-        $request->get()->all();
-        dd($request);
-    }
+        $setId = $request->session()->get('sets');
+        $studentId = $request->session()->get('users');
+        $input = $request->all();
+        $matches = array();
+        $score = 0;
+
+        foreach ($input as $key => $value) {
+            if(preg_match_all('!\d+!',$key , $match)){
+                $data = implode('', $match[0]);
+                array_push($matches, $data);
+            }
+        }
+
+        $matches = array_count_values($matches);
+        foreach ($matches as $key => $value) {
+            $questionId = $input['question'.$key];
+
+            if($input['choice'.$key] == $input['answer'.$key]) {
+                $answer = '1';
+                $score += 1;
+            } else {
+                $answer = '0';
+            }
+
+            $fields = array('0' => '__kf_StudentId',
+                            '1' => '__kf_QuestionId',
+                            '2' => 'studentAnswer_kqn',
+                            '3' => '__kf_SetId'
+                            );
+            $values = array('0' => $studentId,
+                            '1' => $questionId,
+                            '2' => $answer,
+                            '3' => $setId
+                            );
+            $result = StudentModel::findRecordByField('StudentAnswer_STUANS', $fields, $values, '2');
+
+            if($result) {
+                StudentModel::editRecord('StudentAnswer_STUANS', $fields, $values, count($fields), $result[0]->getRecordId());
+            } else {
+                StudentModel::addRecord('StudentAnswer_STUANS', $fields, $values, count($fields));
+            }
+        }
+
+        $score = ($score/5)*100;
+        return view('student.score', compact('score'));
+
+    } //end studentAnswer
 
     /*
      * To check the session status and destroy
@@ -182,5 +240,5 @@ class StudentController extends Controller
     {
         $request->session()->flush();
         return view('student.studentlogin');
-    }
+    } // end studentLogin
 }

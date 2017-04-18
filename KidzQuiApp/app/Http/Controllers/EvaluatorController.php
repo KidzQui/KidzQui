@@ -206,7 +206,6 @@ class EvaluatorController extends Controller
      * @param request object
      * @return void
      */
-
     public function changeStatus(Request $request)
     {
         $inputs = array(
@@ -225,7 +224,6 @@ class EvaluatorController extends Controller
 
         return back();
     }
-
 
     /*
      * show image on web
