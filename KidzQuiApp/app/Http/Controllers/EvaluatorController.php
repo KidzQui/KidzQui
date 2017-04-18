@@ -200,6 +200,11 @@ class EvaluatorController extends Controller
         return back();
     }
 
+    /*
+     * To active or deactive the record
+     * @param $request
+     * @return void
+     */
     public function changeStatus(Request $request)
     {
         $inputs = array(
@@ -218,7 +223,6 @@ class EvaluatorController extends Controller
 
         return back();
     }
-
 
     /*
      * show image on web
