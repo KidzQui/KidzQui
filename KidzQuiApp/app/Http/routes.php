@@ -17,6 +17,8 @@
         return view('welcome');
     });
 
+    /* Evaluator module routes */
+
     Route::get('evaluatorindex', 'EvaluatorController@index');
 
     Route::get('evaluators', 'EvaluatorController@home');
@@ -59,8 +61,10 @@
 
     Route::post('editstatus', 'EvaluatorController@changeStatus');
 
+    Route::get('mail', 'EvaluatorController@sendMail');
 
-/* student */
+
+    /* student module routes*/
 
     Route::get('studentindex', 'StudentController@index');
 
