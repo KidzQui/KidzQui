@@ -67,4 +67,27 @@ class StudentModel
 
     } // end of function
 
+    /*
+     * find the records by fields array (student)
+     * @param $Layout(text)
+     * @param $field(string)
+     * @param $value(string)
+     * @return records details
+     */
+    public static function userDetails($layout, $input)
+    {
+        // create connection
+        $fmobject = FilemakerWrapper::getConnection();
+        $request = $fmobject->newFindCommand($layout);
+        $request->addFindCriterion('emailAddress_kqt', '=='.$input['username']);
+        $request->addFindCriterion('password_kqt','==' .$input['password']);
+        $result = $request->execute();
+
+        if(!FileMaker::isError($result)) {
+            return $result->getRecords();
+        }
+
+        return false;
+    }
+
 }
