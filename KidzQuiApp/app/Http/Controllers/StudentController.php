@@ -18,19 +18,21 @@ use FileMaker;
 
 class StudentController extends Controller
 {
+    // constructor for authentication
     function __construct()
     {
         $this->middleware('student', ['except' => ['index', 'studentLogin']]);
     }
 
     /*
-     * find the student from the list of users
+     * find the student from the list of users and create session
      * @param request object - $request
      * @return student
      */
     public function index(Request $request)
     {
         $isUser = StudentModel::userDetails('User_USR', $request->all());
+
         // to check if the record found
         if ($isUser) {
             session(['users' => $isUser[0]->getField('___kp_UserId')]);
@@ -56,7 +58,6 @@ class StudentController extends Controller
         // To get the profile details
         $scores = array();
         $userProfile = StudentModel::findRecordByField('User_USR', $fields, $request->session()->get('users'), '1');
-
         $records = StudentModel::findRecordByField('StudentAnswer_STUANS', $student, $request->session()->get('users'), '1', 'answeredOn_kqd', FILEMAKER_SORT_DESCEND);
 
         // To create array of answers given by student
@@ -120,11 +121,13 @@ class StudentController extends Controller
     public function listQuestions(Request $request)
     {
         $request->session()->put('sets', $request['set']);
+
         $fields = array(
             '0' => '__kf_LevelId',
             '1' => '__kf_SetId',
             '2' => '__kf_QuestionTypeId'
         );
+
         $inputs = array(
             '0' => $request['level'],
             '1' => $request['set'],
@@ -189,6 +192,7 @@ class StudentController extends Controller
         $matches = array();
         $score = 0;
 
+        // extract number from string
         foreach ($input as $key => $value) {
             if(preg_match_all('!\d+!',$key , $match)){
                 $data = implode('', $match[0]);
@@ -200,6 +204,7 @@ class StudentController extends Controller
         foreach ($matches as $key => $value) {
             $questionId = $input['question'.$key];
 
+            // Check for correct answer and calculate score
             if($input['choice'.$key] == $input['answer'.$key]) {
                 $answer = '1';
                 $score += 1;
@@ -217,8 +222,10 @@ class StudentController extends Controller
                             '2' => $answer,
                             '3' => $setId
                             );
+            // search for the alredy attempted question(s)
             $result = StudentModel::findRecordByField('StudentAnswer_STUANS', $fields, $values, '2');
 
+            // Update record if found other wise create new record
             if($result) {
                 StudentModel::editRecord('StudentAnswer_STUANS', $fields, $values, count($fields), $result[0]->getRecordId());
             } else {
@@ -238,7 +245,9 @@ class StudentController extends Controller
      */
     public function studentLogin(Request $request)
     {
+        // Destroy all the session details
         $request->session()->flush();
         return view('student.studentlogin');
     } // end studentLogin
-}
+
+} // end class

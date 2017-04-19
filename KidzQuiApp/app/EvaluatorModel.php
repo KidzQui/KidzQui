@@ -62,46 +62,23 @@ class EvaluatorModel
     } // end of function
 
     /*
-     * Edit the record (student/evaluator)
-     * @param $Layout(string)
-     * @param $userTypeId(number)
-     * @param $status(string)
-     * @return void
-     */
-    public static function editStatus($layout, $userId, $status)
-    {
-        $fmobject = FilemakerWrapper::getConnection();
-        $request = $fmobject->newFindCommand($layout);
-        $request->addFindCriterion('___kp_UserId', $userId);
-        $result = $request->execute();
-
-        $records = $result->getRecords();
-
-        //  storing data record into database
-        foreach ($records as $record) {
-            $record->setField('isActive_kqt', $status);
-            $record->commit();}
-
-    } // end of function
-
-    /*
      * Add new record (student)
      * @param $Layout(string)
      * @param $userId(number) ->creater Id
      * @return void
      */
-    public static function addUser($layout, $input)
+    public static function addUser($layout, $fields, $values, $numberOfFields, $input)
     {
         $fmobject = FilemakerWrapper::getConnection();
         // storing the data into the database.
         $request = $fmobject->createRecord($layout);
-        $request->setField('firstName_kqt', $input['firstname']);
-        $request->setField('lastName_kqt', $input['lastname']);
-        $request->setField('emailAddress_kqt', $input['emailaddress']);
-        $request->setField('phoneNumber_kqt', $input['phonenumber']);
-        $request->setField('createdBy_kqn', $input['creatorId']);
-        $request->setField('__kf_UserTypeId', 3);
-        $request->setField('isActive_kqt', 'Active');
+        $i = 0;
+
+        while ($i < $numberOfFields) {
+            $request->setField($fields[$i], $values[$i]);
+            $i += 1;
+        }
+
         $result = $request->commit();
 
         if (!FileMaker::isError($result)) {
@@ -109,11 +86,10 @@ class EvaluatorModel
         }
 
         return false;
-
     }// end of function
 
     /*
-     * edit record (student)
+     * edit record
      * @param $Layout(string)
      * @param $userId(number) ->creater Id
      * @return void
