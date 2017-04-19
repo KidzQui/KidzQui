@@ -89,7 +89,7 @@
 
                   </ul>
 
-                  <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                  <a class="hidden btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
                   <br />
 
                 </div>
