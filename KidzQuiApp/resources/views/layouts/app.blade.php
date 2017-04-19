@@ -41,7 +41,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="imagedata?url={{ Session::get('mediaId') }}" alt="profile image" class="img-responsive img-circle">
+                <img src="{{ url('/') }}/imagedata?url={{ Session::get('mediaId') }}" alt="profile image" class="img-responsive img-circle">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -111,7 +111,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="imagedata?url={{ Session::get('mediaId') }}" alt="profile image" class="img-responsive img-circle pull-left">
+                    <img src="{{ url('/') }}/imagedata?url={{ Session::get('mediaId') }}" alt="profile image" class="img-responsive img-circle pull-left">
                     {{ Session::get('name')}}
                     <span class=" fa fa-angle-down"></span>
                   </a>

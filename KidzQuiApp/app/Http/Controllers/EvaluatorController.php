@@ -22,21 +22,22 @@ use Mail;
 
 class EvaluatorController extends Controller
 {
+    // Constructor for authentication
     function __construct()
     {
         $this->middleware('evaluator', ['except' => ['index', 'evaluatorLogin']]);
     }
 
     /*
-     * Show all the list of users
+     * find the user details and create session
      * @param request object - $request
      * @return list of users
      */
     public function index(Request $request)
     {
         $isUser = EvaluatorModel::userDetails('User_USR', $request->all());
-        // to check if the record found
 
+        // to check if the record found
         if ($isUser) {
             session(['users' => $isUser[0]->getField('___kp_UserId')]);
             $request->session()->put('name', $isUser[0]->getField('firstName_kqt'));
@@ -103,7 +104,9 @@ class EvaluatorController extends Controller
         $scores = array();
         $student = array('0' => '__kf_StudentId' );
 
+        // To find the student details
         $records = EvaluatorModel::findRecordByField('UsrManagementWeb_USR', '___kp_UserId', $record);
+        // To find the answers given by student
         $results = StudentModel::findRecordByField('StudentAnswer_STUANS', $student, $record, '1', 'answeredOn_kqd', FILEMAKER_SORT_DESCEND);
 
         // // To find the answer given by students
@@ -154,7 +157,23 @@ class EvaluatorController extends Controller
             'phonenumber' => 'required|digits:10'
         ]);
 
-        $returnValue = EvaluatorModel::addUser('User_USR', $request->all());
+        $fields = array('0', 'firstName_kqt',
+                        '1', 'lastName_kqt',
+                        '2', 'emailAddress_kqt',
+                        '3', 'phoneNumber_kqt',
+                        '4', 'createdBy_kqn',
+                        '5', '__kf_UserTypeId',
+                        '6', 'isActive_kqt');
+
+        $values = array('0' => $request['firstname'],
+                        '1' => $request['lastname'],
+                        '2' => $request['emailaddress'],
+                        '3' => $request['phonenumber'],
+                        '4' => $request['creatorId'],
+                        '5' => '3',
+                        '6' => 'Active');
+
+        $returnValue = EvaluatorModel::addUser('User_USR', $fields, $values, count($fields), $request->all());
 
         if ($returnValue) {
             return EvaluatorController::sendMail($request->emailaddress);
@@ -176,6 +195,7 @@ class EvaluatorController extends Controller
             'emailaddress' => 'required|email',
             'phonenumber' => 'required|digits:10'
         ]);
+
         $fields = array(
             0 => 'firstName_kqt',
             1 => 'lastName_kqt',
@@ -218,6 +238,7 @@ class EvaluatorController extends Controller
         );
 
         $returnValue = EvaluatorModel::editRecord($request->layout, $inputs, $fields, count($fields));
+
         if ($returnValue) {
             return redirect($request->page);
         }
@@ -238,6 +259,7 @@ class EvaluatorController extends Controller
         $url = substr($url, 0, strpos($url, "?"));
         $url = substr($url, strrpos($url, ".") + 1);
 
+        // To check the image extension
         if($url == "jpg"){
             header('Content-type: image/jpeg');
         }
@@ -247,6 +269,7 @@ class EvaluatorController extends Controller
         else{
             header('Content-type: application/octet-stream');
         }
+
         echo $fm->getContainerData($request['url']);
     }
 
@@ -292,6 +315,7 @@ class EvaluatorController extends Controller
      */
     public function addNewQuestion(Request $request)
     {
+        // To validate the details
         $this->validate($request, [
             'question' => 'required',
             'radio' => 'required',
@@ -357,9 +381,11 @@ class EvaluatorController extends Controller
             2 => 'createdBy_kqn'
         );
         $retValue = EvaluatorModel::createRecord('Tutorial_TUT', $inputs, $fields, count($inputs));
+
         if ($retValue) {
             return redirect('tutorialdetails');
         }
+
         return back();
     }
 
@@ -411,7 +437,6 @@ class EvaluatorController extends Controller
      * @param email of student
      * @return void
      */
-
     public static function sendMail($email)
     {
         $dataEmail = array(

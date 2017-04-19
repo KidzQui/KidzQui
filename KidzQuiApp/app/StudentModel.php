@@ -32,7 +32,6 @@ class StudentModel
         }
 
         return false;
-
     } // end of function
 
     /*
@@ -63,8 +62,8 @@ class StudentModel
         if(!FileMaker::isError($result)) {
             return $result->getRecords();
         }
-        return false;
 
+        return false;
     } // end of function
 
     /*
