@@ -27,7 +27,7 @@ class StudentModel
         $request = $fmobject->newFindAllCommand($layout);
         $result = $request->execute();
 
-        if(!FileMaker::isError($result)) {
+        if (!FileMaker::isError($result)) {
             return $result->getRecords();
         }
 
@@ -41,25 +41,25 @@ class StudentModel
      * @param $value(string)
      * @return records details
      */
-    public static function findRecordByField($layout, $field, $value, $numberOfFields, $sortField=null, $sortType=null)
+    public static function findRecordByField($layout, $field, $value, $numberOfFields, $sortField = null, $sortType = null)
     {
         // create connection
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
         $i=0;
 
-        while ( $i < $numberOfFields ) {
+        while ($i < $numberOfFields) {
             $request->addFindCriterion($field[$i], $value[$i]);
             $i += 1;
         }
 
-        if($sortField && $sortType) {
+        if ($sortField && $sortType) {
             $request->addSortRule($sortField, 1, $sortType);
         }
 
         $result = $request->execute();
 
-        if(!FileMaker::isError($result)) {
+        if (!FileMaker::isError($result)) {
             return $result->getRecords();
         }
 
@@ -79,10 +79,10 @@ class StudentModel
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
         $request->addFindCriterion('emailAddress_kqt', '=='.$input['username']);
-        $request->addFindCriterion('password_kqt','==' .$input['password']);
+        $request->addFindCriterion('password_kqt', '==' .$input['password']);
         $result = $request->execute();
 
-        if(!FileMaker::isError($result)) {
+        if (!FileMaker::isError($result)) {
             return $result->getRecords();
         }
 
@@ -95,7 +95,7 @@ class StudentModel
      * @param $userId(number) ->creater Id
      * @return void
      */
-    public static function addRecord($layout,$fields, $values, $numberOfFields)
+    public static function addRecord($layout, $fields, $values, $numberOfFields)
     {
         $fmobject = FilemakerWrapper::getConnection();
         // storing the data into the database.
@@ -114,7 +114,6 @@ class StudentModel
         }
 
         return false;
-
     }// end of function
 
     /*
@@ -141,6 +140,5 @@ class StudentModel
         }
 
         return false;
-
     }// end of function
 }

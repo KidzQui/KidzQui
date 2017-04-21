@@ -20,7 +20,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 best-left wow fadeInLeft animated" data-wow-delay=".5s">
-          <h3>Sets</h3><hr>
+          <h3>Level {{ Session::get('level') }} -- Sets</h3><hr>
 
           @if($sets)
             @php $i = 0; @endphp
@@ -38,7 +38,7 @@
                       <form action="questions" method="POST">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="level" value="{{ $level }}">
-                        <input type="hidden" name="set" value="{{ $set->getField('___kp_SetId') }}">
+                        <input type="hidden" name="setid" value="{{ $set->getField('___kp_SetId') }}">
                         <input type="hidden" name="questiontype" value="{{ $questionType->getField('___kp_QuestionTypeId') }}">
                         <button type="submit" class="btn btn-info btn-block btn-lg">{{ $questionType->getField('questionType_kqt') }}</button>
                       </form>
@@ -62,5 +62,8 @@
 @stop
 
 @section('footer')
-
+<script src="{{ asset('KidzQuiApp/resources/assets/js/wow.min.js') }}"></script>
+    <script>
+      new WOW().init();
+    </script>
 @stop

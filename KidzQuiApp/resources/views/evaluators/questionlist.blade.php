@@ -78,11 +78,11 @@
                       <thead>
                         <tr class="header">
                           <th style="width: 10%">Question Id</th>
-                          <th style="width: 50%">Question</th>
-                          <th style="width: 10%">QuestionType</th>
+                          <th style="width: 30%">Question</th>
+                          <th style="width: 20%">Question Type</th>
                           <th style="width: 10%">Set</th>
                           <th style="width: 10%">Level</th>
-                          <th style="width: 10%">Creator Id</th>
+                          <th style="width: 20%">Created By</th>
                           <th></th>
                         </tr>
                       </thead>
@@ -99,16 +99,19 @@
                               {{ $list->getField('questionText_kqt') }}
                             </td>
                             <td>
-                              {{ $list->getField('__kf_QuestionTypeId') }}
+                              @php $qusType = $list->getRelatedSet('qus_QUST'); @endphp
+                              {{ $qusType[0]->getField('qus_QUST::questionType_kqt') }}
                             </td>
                             <td>
-                               {{ $list->getField('__kf_SetId') }}
+                              @php $set = $list->getRelatedSet('qus_SET'); @endphp
+                              {{ $set[0]->getField('qus_SET::setName_kqt') }}
                             </td>
                             <td>
                                {{ $list->getField('__kf_LevelId') }}
                             </td>
                             <td>
-                               {{ $list->getField('createdBy_kqn') }}
+                              @php $creator = $list->getRelatedSet('qus_USR'); @endphp
+                              {{ $creator[0]->getField('qus_USR::ct_FullName') }}
                             </td>
                             <td>
                               @if($list->getField('isActive_kqt') === "Active")

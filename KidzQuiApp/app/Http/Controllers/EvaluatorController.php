@@ -107,19 +107,25 @@ class EvaluatorController extends Controller
         // To find the student details
         $records = EvaluatorModel::findRecordByField('UsrManagementWeb_USR', '___kp_UserId', $record);
         // To find the answers given by student
-        $results = StudentModel::findRecordByField('StudentAnswer_STUANS', $student, $record, '1', 'answeredOn_kqd', FILEMAKER_SORT_DESCEND);
+        $results = StudentModel::findRecordByField('StuAns_STUANS', $student, $record, '1', 'answeredOn_kqd', FILEMAKER_SORT_DESCEND);
 
         // // To find the answer given by students
-        foreach ($results as $result) {
-            array_push($scores, $result->getField('studentAnswer_kqn'));
+        if ($results) {
+            foreach ($results as $result) {
+                array_push($scores, $result->getField('studentAnswer_kqn'));
+            }
+
+            // To calculate the score of student
+            $count = count($scores);
+            $scores = array_count_values($scores);
+            $score = isset($scores['1']) ? $scores['1'] : null;
+            $score = $score/$count*100;
+        } else {
+            $scores = 0;
+            $score = 0;
         }
 
-        // To calculate the score of student
-        $count = count($scores);
-        $scores = array_count_values($scores);
-        $score = isset($scores['1']) ? $scores['1'] : null;
-        $score = $score/$count*100;
-        return view('evaluators.studentdetails', compact('records','results','scores', 'score'));
+        return view('evaluators.studentdetails', compact('records', 'results', 'scores', 'score'));
     }
 
     /*
@@ -260,13 +266,11 @@ class EvaluatorController extends Controller
         $url = substr($url, strrpos($url, ".") + 1);
 
         // To check the image extension
-        if($url == "jpg"){
+        if ($url == "jpg") {
             header('Content-type: image/jpeg');
-        }
-        else if($url == "gif"){
+        } elseif ($url == "gif") {
             header('Content-type: image/gif');
-        }
-        else{
+        } else {
             header('Content-type: application/octet-stream');
         }
 
@@ -286,10 +290,10 @@ class EvaluatorController extends Controller
           'profile' => EvaluatorModel::findRecordByField('User_USR', '___kp_UserId', $request->session()->get('users')),
 
         // To get all questions added by the Evaluator
-          'questions' => EvaluatorModel::findRecordByField('Question_QUS', 'createdBy_kqn',  $request->session()->get('users'), 'createdOn_kqd', FILEMAKER_SORT_DESCEND),
+          'questions' => EvaluatorModel::findRecordByField('QuestionDisplay_QUS', 'createdBy_kqn', $request->session()->get('users'), 'createdOn_kqd', FILEMAKER_SORT_DESCEND),
 
         // To get all tutorials added by the Evaluator
-          'tutorials' => EvaluatorModel::findRecordByField('Tutorial_TUT', 'createdBy_kqn',  $request->session()->get('users'), 'createdOn_kqd', FILEMAKER_SORT_DESCEND)
+          'tutorials' => EvaluatorModel::findRecordByField('Tutorial_TUT', 'createdBy_kqn', $request->session()->get('users'), 'createdOn_kqd', FILEMAKER_SORT_DESCEND)
 
         );
 
@@ -304,7 +308,7 @@ class EvaluatorController extends Controller
      */
     public function questionList()
     {
-        $listQuestion = QuestionModel::showAllQuestion('Question_QUS');
+        $listQuestion = QuestionModel::showAllQuestion('QuestionDisplay_QUS');
         return view('evaluators.questionlist', compact('listQuestion'));
     }
 
@@ -396,7 +400,7 @@ class EvaluatorController extends Controller
      */
     public function tutorialList()
     {
-        $listTutorial = EvaluatorModel::showAllRecord('Tutorial_TUT');
+        $listTutorial = EvaluatorModel::showAllRecord('TutorialDetails_TUT');
         return view('evaluators.tutoriallist', compact('listTutorial'));
     }
 
@@ -443,16 +447,14 @@ class EvaluatorController extends Controller
             'name' => 'Kids',
             'email' => $email,
             'content' => 'Please login to <a href="http://localhost/KidzQui/">KidzQui</a> and start your course.
-    Happy Mathematics solving.'
+                          Happy Mathematics solving.'
         );
 
-        Mail::send('email.test', $dataEmail, function($message) use ($dataEmail)
-        {
+        Mail::send('email.test', $dataEmail, function ($message) use ($dataEmail) {
             $message->to($dataEmail['email']);
             $message->subject('Hello Email');
         });
 
         return redirect('studentlist');
     }
-
 }

@@ -32,13 +32,13 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 best-left wow fadeInLeft animated" data-wow-delay=".5s">
-        <h3>Questions</h3>
+        <h3>Level {{ Session::get('level') }} -- Set {{ Session::get('set') }} -- Questions</h3><hr>
 
         @if($questions)
           @php $i = 0;  @endphp
 
             <form action="answerdata" method="POST">
-
+              <input type="hidden" name='sets' value="{{ Session::get('sets') }}">
               @foreach($questions as $question)
 
                 <div class="panel bes-top col-md-5 col-md-offset-3" id="{{ $question->getField('___kp_QuestionId') }}">

@@ -80,7 +80,7 @@ span.fd-slider {
 }
 #logo h2{
   font-size: 19px; position: absolute;
-  top: -25px; 
+  top: -25px;
 }
 h1, h2, h3, #download a {
   font-family: 'Amaranth', sans-serif;
@@ -216,7 +216,7 @@ a.button:hover {
 }
 #type-select li.active, #type-select li:hover{
   /*background-image: -webkit-linear-gradient(top, #FFFFFF 12%, #F9F9F9 72%);*/
-  background-position: 0 0; 
+  background-position: 0 0;
   -webkit-transition: all .1s linear;
 }
 #select-2{
