@@ -83,3 +83,7 @@
     Route::post('questions', 'StudentController@listQuestions');
 
     Route::post('answerdata', 'StudentController@studentAnswer');
+
+    Route::get('studentimage', 'studentController@showImage');
+
+    Route::post('editprofile', 'StudentController@editRecord');

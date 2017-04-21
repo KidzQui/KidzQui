@@ -23,13 +23,15 @@
 <!-- Style-CSS -->
 <link rel="stylesheet" href="{{ asset('KidzQuiApp/resources/assets/css/font-awesome.css') }}"> <!-- Font-Awesome-Icons-CSS -->
 <!-- //css files -->
+    <link href="{{ asset('KidzQuiApp/resources/assets/css/bootstrap.css') }}" type="text/css" rel="stylesheet" media="all">
+
 <!-- web-fonts -->
 <link href="//fonts.googleapis.com/css?family=Philosopher:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,vietnamese" rel="stylesheet">
 <!-- //web-fonts -->
 
 </head>
 <body>
-<div data-vide-bg="video/social2">
+<div data-vide-bg="{{ asset('KidzQuiApp/resources/assets/video/social2') }}">
   <div class="center-container">
     <!--header-->
     <div class="header-w3l">
@@ -45,12 +47,12 @@
         <form action="studentindex" type="get">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div>
+            <span class=""><i class="fa fa-user" aria-hidden="true"></i></span>
             <input placeholder="E-mail" name="username" type="email" required="">
-            <span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span>
           </div>
           <div>
+            <span class=""><i class="fa fa-unlock" aria-hidden="true"></i></span>
             <input  placeholder="Password" name="password" type="password" required="">
-            <span class="icon2"><i class="fa fa-unlock" aria-hidden="true"></i></span>
           </div>
           <div>
             <input type="submit" value="Login">

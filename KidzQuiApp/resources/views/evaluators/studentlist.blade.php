@@ -90,9 +90,11 @@
                   <tr id="header">
                     <th style="width: 10%">Student Id</th>
                     <th style="width: 20%">Student Name</th>
-                    <th>Email Address</th>
-                    <th>Phone Number</th>
-                    <th style="width: 20%">Status</th>
+                    <th style="width: 25%">Email Address</th>
+                    <th style="width: 15%">Phone Number</th>
+                    <th style="width: 15%">Status</th>
+                    <th></th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody id="myTable">
@@ -116,6 +118,9 @@
                          {{ $record->getField('isActive_kqt') }}
                       </td>
                       <td>
+                        <a href="{{ URL::to('studentdetails', $record->getField('___kp_UserId')) }}" class="btn btn-primary btn-xs"><i class="fa fa-user"></i> Profile </a>
+                      </td>
+                      <td>
                         @if($record->getField('isActive_kqt') === "Active")
                           <form action="editstatus" method="post">
                             <input type="hidden" name="id" value="{{ $record->getRecordId() }}">
@@ -123,7 +128,7 @@
                             <input type="hidden" name="layout" value="User_USR">
                             <input type="hidden" name="page" value="studentlist">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <button type="submit" class="btn btn-danger">Deactivate</button>
+                            <button type="submit" class="btn btn-danger btn-xs">Deactivate</button>
                           </form>
                         @else
                           <form action="editstatus" method="post">
@@ -132,7 +137,7 @@
                             <input type="hidden" name="layout" value="User_USR">
                             <input type="hidden" name="page" value="studentlist">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <button type="submit" class="btn btn-success">Activate</button>
+                            <button type="submit" class="btn btn-warning btn-xs">Activate</button>
                           </form>
                         @endif
                       </td>

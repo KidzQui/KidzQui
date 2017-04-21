@@ -75,32 +75,22 @@
                   <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                     <div class="well profile_view">
                       <div class="col-sm-12">
-                        <h4 class="brief"><i>{{ $record->getField('___kp_UserId') }}</i></h4>
+                        <h4 class="brief"> ID: <i>{{ $record->getField('___kp_UserId') }}</i></h4>
                         <div class="left col-xs-7">
                           <h2>{{ $record->getField('ct_FullName') }}</h2>
                           <p><strong>Personal details: </strong> </p>
                           <ul class="list-unstyled">
-                            <li><i class="fa fa-building"></i>Email Address: {{ $record->getField('emailAddress_kqt') }}</li>
+                            <li><i class="fa fa-envelope"></i> Email: {{ $record->getField('emailAddress_kqt') }}</li>
                             <li><i class="fa fa-phone"></i> Phone: {{ $record->getField('phoneNumber_kqt') }} </li>
-                            <li><i class="fa fa-phone"></i> Status: {{ $record->getField('isActive_kqt') }} </li>
+                            <li><i class="fa fa-cog"></i> Status: {{ $record->getField('isActive_kqt') }} </li>
                           </ul>
                         </div>
-                        <div class="right col-xs-5 text-center">
+                        <div class="right col-xs-5 pull-right">
                           <img src="imagedata?url={{ Session::get('mediaId') }}" alt="profile image" class="img-responsive img-circle">
                         </div>
                       </div>
-                      <div class="col-xs-12 bottom text-center">
-                        <div class="col-xs-12 col-sm-6 emphasis">
-                          <p class="ratings">
-                            <a>4.0</a>
-                            <a href="#"><span class="fa fa-star"></span></a>
-                            <a href="#"><span class="fa fa-star"></span></a>
-                            <a href="#"><span class="fa fa-star"></span></a>
-                            <a href="#"><span class="fa fa-star"></span></a>
-                            <a href="#"><span class="fa fa-star-o"></span></a>
-                          </p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 emphasis">
+                      <div class="col-xs-12 bottom text-right">
+                        <div class="col-xs-12 col-sm-12 emphasis">
                           <a href="{{ URL::to('studentdetails', $record->getField('___kp_UserId')) }}" class="btn btn-primary btn-xs"><i class="fa fa-user"></i> View Profile </a>
                         </div>
                       </div>

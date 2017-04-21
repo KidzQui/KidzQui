@@ -81,9 +81,9 @@
                       <thead id="myTable">
                         <tr class="header">
                           <th style="width: 10%">Tutorial Id</th>
-                          <th style="width: 20%">Tutorial Title</th>
-                          <th style="width: 60%">Description</th>
-                          <th style="width: 10%">Creator Id</th>
+                          <th style="width: 30%">Tutorial Title</th>
+                          <th style="width: 50%">Description</th>
+                          <th style="width: 10%">Created By</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -102,7 +102,8 @@
                               {{ $list->getField('tutorialDescription_kqt') }}
                             </td>
                             <td>
-                               {{ $list->getField('createdBy_kqn') }}
+                              @php $creator = $list->getRelatedSet('tut_USR'); @endphp
+                              {{ $creator[0]->getField('tut_USR::ct_FullName') }}
                             </td>
                           </tr>
 

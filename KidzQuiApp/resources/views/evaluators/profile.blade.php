@@ -39,9 +39,7 @@
             <h3>My Profile</h3>
           </div>
         </div>
-
         <div class="clearfix"></div>
-
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -129,8 +127,8 @@
                     </form>
                   </div>
                 </div>
-                <div class="col-md-9 col-sm-9 col-xs-12">
 
+                <div class="col-md-9 col-sm-9 col-xs-12">
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                       <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Added Questions</a>
@@ -155,10 +153,15 @@
                             <div class="message_wrapper">
                               <h4 class="date text-error">Question:</h4>
                               <blockquote class="message">{{ $question->getField('questionText_kqt') }}.</blockquote>
-                              <h5>Question Type: {{ $question->getField('__kf_QuestionTypeId') }}</h5>
+                              <h5>Type:
+                                @php $qusType = $question->getRelatedSet('qus_QUST'); @endphp
+                                {{ $qusType[0]->getField('qus_QUST::questionType_kqt') }}
+                              </h5>
+                              <h5>Set:
+                                @php $set = $question->getRelatedSet('qus_SET'); @endphp
+                                {{ $set[0]->getField('qus_SET::setName_kqt') }}
+                              </h5>
                               <h5>Level: {{ $question->getField('__kf_LevelId') }}</h5>
-
-                              <h5>Set: {{ $question->getField('__kf_SetId') }}</h5>
                             </div>
                           </li>
 
@@ -183,7 +186,7 @@
                             <div class="message_wrapper">
                               <h4 class="date text-error">Tutorial:</h4>
                               <blockquote class="message">{{ $tutorial->getField('tutorialTitle_kqt') }}.</blockquote>
-                              <h5>Question Type: {{ $tutorial->getField('tutorialDescription_kqt') }}</h5>
+                              <h5>Description: {{ $tutorial->getField('tutorialDescription_kqt') }}</h5>
                             </div>
                           </li>
 
