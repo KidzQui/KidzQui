@@ -23,13 +23,7 @@
         <div class="col-md-12 best-left wow fadeInLeft animated" data-wow-delay=".5s">
           <div class="col-md-4 col-md-offset-4 ">
           <h3>Your Score: {{ $score }}</h3>
-            <form action="sets" method="POST">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-              <input type="hidden" name="levelid" value="{{ Session::get('level') }}">
-              <button class="btn btn-primary btn-lg btn-group-justified" type="submit">
-                <strong><h4>OK</h4></strong>
-              </button>
-            </form>
+            <a href="{{ URL::to('sets', Session::get('set'))}}" class="btn btn-primary btn-lg btn-group-justified">OK</a>
           </div>
         </div>
       </div>

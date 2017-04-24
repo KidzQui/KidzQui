@@ -35,6 +35,11 @@ class EvaluatorController extends Controller
      */
     public function index(Request $request)
     {
+        $this->validate($request, [
+            'username' => 'required|email',
+            'password' => 'required|min:4'
+        ]);
+
         $isUser = EvaluatorModel::userDetails('User_USR', $request->all());
 
         // to check if the record found
@@ -124,8 +129,8 @@ class EvaluatorController extends Controller
             $scores = 0;
             $score = 0;
         }
-
-        return view('evaluators.studentdetails', compact('records', 'results', 'scores', 'score'));
+        $medFile = urlencode(EvaluatorController::findMedia($records[0]->getField('__kf_MediaId')));
+        return view('evaluators.studentdetails', compact('records', 'results', 'scores', 'score', 'medFile'));
     }
 
     /*
@@ -260,7 +265,6 @@ class EvaluatorController extends Controller
     public function showImage(Request $request)
     {
         $url = $request['url'];
-
         $fm = FilemakerWrapper::getConnection();
         $url = substr($url, 0, strpos($url, "?"));
         $url = substr($url, strrpos($url, ".") + 1);

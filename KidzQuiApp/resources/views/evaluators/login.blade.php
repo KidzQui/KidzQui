@@ -25,7 +25,7 @@
     <link href="{{ asset('KidzQuiApp/public/bower_components/gentelella/vendors/animate.css/animate.min.css') }}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="{{ asset('KidzQuiApp/public/bower_components/gentelella/build/css/custom.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('KidzQuiApp/public/bower_components/gentelella/build/css/custom.min.css?ver=1') }}" rel="stylesheet">
 
 @stop
 
@@ -41,12 +41,14 @@
             <form action="evaluatorindex" type="get">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <h1>Login Form</h1>
-              <div>
-                <input type="text" name="username" class="form-control" placeholder="Username" required="" />
-              </div>
-              <div>
-                <input type="password" name="password" class="form-control" placeholder="Password" required="" />
-              </div>
+              <div class="form-group">
+                <input type="text" name="username" class="form-control" placeholder="Username">
+                <span class="errorMessage pull-left" style="color:red">@if ($errors->has('username')) {{ $errors->first('username') }} @endif</span>
+              </div><br>
+              <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Password">
+                <span class="errorMessage pull-left" style="color:red">@if ($errors->has('password')) {{ $errors->first('password') }} @endif</span>
+              </div><br>
               <div>
                 <button class="btn btn-default submit" type="submit">Log in</button>
               </div>

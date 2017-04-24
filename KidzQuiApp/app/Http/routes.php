@@ -78,11 +78,11 @@
 
     Route::get('levels', 'StudentController@levels');
 
-    Route::post('sets', 'StudentController@listSets');
+    Route::get('sets/{level}', 'StudentController@listSets');
 
-    Route::post('questions', 'StudentController@listQuestions');
+    Route::post('questions/{set}', 'StudentController@listQuestions');
 
-    Route::post('answerdata', 'StudentController@studentAnswer');
+    Route::post('score', 'StudentController@studentAnswer');
 
     Route::get('studentimage', 'studentController@showImage');
 

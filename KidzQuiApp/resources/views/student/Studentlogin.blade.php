@@ -31,7 +31,7 @@
 
 </head>
 <body>
-<div data-vide-bg="{{ asset('KidzQuiApp/resources/assets/video/social2') }}">
+<div data-vide-bg="{{ asset('KidzQuiApp/resources/assets/video/social3') }}">
   <div class="center-container">
     <!--header-->
     <div class="header-w3l">
@@ -47,11 +47,11 @@
         <form action="studentindex" type="get">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div>
-            <span class=""><i class="fa fa-user" aria-hidden="true"></i></span>
+            <span class=""><i class="fa fa-user" style="color: white" aria-hidden="true"></i></span>
             <input placeholder="E-mail" name="username" type="email" required="">
           </div>
           <div>
-            <span class=""><i class="fa fa-unlock" aria-hidden="true"></i></span>
+            <span class=""><i class="fa fa-unlock" style="color: white" aria-hidden="true"></i></span>
             <input  placeholder="Password" name="password" type="password" required="">
           </div>
           <div>
