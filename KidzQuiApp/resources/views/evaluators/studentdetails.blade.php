@@ -74,10 +74,16 @@
                   <div class="profile_img">
                     <div id="crop-avatar">
                       <!-- Current avatar -->
-                      @if(isset($medFile))
-                        <img src="{{ url('/') }}/imagedata?url={{ $medFile }}" alt="profile image" class="img-responsive">
+
+                      @php
+                        $image = $records[0]->getRelatedSet('usr_MED');
+                        $image = FileMaker::isError($image) ? null : $image;
+                      @endphp
+                      @if(isset($image))
+                      <img src="{{ url('/') }}/imagedata?url={{ urlencode($image[0]->getField('usr_MED::mediaFile_kqr')) }}" alt="profile image" class="img-responsive">
                       @else
-                        <img class="img-responsive avatar-view" src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/picture.jpg') }}" alt="Avatar" title="Change the avatar">
+                      <img class="img-responsive avatar-view" src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/picture.jpg') }}" alt="Avatar" title="Change the avatar">
+
                       @endif
                     </div>
                   </div>
