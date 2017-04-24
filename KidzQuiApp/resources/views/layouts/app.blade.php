@@ -111,11 +111,8 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-<<<<<<< HEAD
-                    <img src="{{url('/')}}/imagedata?url={{ Session::get('mediaId') }}" alt="profile image" class="img-responsive img-circle pull-left">
-=======
+
                     <img src="{{ url('/') }}/imagedata?url={{ Session::get('mediaId') }}" alt="profile image" class="img-responsive img-circle pull-left">
->>>>>>> 22166739abe0326cdb424d52ea0f36c3d90247e5
                     {{ Session::get('name')}}
                     <span class=" fa fa-angle-down"></span>
                   </a>
