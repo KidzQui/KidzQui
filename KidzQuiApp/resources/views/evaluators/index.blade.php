@@ -88,7 +88,7 @@
 
                     <div class="col-md-9 col-sm-12 col-xs-12">
                       <div class="demo-container" style="max-height:280px">
-                        <canvas id="myChart" width="600" height="300"></canvas>
+                        <canvas id="myChart" width="600" height="290"></canvas>
                       </div>
                     </div>
 

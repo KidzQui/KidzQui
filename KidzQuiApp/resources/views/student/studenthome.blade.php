@@ -44,7 +44,7 @@
                 <h4><a href="singlepage">{{ $tutorial->getField('tutorialTitle_kqt') }}</a></h4>
                 <p>{{ $tutorial->getField('tutorialDescription_kqt') }}</p>
               </div>
-                <div class="clearfix"></div>
+              <div class="clearfix"></div>
             </div>
 
             @endforeach
@@ -61,7 +61,7 @@
 
 @section('footer')
 
-  <script src="js/wow.min.js"></script>
+<script src="{{ asset('KidzQuiApp/resources/assets/js/wow.min.js') }}"></script>
     <script>
       new WOW().init();
     </script>

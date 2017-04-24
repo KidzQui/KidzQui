@@ -27,12 +27,11 @@ class EvaluatorModel
         $request = $fmobject->newFindAllCommand($layout);
         $result = $request->execute();
 
-        if(!FileMaker::isError($result)) {
+        if (!FileMaker::isError($result)) {
             return $result->getRecords();
         }
 
         return ["No", "records", "Found", $result->getMessage()];
-
     } // end of function
 
     /*
@@ -41,24 +40,23 @@ class EvaluatorModel
      * @param $userTypeId(number)
      * @return list of users
      */
-    public static function findRecordByField($layout, $fieldName, $fieldValue, $sortField=null, $sortType=null)
+    public static function findRecordByField($layout, $fieldName, $fieldValue, $sortField = null, $sortType = null)
     {
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindCommand($layout);
         $request->addFindCriterion($fieldName, $fieldValue);
 
-        if($sortField && $sortType) {
+        if ($sortField && $sortType) {
             $request->addSortRule($sortField, 1, $sortType);
         }
 
         $result = $request->execute();
 
-        if(!FileMaker::isError($result)) {
+        if (!FileMaker::isError($result)) {
             return $result->getRecords();
         }
 
         return ["No", "records", "Found", $result->getMessage()];
-
     } // end of function
 
     /*
@@ -94,7 +92,7 @@ class EvaluatorModel
      * @param $userId(number) ->creater Id
      * @return void
      */
-    public static function editRecord($layout, $inputs, $fields, $numberOfFields )
+    public static function editRecord($layout, $inputs, $fields, $numberOfFields)
     {
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newEditCommand($layout, $inputs['recordid']);
@@ -112,7 +110,6 @@ class EvaluatorModel
         }
 
         return false;
-
     }// end of function
 
     public static function userDetails($layout, $input)
@@ -124,7 +121,7 @@ class EvaluatorModel
         $request->addFindCriterion('password_kqt', '=='.$input['password']);
         $result = $request->execute();
 
-        if(!FileMaker::isError($result)) {
+        if (!FileMaker::isError($result)) {
             return $result->getRecords();
         }
 
@@ -151,5 +148,4 @@ class EvaluatorModel
 
         return false;
     }
-
 } // end of class

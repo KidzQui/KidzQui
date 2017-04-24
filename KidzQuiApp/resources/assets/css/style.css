@@ -7,7 +7,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 body{
 	background-color:#fff;
 	margin:0;
-	font-family: 'Roboto Slab', serif;
 }
 body a{
 	transition: 0.5s all ease;
@@ -87,7 +86,6 @@ color: #ffffff!important;
 }
 .logo {
 	float: left;
-    width: 20%;
     margin-left: 11em
 }
 .logo a {
@@ -280,7 +278,6 @@ color: #ffffff!important;
     font-family: 'Candal', sans-serif;
     font-size: 2em;
     line-height: 1.3em;
-    margin: 0 0 1.5em;
     color: #002663;
 }
 .best h4 {
@@ -495,7 +492,6 @@ i.g-1:hover{
     color: #CCBFBF;
 }
 .footer {
-    padding: 4em 0;
     background-color: #424242;
 }
 .soci {
@@ -518,7 +514,7 @@ ul.social-icons1 li {
     text-align: center;
 }
 .copy {
-    text-align: center;
+    text-align: right;
 }
 .copy a {
     color: #FEEB73;
@@ -527,7 +523,7 @@ ul.social-icons1 li {
     color:#CCBFBF;
 }
 .banner-1 {
-    min-height: 350px;
+    min-height: 300px;
     background: url(../images/banner.jpg)no-repeat 0px 0px;
     background-size: cover;
 }
@@ -803,7 +799,7 @@ img.zoom-img {
 }
 /*--about--*/
 .about {
-    padding: 5em 0;
+    padding: 2em 0;
 }
 .about p,.staff p {
     font-size: 1.1em;
@@ -816,7 +812,6 @@ img.zoom-img {
     font-family: 'Candal', sans-serif;
     font-size: 2em;
     line-height: 1.3em;
-    margin: 0 0 1.5em;
     color: #002663;
 }
 .about h4 {
@@ -830,13 +825,12 @@ img.zoom-img {
     width: 100%;
 }
 .about-top {
-    margin-top: 5em;
+    margin-top: 2em;
 }
 .about h2,.about h3 {
     font-family: 'Candal', sans-serif;
     font-size: 1.6em;
     line-height: 1.3em;
-    margin: 0 0 1em;
     color: #002663;
 }
 .about-top li,.staff-left li {
@@ -875,7 +869,6 @@ img.zoom-img {
     margin-top: 5em;
 }
 .staff {
-    padding: 5em 0;
 }
 /*--contact-starts--*/
 .contact{
@@ -1574,7 +1567,7 @@ nav.navbar.navbar-default {
     color: #1D0E05;
 }
 .logo {
-    width: 39%;
+
 }
 .search-bar {
     width: 20%;

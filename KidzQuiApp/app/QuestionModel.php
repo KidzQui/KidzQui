@@ -26,11 +26,11 @@ class QuestionModel
         $fmobject = FilemakerWrapper::getConnection();
         $request = $fmobject->newFindAllCommand($layout);
         $result = $request->execute();
-        if(!FileMaker::isError($result)) {
+        if (!FileMaker::isError($result)) {
             return $result->getRecords();
         }
-        return ["No", "records", "Found", $result->getMessage()];
 
+        return ["No", "records", "Found", $result->getMessage()];
     } // end of function
 
     /*
@@ -45,11 +45,11 @@ class QuestionModel
         $request = $fmobject->newFindCommand($layout);
         $request->addFindCriterion('__kf_QuestionTypeId', $questionTypeId);
         $result = $request->execute();
-        if(!FileMaker::isError($result)) {
+        if (!FileMaker::isError($result)) {
             return $result->getRecords();
         }
-        return ["No", "records", "Found", $result->getMessage()];
 
+        return ["No", "records", "Found", $result->getMessage()];
     } // end of function
 
      /*
@@ -65,11 +65,11 @@ class QuestionModel
         $request = $fmobject->newFindCommand($layout);
         $request->addFindCriterion('createdBy_kqn', $userId);
         $result = $request->execute();
-        if(!FileMaker::isError($result)) {
+        if (!FileMaker::isError($result)) {
             return $result->getRecords();
         }
-        return ["No", "records", "Found", $result->getMessage()];
 
+        return ["No", "records", "Found", $result->getMessage()];
     } // end of function
 
     /*
@@ -84,6 +84,7 @@ class QuestionModel
         if (!$ret) {
             return false;
         }
+
         $fmobject = FilemakerWrapper::getConnection();
         // storing the data into the database.
         $request = $fmobject->createRecord($layout);
@@ -93,6 +94,7 @@ class QuestionModel
         $typeId = $input['radio'] == "Objective Type" ? 1 : ($input['radio'] == "Puzzle" ? 2 : 3);
         $request->setField('__kf_QuestionTypeId', $typeId);
         $request->setField('__kf_LevelId', $input['level']);
+
         switch ($input['set']) {
             case 'Addition':
                 $request->setField('__kf_SetId', 1);
@@ -114,13 +116,14 @@ class QuestionModel
                 $request->setField('__kf_SetId', 0);
                 break;
         }
+
         $result = $request->commit();
 
         if (!FileMaker::isError($result)) {
             return true;
         }
-        return false;
 
+        return false;
     }// end of function
 
     /*
@@ -136,10 +139,11 @@ class QuestionModel
         $request = $fmobject->createRecord($layout);
         $request->setField('choiceText_kqt', $choice);
         $result = $request->commit();
+
         if (!FileMaker::isError($result)) {
             return true;
         }
+
         return false;
     }
-
 } // end of class

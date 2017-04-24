@@ -74,6 +74,8 @@
                   <div class="profile_img">
                     <div id="crop-avatar">
                       <!-- Current avatar -->
+                      {{-- @php $image = $records[0]->getRelatedSet('usr_MED'); @endphp
+                      <img src="imagedata?url={{ urlencode($image[0]->getField('usr_MED::mediaFile_kqr')) }}" alt="profile image" class="img-responsive"> --}}
                       <img class="img-responsive avatar-view" src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/picture.jpg') }}" alt="Avatar" title="Change the avatar">
                     </div>
                   </div>
@@ -115,7 +117,8 @@
                     <div id="myTabContent" class="tab-content">
                       <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
-                        <!-- start recent activity -->
+                        @if($results)
+                          <!-- start recent activity -->
                           <table class="table table-striped projects">
                             <thead>
                               <tr>
@@ -125,14 +128,19 @@
                               </tr>
                             </thead>
                             <tbody id="myTable">
-                              @if($results)
+
                                 @foreach($results as $result)
                                 <tr>
                                   <td>
-                                    {{ $result->getField('__kf_QuestionId')}}
+                                    @php $question = $result->getRelatedSet('stuans_QUS'); @endphp
+                                    {{ $question[0]->getField('stuans_QUS::questionText_kqt') }}
                                   </td>
                                   <td>
-                                    {{ $result->getField('studentAnswer_kqn') }}
+                                    @if($result->getField('studentAnswer_kqn'))
+                                      Right
+                                    @else
+                                      Wrong
+                                    @endif
                                   </td>
                                   <td>
                                     {{ $result->getField('answeredOn_kqd') }}
@@ -140,9 +148,12 @@
                                 </tr>
 
                                 @endforeach
-                              @endif
+
                             </tbody>
                           </table>
+                        @else
+                          <h3><i> You did not attempt any Quiz.</i><h3>
+                        @endif
                         <!-- end recent attempt questions -->
                         <div class="col-md-12 text-center">
                           <ul class="pagination pagination-lg pager" id="myPager"></ul>
@@ -151,7 +162,11 @@
                       <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                             <div class="message_wrapper">
                               <h4 class="date text-error">Score:</h4>
-                              <blockquote class="message">@php echo number_format($score, 2); @endphp %</blockquote>
+                              @if($score)
+                                <blockquote class="message">@php echo number_format($score, 2); @endphp %</blockquote>
+                              @else
+                                <h5>You Did not attempt any Quiz .</h5>
+                              @endif
                             </div>
                       </div>
                     </div>
@@ -176,10 +191,13 @@
         var gkeys=[];
         var gvals=[];
         var title = 'No. of questions';
-        @foreach($scores as $key => $value)
-          gkeys.push("{{ $key }}");
-          gvals.push("{{ $value }}");
-        @endforeach
+
+        @if($scores)
+          @foreach($scores as $key => $value)
+            gkeys.push("{{ $key }}");
+            gvals.push("{{ $value }}");
+          @endforeach
+        @endif
 
     </script>
 

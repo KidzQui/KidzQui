@@ -149,7 +149,7 @@ span.check-w3 {
 }
 .icon-border {
 	position: relative;
-} 
+}
 .icon-border::before,
 .icon-border::after {
 	display: block;
@@ -159,30 +159,30 @@ span.check-w3 {
 	width: 100%;
 	height: 100%;
 	content: "";
-} 
+}
 .icon-border::before {
 	z-index: 1;
 	-webkit-transition: box-shadow 0.3s;
 	-moz-transition: box-shadow 0.3s;
 	-o-transition: box-shadow 0.3s;
 	-ms-transition: box-shadow 0.3s;
-    transition: box-shadow 0.3s;      
-} 
+    transition: box-shadow 0.3s;
+}
 .icon-border::before {
-	-webkit-box-shadow: inset 0 0 0 3px #fff; 
-	-moz-box-shadow: inset 0 0 0 3px #fff; 
-	-o-box-shadow: inset 0 0 0 3px #fff; 
-	-ms-box-shadow: inset 0 0 0 3px #fff; 
-	box-shadow: inset 0 0 0 3px #fff; 
-}  
+	-webkit-box-shadow: inset 0 0 0 3px #fff;
+	-moz-box-shadow: inset 0 0 0 3px #fff;
+	-o-box-shadow: inset 0 0 0 3px #fff;
+	-ms-box-shadow: inset 0 0 0 3px #fff;
+	box-shadow: inset 0 0 0 3px #fff;
+}
 /* facebook */
 .icon-border.facebook:hover::before {
-	-webkit-box-shadow: inset 0 0 0 48px #3b5998; 
-	-moz-box-shadow: inset 0 0 0 48px #3b5998; 
-	-o-box-shadow: inset 0 0 0 48px #3b5998; 
-	-ms-box-shadow: inset 0 0 0 48px #3b5998; 
-	box-shadow: inset 0 0 0 48px #3b5998; 
-}  
+	-webkit-box-shadow: inset 0 0 0 48px #3b5998;
+	-moz-box-shadow: inset 0 0 0 48px #3b5998;
+	-o-box-shadow: inset 0 0 0 48px #3b5998;
+	-ms-box-shadow: inset 0 0 0 48px #3b5998;
+	box-shadow: inset 0 0 0 48px #3b5998;
+}
 /* twitter */
 .icon-border.twitter:hover::before {
 	-webkit-box-shadow: inset 0 0 0 48px #4099ff;
@@ -190,7 +190,7 @@ span.check-w3 {
 	-o-box-shadow: inset 0 0 0 48px #4099ff;
 	-ms-box-shadow: inset 0 0 0 48px #4099ff;
 	box-shadow: inset 0 0 0 48px #4099ff;
-}  
+}
 /* google plus */
 .icon-border.googleplus:hover::before {
 	-webkit-box-shadow: inset 0 0 0 48px #d34836;
@@ -198,7 +198,7 @@ span.check-w3 {
 	-o-box-shadow: inset 0 0 0 48px #d34836;
 	-ms-box-shadow: inset 0 0 0 48px #d34836;
 	box-shadow: inset 0 0 0 48px #d34836;
-}   
+}
 /* rss */
 .icon-border.rss:hover::before {
 	-webkit-box-shadow: inset 0 0 0 48px #C92228;
@@ -206,8 +206,8 @@ span.check-w3 {
 	-o-box-shadow: inset 0 0 0 48px #C92228;
 	-ms-box-shadow: inset 0 0 0 48px #C92228;
 	box-shadow: inset 0 0 0 48px #C92228;
-}  
-/*-- //social-icons --*/   
+}
+/*-- //social-icons --*/
 /*--//main--*/
 
 /*--footer--*/
@@ -322,7 +322,7 @@ span.check-w3 {
 	}
 	.footer {
 		padding: 2.5em 0;
-	}	
+	}
 }
 @media(max-width: 667px){
 	.wthree-pro h2 {

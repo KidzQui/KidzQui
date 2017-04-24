@@ -38,7 +38,7 @@ class StudentController extends Controller
             session(['users' => $isUser[0]->getField('___kp_UserId')]);
             $request->session()->put('name', $isUser[0]->getField('firstName_kqt'));
             $request->session()->put('type', $isUser[0]->getField('__kf_UserTypeId'));
-            // $request->session()->put('mediaId', urlencode(StudentController::findMedia($isUser[0]->getField('__kf_MediaId'))));
+            $request->session()->put('mediaId', urlencode(StudentController::findMedia($isUser[0]->getField('__kf_MediaId'))));
             return redirect('studenthome');
         }
 
@@ -58,7 +58,7 @@ class StudentController extends Controller
         // To get the profile details
         $scores = array();
         $userProfile = StudentModel::findRecordByField('User_USR', $fields, $request->session()->get('users'), '1');
-        $records = StudentModel::findRecordByField('StudentAnswer_STUANS', $student, $request->session()->get('users'), '1', 'answeredOn_kqd', FILEMAKER_SORT_DESCEND);
+        $records = StudentModel::findRecordByField('StuAns_STUANS', $student, $request->session()->get('users'), '1', 'answeredOn_kqd', FILEMAKER_SORT_DESCEND);
 
         // To create array of answers given by student
         foreach ($records as $record) {
@@ -71,7 +71,7 @@ class StudentController extends Controller
         $score = isset($scores['1']) ? $scores['1'] : null;
         $score = $score/$count*100;
         // Return to the user profile page
-        return view('student.studentprofile', compact('userProfile','records', 'score'));
+        return view('student.studentprofile', compact('userProfile', 'records', 'score'));
     }
 
     /*
@@ -82,7 +82,8 @@ class StudentController extends Controller
     public function listTutorial()
     {
         $tutorials = StudentModel::showAllRecord('Tutorial_TUT');
-        //return to student home page
+
+        // Return to student home page
         return view('student.studenthome', compact('tutorials'));
     }
 
@@ -108,9 +109,10 @@ class StudentController extends Controller
         $request->session()->put('level', $request['levelid']);
         $fields = array('0' => '__kf_LevelId' );
         $level = $request['levelid'];
+
         $sets = StudentModel::findRecordByField('Set_SET', $fields, $level, '1');
         $questionTypes = StudentModel::showAllRecord('QuestionType_QUST');
-        return view('student.sets', compact('sets', 'questionTypes', 'sets', 'level'));
+        return view('student.sets', compact('sets', 'questionTypes', 'level'));
     }
 
     /*
@@ -120,7 +122,7 @@ class StudentController extends Controller
      */
     public function listQuestions(Request $request)
     {
-        $request->session()->put('sets', $request['set']);
+        $request->session()->put('set', $request['setid']);
 
         $fields = array(
             '0' => '__kf_LevelId',
@@ -138,8 +140,10 @@ class StudentController extends Controller
 
         // To check for available choices.
         if ($questions) {
-            $choices = StudentController::Question($questions);
-        } else { $choices = null; }
+            $choices = StudentController::question($questions);
+        } else {
+            $choices = null;
+        }
 
         return view('student.questions', compact('questions', 'choices'));
     }
@@ -149,7 +153,7 @@ class StudentController extends Controller
      * @param $question
      * @return choice to listquestion function
      */
-    public static function Question($questions)
+    public static function question($questions)
     {
         $choices = array();
         $answer = array();
@@ -160,11 +164,9 @@ class StudentController extends Controller
             $related = $question->getRelatedSet('qus_QUSC');
 
             foreach ($related as $relatedField) {
-
                 // To find and create array of correct answers
-                if($relatedField->getField('qus_QUSC::isCorrect_kqn')) {
+                if ($relatedField->getField('qus_QUSC::isCorrect_kqn')) {
                     array_push($answer, $relatedField->getField('qus_QUSC::choiceValue_kqt'));
-
                 }
 
                 // To create the array of choices of a question
@@ -186,7 +188,8 @@ class StudentController extends Controller
     */
     public function studentAnswer(Request $request)
     {
-        $setId = $request->session()->get('sets');
+        $setId = $request->session()->get('set');
+        $levelId = $request->session()->get('level');
         $studentId = $request->session()->get('users');
         $input = $request->all();
         $matches = array();
@@ -194,7 +197,7 @@ class StudentController extends Controller
 
         // extract number from string
         foreach ($input as $key => $value) {
-            if(preg_match_all('!\d+!',$key , $match)){
+            if (preg_match_all('!\d+!', $key, $match)) {
                 $data = implode('', $match[0]);
                 array_push($matches, $data);
             }
@@ -205,7 +208,7 @@ class StudentController extends Controller
             $questionId = $input['question'.$key];
 
             // Check for correct answer and calculate score
-            if($input['choice'.$key] == $input['answer'.$key]) {
+            if ($input['choice'.$key] == $input['answer'.$key]) {
                 $answer = '1';
                 $score += 1;
             } else {
@@ -226,22 +229,21 @@ class StudentController extends Controller
             $result = StudentModel::findRecordByField('StudentAnswer_STUANS', $fields, $values, '2');
 
             // Update record if found other wise create new record
-            if($result) {
+            if ($result) {
                 StudentModel::editRecord('StudentAnswer_STUANS', $fields, $values, count($fields), $result[0]->getRecordId());
             } else {
                 StudentModel::addRecord('StudentAnswer_STUANS', $fields, $values, count($fields));
             }
         }
 
-        $score = ($score/5)*100;
+        $score = ($score/5) * 100;
         return view('student.score', compact('score'));
-
     } //end studentAnswer
 
     /*
      * To check the session status and destroy
-     * @param $request
-     * @return session data to login app
+     * @param Request->$request
+     * @return void
      */
     public function studentLogin(Request $request)
     {
@@ -250,4 +252,78 @@ class StudentController extends Controller
         return view('student.studentlogin');
     } // end studentLogin
 
+    /*
+     * To find the media file from database
+     * @param $id (number)
+     * @return media file
+     */
+    public static function findMedia($id)
+    {
+        $fields = array('___kp_MediaId');
+        $values = array($id);
+        $medRecord = StudentModel::findRecordByField('Media_MED', $fields, $values, count($fields));
+        return $medRecord[0]->getField('mediaFile_kqr');
+    }
+
+    /*
+     * show image on web
+     * @param $request
+     * @return image url fetched from database
+     */
+    public function showImage(Request $request)
+    {
+        $url = $request['url'];
+
+        $fm = FilemakerWrapper::getConnection();
+        $url = substr($url, 0, strpos($url, "?"));
+        $url = substr($url, strrpos($url, ".") + 1);
+
+        // To check the image extension
+        if ($url == "jpg") {
+            header('Content-type: image/jpeg');
+        } elseif ($url == "gif") {
+            header('Content-type: image/gif');
+        } else {
+            header('Content-type: application/octet-stream');
+        }
+
+        echo $fm->getContainerData($request['url']);
+    }
+
+        /*
+     * To edit profile details into database
+     * @param request object
+     * @return void
+     */
+    public function editRecord(Request $request)
+    {
+        $this->validate($request, [
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'emailaddress' => 'required|email',
+            'phonenumber' => 'required|digits:10'
+        ]);
+
+        $fields = array(
+            0 => 'firstName_kqt',
+            1 => 'lastName_kqt',
+            2 => 'emailAddress_kqt',
+            3 => 'phoneNumber_kqt'
+        );
+
+        $inputs = array(
+            0 => $request->get('firstname'),
+            1 => $request->get('lastname'),
+            2 => $request->get('emailaddress'),
+            3 => $request->get('phonenumber')
+        );
+
+        $returnValue = StudentModel::editRecord('User_USR', $inputs, $fields, count($fields), $request->get('recordid'));
+
+        if ($returnValue) {
+            return redirect('studentprofile');
+        }
+
+        return back();
+    }
 } // end class
