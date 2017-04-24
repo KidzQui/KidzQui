@@ -20,7 +20,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 best-left wow fadeInLeft animated" data-wow-delay=".5s">
-          <h3>Level {{ Session::get('level') }} -- Sets</h3><hr>
+          <h3><a href="{{ URL::to('levels')}}">Level {{ Session::get('level') }} </a>/ Sets</h3><hr>
 
           @if($sets)
             @php $i = 0; @endphp
@@ -35,9 +35,8 @@
                   @foreach($questionTypes as $questionType)
 
                     <div class="col-md-3 text-center">
-                      <form action="questions" method="POST">
+                      <form action="../questions/{{ $set->getField('___kp_SetId') }}" method="POST">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="level" value="{{ $level }}">
                         <input type="hidden" name="setid" value="{{ $set->getField('___kp_SetId') }}">
                         <input type="hidden" name="questiontype" value="{{ $questionType->getField('___kp_QuestionTypeId') }}">
                         <button type="submit" class="btn btn-info btn-block btn-lg">{{ $questionType->getField('questionType_kqt') }}</button>

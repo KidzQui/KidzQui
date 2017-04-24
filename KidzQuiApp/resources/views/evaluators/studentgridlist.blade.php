@@ -86,7 +86,16 @@
                           </ul>
                         </div>
                         <div class="right col-xs-5 pull-right">
-                          <img src="imagedata?url={{ Session::get('mediaId') }}" alt="profile image" class="img-responsive img-circle">
+                          @php
+                            $image = $record->getRelatedSet('usr_MED');
+                            $image = FileMaker::isError($image) ? null : $image;
+                          @endphp
+                          @if(isset($image))
+                        <img src="{{ url('/') }}/imagedata?url={{ urlencode($image[0]->getField('usr_MED::mediaFile_kqr')) }}" alt="profile image" class="img-responsive img-circle">
+                      @else
+                        <img class="img-responsive img-circle" src="{{ asset('KidzQuiApp/public/bower_components/gentelella/production/images/picture.jpg') }}" alt="Avatar" title="Change the avatar">
+                      @endif
+
                         </div>
                       </div>
                       <div class="col-xs-12 bottom text-right">

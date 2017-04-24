@@ -104,15 +104,14 @@ class StudentController extends Controller
      * @param void
      * @return list of sets according to level
      */
-    public function listSets(Request $request)
+    public function listSets($level)
     {
-        $request->session()->put('level', $request['levelid']);
-        $fields = array('0' => '__kf_LevelId' );
-        $level = $request['levelid'];
+        session()->put('level', $level);
+        $fields = array('__kf_LevelId' );
 
-        $sets = StudentModel::findRecordByField('Set_SET', $fields, $level, '1');
+        $sets = StudentModel::findRecordByField('Set_SET', $fields, $level, count($fields));
         $questionTypes = StudentModel::showAllRecord('QuestionType_QUST');
-        return view('student.sets', compact('sets', 'questionTypes', 'level'));
+        return view('student.sets', compact('sets', 'questionTypes'));
     }
 
     /*
@@ -120,9 +119,9 @@ class StudentController extends Controller
      * @param $request
      * @return list of questions and choices
      */
-    public function listQuestions(Request $request)
+    public function listQuestions($set, Request $request)
     {
-        $request->session()->put('set', $request['setid']);
+        session()->put('set', $set);
 
         $fields = array(
             '0' => '__kf_LevelId',
@@ -131,8 +130,8 @@ class StudentController extends Controller
         );
 
         $inputs = array(
-            '0' => $request['level'],
-            '1' => $request['set'],
+            '0' => session()->get('level'),
+            '1' => session()->get('set'),
             '2' => $request['questiontype']
         );
 
@@ -188,9 +187,9 @@ class StudentController extends Controller
     */
     public function studentAnswer(Request $request)
     {
-        $setId = $request->session()->get('set');
-        $levelId = $request->session()->get('level');
-        $studentId = $request->session()->get('users');
+        $setId = session()->get('set');
+        $levelId = session()->get('level');
+        $studentId = session()->get('users');
         $input = $request->all();
         $matches = array();
         $score = 0;

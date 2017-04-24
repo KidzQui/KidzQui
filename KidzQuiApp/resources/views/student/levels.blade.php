@@ -26,13 +26,8 @@
             @foreach($levels as $level)
 
               <div class="col-md-4 staff-left">
-                <form action="sets" method="POST">
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <input type="hidden" name="levelid" value="{{ $level->getField('___kp_LevelId') }}">
-                  <button class="btn btn-default thumbnail btn-group-justified" type="submit">
-                    <strong><h4>Level {{ $level->getField('___kp_LevelId') }}</h4></strong>
-                  </button>
-                </form>
+                <a href="{{ URL::to('sets', $level->getField('___kp_LevelId')) }}" class="btn btn-default thumbnail btn-group-justified">
+                <h4 class="level">Level: {{ $level->getField('___kp_LevelId') }}</h4></a>
               </div>
 
             @endforeach

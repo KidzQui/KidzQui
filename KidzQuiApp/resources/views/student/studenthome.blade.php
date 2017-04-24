@@ -29,23 +29,18 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 best-left wow fadeInLeft animated" data-wow-delay=".5s">
-          <h3>Tutorials</h3>
+          <h3>Tutorials</h3><hr>
 
           @if($tutorials)
             @foreach($tutorials as $tutorial)
 
-            <div class="bes-top col-md-6">
-              <div class="bes-lft">
-                <div class="history-grid-image">
-                  <img src={{ asset("KidzQuiApp/resources/assets/images/t8.jpg") }} class="img-responsive zoom-img" alt="">
-                </div>
-              </div>
+            <div class="bes-top col-md-8 col-xs-12 col-md-offset-3">
               <div class="bes-rgt">
                 <h4><a href="singlepage">{{ $tutorial->getField('tutorialTitle_kqt') }}</a></h4>
-                <p>{{ $tutorial->getField('tutorialDescription_kqt') }}</p>
+                <p>&nbsp;&nbsp;&nbsp;{{ $tutorial->getField('tutorialDescription_kqt') }}</p><hr>
               </div>
               <div class="clearfix"></div>
-            </div>
+            </div> <br><br>
 
             @endforeach
           @endif

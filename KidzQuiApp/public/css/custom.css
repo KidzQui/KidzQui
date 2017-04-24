@@ -1,14 +1,17 @@
-.level {
+h4.level {
     height: 50px;
+    padding-top: 30px;
 }
 
 .level h4 {
     margin: 0 auto;
 }
+
 .thumbnail {
     margin:20px 20px 20px 20px;
     height: 100px;
 }
+
 .divider-vertical {
      margin-left:5px;
      margin-right:5px;
