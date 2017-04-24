@@ -260,7 +260,6 @@ class EvaluatorController extends Controller
     public function showImage(Request $request)
     {
         $url = $request['url'];
-
         $fm = FilemakerWrapper::getConnection();
         $url = substr($url, 0, strpos($url, "?"));
         $url = substr($url, strrpos($url, ".") + 1);
